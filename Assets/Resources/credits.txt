@@ -1,0 +1,94 @@
+
+
+
+
+
+
+
+
+Move the left controller joystick up or down to scroll
+
+
+
+
+
+
+
+
+
+
+
+
+
+A Split Box Studios Production
+
+WWII VR
+
+
+AUDIO
+.
+
+ANIMATION
+.
+
+3D ARTISTS
+ARIA (Sketchfab)
+captainmarlowe (Sketchfab)
+Chris Sweetwood (Sketchfab)
+.
+emilevdb (Sketchfab)
+milhause.cz (Sketchfab)
+
+PROGRAMMERS
+.
+Kazmerk (GitHub)
+
+UI
+.
+
+SOUNDTRACK
+Always In My Hear - Glenn Miller
+American Patrol - Glenn Miller
+Dig Down Deep - Tommy Dorsey
+Forgotten - Whitesand (YouTube)
+He Who Wears a Pair of Silver Wings - Dinah Shore
+I Don't Want To Walk Without You - Dinah Shore
+Imagine Me In the Marginot Line - George Forby
+Johnny Doughboy Found a Rose In Ireland - Freddy Martin
+The Girl Who Loves a Soldier - Leon Cortez
+We'll Meet Again - Vera Lynn
+
+QA
+Peter Ciliberti
+Austin Clay
+Stephen Gonzalez
+Rob McCoy
+Susan Perry
+Tyler Sudyn
+Doug Wayman
+Rhonda Wayman
+Dereke Winsor
+Jordan Williams
+Ryan Williams
+
+RESEARCH
+.
+
+SOFTWARE
+Adobe After Effects
+Adobe Photoshop
+Autodesk Maya
+Bounding Box Software
+Oculus
+Substance Painter
+Unity 2019.2.4f1
+Visual Studio
+
+SPECIAL THANKS
+archive.org
+Sigtrap (Unity asset Store)
+
+
+
+
+
