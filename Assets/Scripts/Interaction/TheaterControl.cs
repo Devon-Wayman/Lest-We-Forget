@@ -1,4 +1,5 @@
-﻿// Copyright Devon Wayman 2020
+﻿using System;
+// Author: Devon Wayman
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
@@ -26,7 +27,7 @@ namespace WWIIVR.Interaction {
 
             // Set up requested video to play
             requestedMovie = PlayerPrefs.GetString("Movie");
-            
+
             switch (requestedMovie) {
                 case "assorted":
                     videoToPlay = videos[0];

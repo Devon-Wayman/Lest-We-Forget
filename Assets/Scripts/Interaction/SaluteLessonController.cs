@@ -1,17 +1,16 @@
-﻿
-// Copyright Devon Wayman 2020
+﻿// Author: Devon Wayman
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
 
 /// <summary>
-/// Sets up the salute lesson video and generates the lock code to prevent user from entering the application
-/// for a full day
+/// Sets up the salute lesson video and generates the lock code to prevent user from 
+/// entering the application for a full day
 /// </summary>
 namespace WWIIVR.Interaction {
     public class SaluteLessonController : MonoBehaviour {
-        
+
         public VideoClip videoToPlay; // Video clip to play
         private VideoPlayer videoPlayer = null; // Video player 
 
@@ -21,7 +20,7 @@ namespace WWIIVR.Interaction {
             videoPlayer.playOnAwake = false; // Ensure video does not begin playing
             videoPlayer.Pause(); // Pause video if autoplay is set to true
 
-            videoPlayer.loopPointReached += LockAndExit;
+            videoPlayer.loopPointReached += LockAndExit; // Execute LockAndExit when video has reached end point
         }
 
         // Generate lock file to prevent user from entering until next day
@@ -32,10 +31,10 @@ namespace WWIIVR.Interaction {
         }
 
         private string GetCurrentDate() {
-            return DateTime.Today.ToString();
+            return DateTime.Today.ToShortDateString();
         }
         private string UnlockDate(){
-            return DateTime.Today.AddDays(1).ToString();
+            return DateTime.Today.AddDays(1).ToShortDateString();
         }
 
         private void Start() {  

@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace WWIIVR.PlaneScene {
     public class PlaneAI : MonoBehaviour {
+
+
         [SerializeField] private float planeSpeed = 5f; // Desired start speed
         [SerializeField] private PathFollower pathFollowerObject = null; // PathFollower connected to plane (controls speed and sets curve to follow)
         [SerializeField] private Transform prop = null; // Plane prop object (transform)
         [SerializeField] private float propSpeed = 20f; // Prop rotation speed
         private float startSpeed;
-
 
         #region Initial Setup
         private void Start () {

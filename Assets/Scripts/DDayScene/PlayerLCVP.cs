@@ -13,11 +13,16 @@ namespace WWIIVR.DDay {
 
         private LevelChanger levelChanger; // LevelChanger reference
         private bool doorDropping = false; // Determine if the door has started dropping
-        private bool hasCalledToSlow = false; // Determe if we have begun to slow down the boat
+        private bool hasCalledToSlow = false; // Determine if we have begun to slow down the boat
+
+        // USING ACCESSOR SO THAT VALUE CAN BE MODIFIED BUT ONLY READ BY OTHER CLASSES
+        public bool AllowNPCActivation { get; private set; } = false; // Boolean to inform NPC manager if NPCs can be activated
+
         private Transform stopPosition; // Position to stop the given boat at
         private List<AudioSource> audioSources; // List of audio sources in scene. Used to create slow motion effect
         public float stopDistance; // Distance to begin slowing down at
         public float boatSpeed; // Speed to have boat travel
+
         [SerializeField] private Transform lcvpGate = null; // Gate gameobject transform
 
         // Draw line showing stop distance end point
@@ -88,7 +93,11 @@ namespace WWIIVR.DDay {
                 Time.timeScale -= 0.7f * Time.deltaTime;
                 yield return null;
             }
-            levelChanger.GetComponent<Animator> ().speed = 4f; // Increase animation speed of level transition canvas to compensate for slow motion
+            levelChanger.GetComponent<Animator>().speed = 4f; // Increase animation speed of level transition canvas to compensate for slow motion
+
+            // Allow NPCs to begin leaving their boats
+            AllowNPCActivation = true;
+
             Debug.Log("Slow motion values have been reached");
         }
     }

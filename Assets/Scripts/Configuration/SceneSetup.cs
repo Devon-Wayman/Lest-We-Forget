@@ -1,10 +1,6 @@
-﻿// Copyright Devon Wayman 2020
+﻿// Author: Devon Wayman
 using UnityEngine;
 
-/// <summary>
-/// Change certain variables pertaining to player depending on the 
-/// requirements of the scene
-/// </summary>
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -13,10 +9,9 @@ public class SceneSetup : MonoBehaviour {
     [HideInInspector] public bool overrideFarClip; // Bool to allow far clip override
     [HideInInspector] public int farDistanceOverride;
 
-    [SerializeField] Camera userCam = null; // User's vr headset cam
+    private Camera userCam = null; // User's vr headset cam
 
     private void Awake() {
-        // If all overrides are set to false, exit this function
         if (!overrideFarClip)
             return;
 
@@ -28,7 +23,6 @@ public class SceneSetup : MonoBehaviour {
         }
     }
 }
-
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(SceneSetup))]

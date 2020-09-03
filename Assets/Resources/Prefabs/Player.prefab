@@ -59,7 +59,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 500
+  far clip plane: 200
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -400,6 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4832209765093020674}
   - component: {fileID: 4832209765093020677}
+  - component: {fileID: 618762969013736981}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -436,6 +437,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPressedLastFrame: 0
+--- !u!114 &618762969013736981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4832209765093020676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7077e6bd5f4a2a40bc40ddb446f4064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headObject: {fileID: 4832209763478287618}
+  leftHand: {fileID: 4832209764886221065}
+  rightHand: {fileID: 4832209765452214877}
+  rightDistance: 0
+  leftDistance: 0
+  distanceThreshold: 0.6
+  minAngle: 30
+  maxAngle: 50
+  leftAngle: 0
+  rightAngle: 0
 --- !u!1 &4832209765452214876
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +632,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.02
+    widthMultiplier: 0.01
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -683,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LineWidth: 0.02
+  m_LineWidth: 0.01
   m_OverrideInteractorLineLength: 1
   m_LineLength: 10
   m_WidthCurve:
@@ -741,8 +764,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   m_InvalidColorGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0, b: 0, a: 1}
+    key0: {r: 0.24857599, g: 0.5718231, b: 0.9245283, a: 1}
+    key1: {r: 0, g: 0.58332276, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}

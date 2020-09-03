@@ -1,4 +1,4 @@
-// Copyright Devon Wayman 2020
+// Author: Devon Wayman
 using UnityEngine;
 using System.Collections;
 using WWIIVR.Interfaces;

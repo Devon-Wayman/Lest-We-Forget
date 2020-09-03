@@ -1,4 +1,4 @@
-﻿// Copyright Devon Wayman 2020
+﻿// Author: Devon Wayman
 
 namespace WWIIVR.Interfaces {
     public interface IPooledObject {

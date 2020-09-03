@@ -1,4 +1,4 @@
-﻿// Copyright Devon Wayman 2020
+﻿// Author: Devon Wayman
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,7 +47,7 @@ namespace WWIIVR.Player {
             InputDevices.GetDevicesAtXRNode (XRNode.RightHand, rightHandDevices);
         }
 
-        void Update () {
+        private void Update () {
             if (leftHandDevices.Count <= 0 && leftHandDevices.Count <= 0) return;
 
             bool menuPressed;

@@ -1,4 +1,4 @@
-﻿// Copyright Devon Wayman 2020
+﻿// Author: Devon Wayman
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +14,7 @@ namespace WWIIVR.Interaction {
         private bool replaceText = false; // Determine if Text element text should be  set to contents of a resource folder file
         RectTransform thisRect;
         public string resourceFileName; // Name of file in resources (excluding extension)
-        private bool canScroll = false; // Determine if the control stick should move the text or nots
+        public bool CanScroll  { get; private set; } = false; // Determine if the control stick should move the text or nots
         public float maxScrollUp, maxScrollDown;
         public float scrollSpeed; // Speed at which text scrolls
 
@@ -23,11 +23,10 @@ namespace WWIIVR.Interaction {
         [SerializeField] private XRNode xrNode = XRNode.LeftHand;
 
         private void OnEnable () {
-
             if (!device.isValid)
                 GetDevice ();
 
-            canScroll = true;
+            CanScroll = true;
             thisRect = gameObject.GetComponent<RectTransform> ();
 
             if (replaceText) {
@@ -43,15 +42,16 @@ namespace WWIIVR.Interaction {
         }
 
         private void OnDisable () {
-            this.canScroll = false; // Disable scroll input on this object when disabled
+            this.CanScroll = false; // Disable scroll input on this object when disabled
         }
 
         void Update () {
-            if (!canScroll || !device.isValid)
+            if (!CanScroll || !device.isValid)
                 return;
 
             Vector2 primary2DAxisValue = Vector2.zero;
             InputFeatureUsage<Vector2> primary2DAxis = CommonUsages.primary2DAxis;
+
             if (device.TryGetFeatureValue (primary2DAxis, out primary2DAxisValue) && primary2DAxisValue != Vector2.zero) {
                 thisRect.transform.position += transform.up * Time.deltaTime * scrollSpeed * primary2DAxisValue.y;
             }

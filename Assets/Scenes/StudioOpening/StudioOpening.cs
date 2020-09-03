@@ -1,4 +1,4 @@
-﻿// Copyright Devon Wayman 2020
+﻿// Author: Devon Wayman
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;

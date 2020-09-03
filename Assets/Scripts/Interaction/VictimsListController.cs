@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-// Copyright Devon Wayman 2020
+// Author: Devon Wayman
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
