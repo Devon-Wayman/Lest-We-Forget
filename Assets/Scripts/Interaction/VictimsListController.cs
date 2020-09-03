@@ -1,5 +1,5 @@
-﻿using System.Linq;
-// Author: Devon Wayman
+﻿// Author: Devon Wayman
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +14,8 @@ namespace WWIIVR.ApplicationSettings {
         Text openerText, victimNames;
         public CanvasGroup openerCG, victimsListCG, victimsDisplayCG; // Reference to text content of victims rect
         private Image victimImageDisplay; // Image holder to pass in images from sprite sheet 
-        public List<Sprite> victimsSprites = new List<Sprite>(); // Array of the survivor images
-        private bool allowAutoScroll;
+        private List<Sprite> victimsSprites = new List<Sprite>(); // List of the survivor images pulled from a sprite sheet
+        private bool allowAutoScroll; // Allow autoscrolling of the victims list
 
         private void Awake() {
             victimImageDisplay = victimsDisplayCG.GetComponent<Image>();
@@ -35,11 +35,12 @@ namespace WWIIVR.ApplicationSettings {
         }
         private void Update() {
             if (!allowAutoScroll) return;
-                textHolder.transform.position += transform.up * Time.deltaTime * 0.3f;
+                
+            textHolder.transform.position += transform.up * Time.deltaTime * 0.3f;
         }
 
         #region Opening statements
-        public void UpdateOpenerText() {
+        private void UpdateOpenerText() {
             switch (openerTextIndex) {
                 case 0:
                     openerText.text = "In the year 1941, Nazi-occupied regions\nbegan murdering Jews";
@@ -80,7 +81,7 @@ namespace WWIIVR.ApplicationSettings {
                 UpdateOpenerText();
                 StartCoroutine(FadeOpenerText());
             } else {
-                // Start the slide show
+                // BEGIN SLIDESHOW
                 StartCoroutine(SlideshowControl());
                 StartCoroutine(FadeInList());
                 allowAutoScroll = true;
@@ -107,7 +108,7 @@ namespace WWIIVR.ApplicationSettings {
             victimsDisplayCG.alpha = 0;
             StartCoroutine(SlideshowControl()); // Pick another image and start again
         }
-        // Grab random sprite from victims sprite sheet to display
+        // GRAB RANDOM IMAGE FROM VICTIMS SPRITE SHEET
         private Sprite GrabRandomImage() {
             int index = Random.Range(0, victimsSprites.Count);
             return victimsSprites[index];

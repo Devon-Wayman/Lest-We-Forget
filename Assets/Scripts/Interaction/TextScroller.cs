@@ -11,13 +11,15 @@ using UnityEngine.XR;
 namespace WWIIVR.Interaction {
     public class TextScroller : MonoBehaviour {
 
-        private bool replaceText = false; // Determine if Text element text should be  set to contents of a resource folder file
-        RectTransform thisRect;
+        private bool replaceText = false; // Determine if Text element text should be set to contents of a resource folder file
+        
+        private RectTransform thisRect;
         public string resourceFileName; // Name of file in resources (excluding extension)
         public bool CanScroll  { get; private set; } = false; // Determine if the control stick should move the text or nots
         public float maxScrollUp, maxScrollDown;
         public float scrollSpeed; // Speed at which text scrolls
 
+        // VR OBJECTS
         private List<InputDevice> devices = new List<InputDevice> ();
         private InputDevice device;
         [SerializeField] private XRNode xrNode = XRNode.LeftHand;
