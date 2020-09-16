@@ -46,7 +46,6 @@ namespace WWIIVR.Interaction {
         private IEnumerator LowerAudio() {
             float t = audioFadeTime;
             while (t > 0) {
-                //yield return null;
                 t -= Time.deltaTime; // Decrease value of "t" over time; set by value of audioFadeTime
 
                 for (int i = 0; i < allAudio.Count; i++)
