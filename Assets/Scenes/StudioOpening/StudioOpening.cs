@@ -11,7 +11,7 @@ public class StudioOpening : MonoBehaviour {
 
     public float menuDelay = 6f;
     public float moveDistance = 5f; // Distance to move canvas forward for opener
-    LevelChanger levelChanger = null; // Reference to LevelChanger
+    private LevelChanger levelChanger = null; // Reference to LevelChanger
 
     void Awake() {
         levelChanger = FindObjectOfType<LevelChanger>(); // Find and store reference to level changer object
@@ -22,7 +22,7 @@ public class StudioOpening : MonoBehaviour {
 
         float requestedForwardPosition = this.transform.position.z - moveDistance;
 
-        StartCoroutine(MoveTitle(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, requestedForwardPosition ), 9f));
+        StartCoroutine(MoveTitle(transform.position, new Vector3(transform.position.x, transform.position.y, requestedForwardPosition ), 9f));
     }
 
     // Smoothly move the opening title text forward towards the player

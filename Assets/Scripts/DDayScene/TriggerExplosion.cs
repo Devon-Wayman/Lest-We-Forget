@@ -24,7 +24,7 @@ namespace WWIIVR.DDay {
         private PlayerLCVP playerBoat = null; // Reference to player's LCVP
         public Vector3[] explosionOffsets; // Offsets to spawn explosions from in reference to boats current location
 
-        public void Awake() {
+        private void Awake() {
             allowExplosions = true; // Set to true at start
             playerBoat = GetComponent<PlayerLCVP>(); // Grab the playerLCVP class off this object
         }
@@ -55,7 +55,7 @@ namespace WWIIVR.DDay {
                 try {
                     SpawnBombFromPool(explosionsAvailable[selectRandomExplosion], explosionOffsets[selectedExplosionLocation]); // Spawn bomb in designated location
                 } catch (IOException ex) {
-                    Debug.LogError($"Error spawning explosion: {ex.Message}");
+                    Debug.LogError($"Explosion error: {ex.Message}");
                 }
 
                 // Exit loop if player boat speed is less than 9 on next check

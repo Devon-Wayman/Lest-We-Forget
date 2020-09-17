@@ -20,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DDay/DDay.unity
     guid: cc320ce70b676b6449f3f2d5c4acbc48
-  - enabled: 1
-    path: Assets/Scenes/SaluteLesson/SaluteLesson.unity
-    guid: 84518c944cbce5641a210cbe91feef48
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bb4c6414a096da44b84e4817e48c299d,
       type: 2}

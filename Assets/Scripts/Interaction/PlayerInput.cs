@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
 using WWIIVR.Interaction;
 
 // Main player input manager
@@ -11,15 +10,11 @@ namespace WWIIVR.Player {
     public class PlayerInput : MonoBehaviour {
 
         private MenuControl menuControl = null;
+
         private LevelChanger levelChanger = null; // Reference to level changer object
         [SerializeField] private List<InputDevice> leftHandDevices = new List<InputDevice> (); // Left hand VR items
         [SerializeField] private List<InputDevice> rightHandDevices = new List<InputDevice> (); // Right hand VR items
         private string currentSceneName; // Get current scene name
-
-        [Header ("Scene Specific Features")]
-        private XRRayInteractor rayInteractor = null;
-        private LineRenderer lineRenderer = null;
-        private XRInteractorLineVisual lineVisual = null;
 
         [Header ("User input variables")]
         public bool menuPressedLastFrame = false;
@@ -29,17 +24,6 @@ namespace WWIIVR.Player {
             levelChanger.GetComponent<Animator> ().speed = 1f; // Make sure on start that the level changer animation speed is normal
 
             currentSceneName = SceneManager.GetActiveScene ().name;
-
-            rayInteractor = FindObjectOfType<XRRayInteractor> ();
-            lineRenderer = FindObjectOfType<LineRenderer> ();
-            lineVisual = FindObjectOfType<XRInteractorLineVisual> ();
-
-            if (currentSceneName == "MainMenu") {
-                rayInteractor.enabled = lineRenderer.enabled = lineVisual.enabled = true; // Activate line interactions
-                menuControl = FindObjectOfType<MenuControl> ();
-            } else {
-                rayInteractor.enabled = lineRenderer.enabled = lineVisual.enabled = false; // Deactivate point interactions
-            }
         }
 
         private void Start () {

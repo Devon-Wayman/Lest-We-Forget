@@ -8,15 +8,17 @@ using UnityEngine.SceneManagement;
 namespace WWIIVR.Interaction {
     public class LevelChanger : MonoBehaviour {
 
-        // Animator for fade animation
         private Animator levelChangeAnimator;
+
         // Requested level to transition to
         private string levelToLoad;
 
-        // Stores all audio sources in scene
+        // Audio sources in current scene
         private List<AudioSource> allAudio = new List<AudioSource>(); 
+
         // Amount of time to fade audio our (default 2 second)
         private int audioFadeTime = 2; 
+
         // Determine if application is being exited by user
         private bool quittingGame = false; 
 
@@ -64,7 +66,6 @@ namespace WWIIVR.Interaction {
                 #else
                     Application.Quit();
                 #endif
-                return;
             }
             try {
                 SceneManager.LoadScene(levelToLoad);

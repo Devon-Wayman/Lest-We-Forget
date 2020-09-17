@@ -46,13 +46,13 @@ namespace WWIIVR.Interaction {
         }
 
         private IEnumerator PlayVideo(){
-            yield return new WaitForSeconds(1);
             videoPlayer.source = VideoSource.VideoClip;
             videoPlayer.clip = videoToPlay;
             videoPlayer.Prepare();
 
             // Wait two seconds before checking if video is ready for playback if the status returns false
-            WaitForSeconds waitTime = new WaitForSeconds(2);
+            WaitForSeconds waitTime = new WaitForSeconds(1);
+
             while (!videoPlayer.isPrepared) {
                 yield return waitTime;
                 break;
