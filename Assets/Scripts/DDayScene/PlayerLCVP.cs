@@ -19,7 +19,7 @@ namespace WWIIVR.DDay {
         public bool AllowNPCActivation { get; private set; } = false; // Boolean to inform NPC manager if NPCs can be activated
 
         private Transform stopPosition; // Position to stop the given boat at
-        private List<AudioSource> audioSources; // List of audio sources in scene. Used to create slow motion effect
+        private List<AudioSource> audioSources = new List<AudioSource>(); // List of audio sources in scene. Used to create slow motion effect
         public float stopDistance; // Distance to begin slowing down at
         public float boatSpeed; // Speed to have boat travel
 
