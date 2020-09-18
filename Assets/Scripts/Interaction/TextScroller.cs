@@ -34,7 +34,7 @@ namespace WWIIVR.Interaction {
             if (replaceText) {
                 var textFile = Resources.Load<TextAsset> (resourceFileName); // Load victims text file
                 string rawText = textFile.ToString ();
-                this.GetComponent<Text> ().text = rawText;
+                GetComponent<Text> ().text = rawText;
             } else {
                 Debug.Log ("Keeping default text");
             }
@@ -44,7 +44,7 @@ namespace WWIIVR.Interaction {
         }
 
         private void OnDisable () {
-            this.CanScroll = false; // Disable scroll input on this object when disabled
+            CanScroll = false; // Disable scroll input on this object when disabled
         }
 
         void Update () {
