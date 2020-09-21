@@ -170,9 +170,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 1
   SMAAQuality: 2
-  dithering: 0
+  dithering: 1
   stopNaNs: 0
   taaSharpenStrength: 0.6
   physicalParameters:
@@ -219,7 +219,8 @@ GameObject:
   - component: {fileID: 4832209763638717039}
   - component: {fileID: 4832209763638717036}
   - component: {fileID: 174016634}
-  - component: {fileID: 174016635}
+  - component: {fileID: 2520326153602422021}
+  - component: {fileID: 4014425470597273631}
   m_Layer: 0
   m_Name: XR Rig
   m_TagString: Untagged
@@ -274,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Timeout: 10
   m_XRRig: {fileID: 4832209763638717036}
---- !u!114 &174016635
+--- !u!114 &2520326153602422021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,15 +284,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 4832209763638717038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4f2c0214c9b494fa7eb5b8b2c02885, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a688c303d9e9bb45998f58e4e278720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 174016634}
-  m_TurnUsage: 0
-  m_Controllers: []
-  m_TurnAmount: 45
-  m_DebounceTime: 0.5
-  m_DeadZone: 0.75
+  playerSpeed: 1.3
+  gravityMultiplier: 1
+  controllers:
+  - {fileID: 4832209764886221061}
+--- !u!143 &4014425470597273631
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4832209763638717038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4832209764600393638
 GameObject:
   m_ObjectHideFlags: 0
