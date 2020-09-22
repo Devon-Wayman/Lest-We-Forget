@@ -9,10 +9,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: HDRP-FreeWater 2
   m_Shader: {fileID: 4800000, guid: 13ac76e5d4eb0094d89a054ea444d02a, type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _BLENDMODE_ALPHA _DOUBLESIDED_ON _ENABLE_FOG_ON_TRANSPARENT
+  m_ShaderKeywords: _ALPHATEST_ON _BLENDMODE_ADD _DOUBLESIDED_ON _ENABLE_FOG_ON_TRANSPARENT
     _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: 3000
   stringTagMap:
@@ -320,9 +320,9 @@ Material:
     - _AlbedoAffectEmissive: 0
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 1
-    - _AlphaDstBlend: 10
+    - _AlphaDstBlend: 1
     - _AlphaSrcBlend: 1
-    - _BlendMode: 0
+    - _BlendMode: 1
     - _BumpScale: 1
     - _CausticsOpacity: 1
     - _CausticsThickness: 30
@@ -361,7 +361,7 @@ Material:
     - _DoubleSidedEnable: 1
     - _DoubleSidedNormalMode: 1
     - _Drag: 1
-    - _DstBlend: 10
+    - _DstBlend: 1
     - _EdgeBlendAmount: 0
     - _EdgeBlendDepth: 1.88
     - _EdgeBlendFalloff: 1.88
@@ -574,10 +574,10 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - Color_8DF95E1F: {r: 0.54512286, g: 0.59907174, b: 0.6603774, a: 1}
-    - Color_A0995202: {r: 0.095007114, g: 0.25094274, b: 0.3301887, a: 1}
+    - Color_8DF95E1F: {r: 0.3063813, g: 0.36341774, b: 0.4245283, a: 1}
+    - Color_A0995202: {r: 0.21502315, g: 0.27293226, b: 0.3018868, a: 1}
     - Color_DD167ECF: {r: 0.9433962, g: 0, b: 0, a: 1}
-    - Color_F4D2E00B: {r: 0.34901962, g: 0.42352945, b: 0.5254902, a: 1}
+    - Color_F4D2E00B: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
     - Vector2_6E1E59F4: {r: 300, g: 300, b: 0, a: 0}
     - _BaseColor0: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor1: {r: 1, g: 1, b: 1, a: 1}

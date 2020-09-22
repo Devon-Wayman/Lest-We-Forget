@@ -2,17 +2,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Main player input manager
 namespace WWIIVR.Interaction.Player {
-
     [RequireComponent(typeof(InputHandler))]
     public class GameController : MonoBehaviour {
 
         private LevelChanger levelChanger = null; // Reference to level changer object
+        private MenuManager menuManager = null; // Used at Main Menu scene
+
         private string currentSceneName; // Get current scene name
 
-        //[SerializeField] private List<InputDevice> leftHandDevices = new List<InputDevice> (); // Left hand VR items
-        //[SerializeField] private List<InputDevice> rightHandDevices = new List<InputDevice> (); // Right hand VR items
         [SerializeField] private InputHandler inputHandler;
 
         private bool menuWasPressed = false;
@@ -22,27 +20,40 @@ namespace WWIIVR.Interaction.Player {
             levelChanger.GetComponent<Animator>().speed = 1f; // Make sure on start that the level changer animation speed is normal
             currentSceneName = SceneManager.GetActiveScene().name;
 
+            if(currentSceneName == "MainMenu") {
+                if (menuManager == null) {
+                    menuManager = FindObjectOfType<MenuManager>();
+                }
+            }
+
             if (inputHandler == null)
                 inputHandler = GetComponent<InputHandler>();
         }
 
-        //private void Start () {
-        //    InputDevices.GetDevicesAtXRNode (XRNode.LeftHand, leftHandDevices);
-        //    InputDevices.GetDevicesAtXRNode (XRNode.RightHand, rightHandDevices);
-        //}
-
         private void Update() {
-            if (currentSceneName == "MainMenu") return;
+            // If menu button is ever pressed we want to either reset the scene or go home
             if (menuWasPressed) return;
-            // if (leftHandDevices.Count <= 0 && leftHandDevices.Count <= 0) return;
 
-            //if (leftHandDevices[0].TryGetFeatureValue (CommonUsages.menuButton, out menuPressed) && menuPressed && !menuPressedLastFrame) {
+            // Check if menu button has been pressed
             if (inputHandler.GetApplicaitonMenuDown()) {
                 if (Time.timeScale != 1)
                     Time.timeScale = 1;
                 Debug.Log("Going home!");
                 levelChanger.FadeToLevel("MainMenu");
                 menuWasPressed = true;
+            }
+
+            // Nothing passed the next line is required unless at main menu
+            if (currentSceneName != "MainMenu") return;
+
+            // Check if both trigger buttons have been pressed at main menu to play the tutorial
+            if (inputHandler.TutorialRequested()) {
+                if (menuManager.TutorialPlaying) {
+                    Debug.Log("Tutorial currently playing!"); 
+                    return;
+                }
+
+                menuManager.PlayTutorial();
             }
         }
     }

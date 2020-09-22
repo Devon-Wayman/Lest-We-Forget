@@ -192,9 +192,9 @@ MonoBehaviour:
     supportShadowMask: 1
     supportSSR: 0
     supportSSAO: 1
-    supportSubsurfaceScattering: 1
+    supportSubsurfaceScattering: 0
     increaseSssSampleCount: 0
-    supportVolumetrics: 0
+    supportVolumetrics: 1
     increaseResolutionOfVolumetrics: 0
     supportLightLayers: 0
     lightLayerName0: Light Layer default
@@ -232,7 +232,7 @@ MonoBehaviour:
       reflectionCubemapSize: 256
       reflectionCacheCompressed: 0
       planarReflectionCacheCompressed: 0
-      skyReflectionSize: 256
+      skyReflectionSize: 128
       skyLightingOverrideLayerMask:
         serializedVersion: 2
         m_Bits: 0

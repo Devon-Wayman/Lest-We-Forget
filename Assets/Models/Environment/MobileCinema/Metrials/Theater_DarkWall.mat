@@ -10,6 +10,7 @@ Material:
   m_Name: Theater_DarkWall
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
   m_ShaderKeywords: _GLOSSINESS_FROM_BASE_ALPHA _NORMALMAP_TANGENT_SPACE _SPECULAR_COLOR
+    _SPECULAR_OCCLUSION_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -252,7 +253,7 @@ Material:
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularHighlights: 0
-    - _SpecularOcclusionMode: 1
+    - _SpecularOcclusionMode: 0
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 8

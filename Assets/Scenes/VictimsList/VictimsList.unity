@@ -885,6 +885,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2520326153602422021, guid: a4bb5ac2e3823ca4c801b763cb8489d4,
+        type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4832209763478287617, guid: a4bb5ac2e3823ca4c801b763cb8489d4,
         type: 3}
       propertyPath: m_ClearFlags

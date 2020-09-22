@@ -12,8 +12,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace WWIIVR.Interaction.Player {
     public class MovmentProvider : LocomotionProvider {
 
-        public float playerSpeed = 1.9f;
-        public float gravityMultiplier = 1.8f;
+        public float playerSpeed = 1.7f;
+        public float gravityMultiplier = 1f;
+        [SerializeField] private bool canMove = true;
 
         // List of XR controllers
         public List<XRController> controllers = null;
@@ -24,17 +25,17 @@ namespace WWIIVR.Interaction.Player {
 
         protected override void Awake() {
             characterController = GetComponent<CharacterController>();
-
             head = GetComponent<XRRig>().cameraGameObject;
         }
 
         private void Start() {
-            // Set capsule to correct position
             PositionController();
         }
 
-        private void Update() {
+        private void FixedUpdate() {
             PositionController();
+
+            if (!canMove) return;
             CheckForInput();
             ApplyGravity();
         }

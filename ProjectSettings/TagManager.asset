@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GraphicContent
   layers:
   - Default
   - TransparentFX
@@ -13,11 +14,11 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
   - 
-  - 
-  - 
-  - PickUp
+  - Environment
+  - Pickup
+  - Player
+  - Hand
   - 
   - 
   - 
