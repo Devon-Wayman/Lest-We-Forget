@@ -25,7 +25,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: -7.5
+    m_Value: -7
   compensation:
     m_OverrideState: 0
     m_Value: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 20000
   updateMode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   updatePeriod:
     m_OverrideState: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Value: 0
   top:
     m_OverrideState: 1
-    m_Value: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
+    m_Value: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
@@ -176,7 +176,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 3
   skyAmbientMode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   fogType:
     m_OverrideState: 0
