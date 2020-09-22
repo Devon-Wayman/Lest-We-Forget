@@ -1,6 +1,7 @@
 ﻿// Author: Devon Wayman
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using WWIIVR.Interaction.LevelManagement;
 
 namespace WWIIVR.Interaction.Player {
     [RequireComponent(typeof(InputHandler))]

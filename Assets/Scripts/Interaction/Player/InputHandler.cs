@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using WWIIVR.Interaction.LevelManagement;
 
 namespace WWIIVR.Interaction.Player {
     public class InputHandler : MonoBehaviour {
@@ -29,8 +30,8 @@ namespace WWIIVR.Interaction.Player {
             return pressed;
         }  
         public bool TutorialRequested() {
-            leftController.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out leftTriggerPressed);
-            rightController.inputDevice.TryGetFeatureValue(CommonUsages.triggerButton, out rightTriggerPressed);
+            leftController.inputDevice.TryGetFeatureValue(CommonUsages.gripButton, out leftTriggerPressed);
+            rightController.inputDevice.TryGetFeatureValue(CommonUsages.gripButton, out rightTriggerPressed);
 
             if (leftTriggerPressed && rightTriggerPressed) {
                 return true;
@@ -58,7 +59,6 @@ namespace WWIIVR.Interaction.Player {
                     levelObject.LoadLevel();
                 }
             }
-
             // Check right hand for holding object to activate scene change
             if (Physics.Raycast(leftController.transform.position, leftController.transform.forward, out hit, 0.5f)) {
                 hit.transform.gameObject.TryGetComponent(out LevelObject levelObject);

@@ -450,6 +450,7 @@ MonoBehaviour:
   playerSpeed: 1.3
   gravityMultiplier: 1
   canMove: 1
+  useGravity: 0
   controllers:
   - {fileID: 4832209764886221061}
 --- !u!143 &4014425470597273631
@@ -657,7 +658,18 @@ MonoBehaviour:
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: ItemHover
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnHoverExit:
     m_PersistentCalls:
       m_Calls: []
@@ -678,8 +690,8 @@ MonoBehaviour:
   m_PlayAudioClipOnHoverExit: 0
   m_AudioClipForOnHoverExit: {fileID: 0}
   m_PlayHapticsOnSelectEnter: 0
-  m_HapticSelectEnterIntensity: 0
-  m_HapticSelectEnterDuration: 0
+  m_HapticSelectEnterIntensity: 0.1
+  m_HapticSelectEnterDuration: 0.2
   m_PlayHapticsOnSelectExit: 0
   m_HapticSelectExitIntensity: 0
   m_HapticSelectExitDuration: 0
@@ -735,8 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09de9276cfb0bf64094fa02dbc977da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeButtonController: {fileID: 4832209764886221061}
-  menuPressed: 0
+  leftController: {fileID: 4832209764886221061}
+  rightController: {fileID: 4832209765452214873}
 --- !u!114 &1319575187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +916,7 @@ PrefabInstance:
     - target: {fileID: 5057673778167683891, guid: 6f132224e24581b419a41ea253460519,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5057673778167683891, guid: 6f132224e24581b419a41ea253460519,
         type: 3}
@@ -959,7 +971,7 @@ PrefabInstance:
     - target: {fileID: 5057673779074646928, guid: 6f132224e24581b419a41ea253460519,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 9000
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5057673779074646931, guid: 6f132224e24581b419a41ea253460519,
         type: 3}

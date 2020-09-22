@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Fades current scene out and fades in requested scene
-namespace WWIIVR.Interaction {
+namespace WWIIVR.Interaction.LevelManagement {
     public class LevelChanger : MonoBehaviour {
 
         private Animator levelChangeAnimator;

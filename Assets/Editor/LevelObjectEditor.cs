@@ -1,6 +1,7 @@
 ﻿// Author Devon Wayman 
 // Date Sept 22 2020
 using UnityEditor;
+using WWIIVR.Interaction.LevelManagement;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(LevelObject))]

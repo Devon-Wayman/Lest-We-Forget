@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using WWIIVR.Interaction;
+using WWIIVR.Interaction.LevelManagement;
 
 /// <summary>
 /// Used to load main menu after studio intro delay
@@ -20,7 +20,7 @@ public class StudioOpening : MonoBehaviour {
     void Start() {
         StartCoroutine(FadeToMain()); // Start coroutine to fade to main menu
 
-        float requestedForwardPosition = this.transform.position.z - moveDistance;
+        float requestedForwardPosition = transform.position.z - moveDistance;
 
         StartCoroutine(MoveTitle(transform.position, new Vector3(transform.position.x, transform.position.y, requestedForwardPosition ), 9f));
     }

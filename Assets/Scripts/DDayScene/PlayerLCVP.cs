@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WWIIVR.Interaction;
+using WWIIVR.Interaction.LevelManagement;
 
 /// <summary>
 /// This is to be placed on the player's boat ONLY! Other boats containing NPCs will be using the Unity's ECS system

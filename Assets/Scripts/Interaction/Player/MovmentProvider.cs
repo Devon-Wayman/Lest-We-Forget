@@ -15,6 +15,7 @@ namespace WWIIVR.Interaction.Player {
         public float playerSpeed = 1.7f;
         public float gravityMultiplier = 1f;
         [SerializeField] private bool canMove = true;
+        [SerializeField] private bool useGravity = true;
 
         // List of XR controllers
         public List<XRController> controllers = null;
@@ -35,9 +36,11 @@ namespace WWIIVR.Interaction.Player {
         private void FixedUpdate() {
             PositionController();
 
-            if (!canMove) return;
-            CheckForInput();
-            ApplyGravity();
+            if (canMove) 
+                CheckForInput();
+            
+            if (useGravity)
+                ApplyGravity();
         }
 
         private void PositionController() {
@@ -86,6 +89,8 @@ namespace WWIIVR.Interaction.Player {
             Vector3 movement = direction * playerSpeed;
             characterController.Move(movement * Time.deltaTime);
         }
+
+        // Called from FixedUpdate if gravity  is enabled
         private void ApplyGravity() {
             Vector3 gravity = new Vector3(0, Physics.gravity.y * gravityMultiplier, 0);
             gravity.y *= Time.deltaTime;
