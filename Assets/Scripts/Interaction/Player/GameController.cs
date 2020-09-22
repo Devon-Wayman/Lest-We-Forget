@@ -8,9 +8,8 @@ namespace WWIIVR.Interaction.Player {
 
         private LevelChanger levelChanger = null; // Reference to level changer object
         private MenuManager menuManager = null; // Used at Main Menu scene
-
         private string currentSceneName; // Get current scene name
-
+        
         [SerializeField] private InputHandler inputHandler;
 
         private bool menuWasPressed = false;
@@ -49,12 +48,14 @@ namespace WWIIVR.Interaction.Player {
             // Check if both trigger buttons have been pressed at main menu to play the tutorial
             if (inputHandler.TutorialRequested()) {
                 if (menuManager.TutorialPlaying) {
-                    Debug.Log("Tutorial currently playing!"); 
+                    Debug.Log("Tutorial currently playing!");
                     return;
                 }
-
                 menuManager.PlayTutorial();
             }
+
+            // If grip is squeezed, check if held object has a LoadScene item and run its function
+            inputHandler.CheckGripSqueezed();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-// Author: Devon Wayman
+﻿// Author: Devon Wayman
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;

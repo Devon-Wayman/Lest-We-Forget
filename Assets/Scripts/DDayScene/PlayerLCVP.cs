@@ -11,7 +11,7 @@ using WWIIVR.Interaction;
 namespace WWIIVR.DDay {
     public class PlayerLCVP : MonoBehaviour {
 
-        private LevelChanger levelChanger; // LevelChanger reference
+        private LevelChanger levelChanger = null; // LevelChanger reference
         private bool doorDropping = false; // Determine if the door has started dropping
         private bool hasCalledToSlow = false; // Determine if we have begun to slow down the boat
 
@@ -36,10 +36,7 @@ namespace WWIIVR.DDay {
             levelChanger = FindObjectOfType<LevelChanger> ();
             GetComponentInChildren<Camera>().farClipPlane = 900; // Set further far plane distance so beach is visible
 
-            // Create boat stop point based on distance entered
             CreateStopPoint();
-
-            // Grab all audio sources in the scene
             ObtainAudioSources();
         }
         private void ObtainAudioSources() {
