@@ -214,7 +214,7 @@ MonoBehaviour:
     customBufferFormat: 12
     supportedLitShaderMode: 1
     supportDecals: 0
-    msaaSampleCount: 2
+    msaaSampleCount: 4
     supportMotionVectors: 0
     supportRuntimeDebugDisplay: 0
     supportDitheringCrossFade: 1
@@ -270,7 +270,7 @@ MonoBehaviour:
       maxDirectionalShadowMapResolution: 2048
       maxPunctualShadowMapResolution: 2048
       maxAreaShadowMapResolution: 2048
-      supportScreenSpaceShadows: 0
+      supportScreenSpaceShadows: 1
       maxScreenSpaceShadowSlots: 4
       screenSpaceShadowBufferFormat: 48
     decalSettings:
