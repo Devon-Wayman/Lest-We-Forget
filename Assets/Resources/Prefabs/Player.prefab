@@ -330,7 +330,7 @@ MonoBehaviour:
   volumeAnchorOverride: {fileID: 0}
   antialiasing: 1
   SMAAQuality: 2
-  dithering: 1
+  dithering: 0
   stopNaNs: 0
   taaSharpenStrength: 0.6
   physicalParameters:
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_PoseProvider: {fileID: 0}
   m_ControllerNode: 4
   m_SelectUsage: 2
-  m_ActivateUsage: 2
+  m_ActivateUsage: 6
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
   m_ModelPrefab: {fileID: 0}
@@ -813,7 +813,7 @@ MonoBehaviour:
   m_PoseProvider: {fileID: 0}
   m_ControllerNode: 5
   m_SelectUsage: 2
-  m_ActivateUsage: 2
+  m_ActivateUsage: 6
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
   m_ModelPrefab: {fileID: 0}
@@ -971,7 +971,7 @@ PrefabInstance:
     - target: {fileID: 5057673779074646928, guid: 6f132224e24581b419a41ea253460519,
         type: 3}
       propertyPath: m_SortingOrder
-      value: -1
+      value: 9000
       objectReference: {fileID: 0}
     - target: {fileID: 5057673779074646931, guid: 6f132224e24581b419a41ea253460519,
         type: 3}

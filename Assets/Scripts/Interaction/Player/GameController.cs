@@ -16,6 +16,10 @@ namespace WWIIVR.Interaction.Player {
         public static bool changingScenes = false;
 
         private void Awake() {
+
+            // Ensure changing scenes is false on awake when loading to a new scene
+            changingScenes = false; 
+
             levelChanger = FindObjectOfType<LevelChanger>(); // Set reference to level changer
             levelChanger.GetComponent<Animator>().speed = 1f; // Make sure on start that the level changer animation speed is normal
             currentSceneName = SceneManager.GetActiveScene().name;
@@ -38,7 +42,6 @@ namespace WWIIVR.Interaction.Player {
             if (inputHandler.GetApplicationMenuDown()) {
                 if (Time.timeScale != 1)
                     Time.timeScale = 1;
-                Debug.Log("Going home!");
                 levelChanger.FadeToLevel("MainMenu");
                 changingScenes = true;
             }

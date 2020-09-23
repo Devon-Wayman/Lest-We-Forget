@@ -103,17 +103,12 @@ public class ItemInteraction : XRGrabInteractable {
     }
 
     private IEnumerator SmoothReturn(Vector3 currentPosition, Vector3 targetPosition, Quaternion targetRotation) {
-        // Disable collision detections
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
         float startTime = Time.time;
         while (Time.time < startTime + returnDelay) {
             transform.position = Vector3.Lerp(currentPosition, targetPosition, (Time.time - startTime) / returnDelay);
             yield return null;
         }
-
-        // Detect collisions again
-        gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
         transform.position = targetPosition;
         transform.rotation = targetRotation;

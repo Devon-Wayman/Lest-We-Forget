@@ -190,11 +190,11 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderPipelineSettings:
     supportShadowMask: 1
-    supportSSR: 0
-    supportSSAO: 1
+    supportSSR: 1
+    supportSSAO: 0
     supportSubsurfaceScattering: 0
     increaseSssSampleCount: 0
-    supportVolumetrics: 1
+    supportVolumetrics: 0
     increaseResolutionOfVolumetrics: 0
     supportLightLayers: 0
     lightLayerName0: Light Layer default
@@ -205,7 +205,7 @@ MonoBehaviour:
     lightLayerName5: Light Layer 5
     lightLayerName6: Light Layer 6
     lightLayerName7: Light Layer 7
-    supportDistortion: 1
+    supportDistortion: 0
     supportTransparentBackface: 1
     supportTransparentDepthPrepass: 1
     supportTransparentDepthPostpass: 1
@@ -215,13 +215,13 @@ MonoBehaviour:
     supportedLitShaderMode: 1
     supportDecals: 0
     msaaSampleCount: 2
-    supportMotionVectors: 1
-    supportRuntimeDebugDisplay: 1
+    supportMotionVectors: 0
+    supportRuntimeDebugDisplay: 0
     supportDitheringCrossFade: 1
     supportTerrainHole: 0
     supportRayTracing: 0
     lightLoopSettings:
-      cookieAtlasSize: 512
+      cookieAtlasSize: 128
       cookieFormat: 74
       pointCookieSize: 128
       cubeCookieTexArraySize: 16
@@ -230,9 +230,9 @@ MonoBehaviour:
       planarReflectionAtlasSize: 4096
       reflectionProbeCacheSize: 64
       reflectionCubemapSize: 256
-      reflectionCacheCompressed: 0
+      reflectionCacheCompressed: 1
       planarReflectionCacheCompressed: 0
-      skyReflectionSize: 128
+      skyReflectionSize: 256
       skyLightingOverrideLayerMask:
         serializedVersion: 2
         m_Bits: 0
@@ -246,13 +246,13 @@ MonoBehaviour:
     hdShadowInitParams:
       maxShadowRequests: 128
       directionalShadowsDepthBits: 16
-      shadowFilteringQuality: 1
+      shadowFilteringQuality: 0
       punctualLightShadowAtlas:
-        shadowAtlasResolution: 4096
+        shadowAtlasResolution: 2048
         shadowAtlasDepthBits: 16
         useDynamicViewportRescale: 1
       areaLightShadowAtlas:
-        shadowAtlasResolution: 4096
+        shadowAtlasResolution: 2048
         shadowAtlasDepthBits: 32
         useDynamicViewportRescale: 1
       shadowResolutionDirectional:
@@ -270,7 +270,7 @@ MonoBehaviour:
       maxDirectionalShadowMapResolution: 2048
       maxPunctualShadowMapResolution: 2048
       maxAreaShadowMapResolution: 2048
-      supportScreenSpaceShadows: 1
+      supportScreenSpaceShadows: 0
       maxScreenSpaceShadowSlots: 4
       screenSpaceShadowBufferFormat: 48
     decalSettings:
@@ -308,9 +308,9 @@ MonoBehaviour:
       - 5
       - 8
       - 13
-      DoFResolution: 040000000200000001000000
-      DoFHighQualityFiltering: 000101
-      MotionBlurSampleCount: 04000000080000000c000000
+      DoFResolution: 040000000200000002000000
+      DoFHighQualityFiltering: 000001
+      MotionBlurSampleCount: 000000000000000000000000
       BloomRes: 040000000200000002000000
       BloomHighQualityFiltering: 000101
       ChromaticAberrationMaxSamples: 03000000060000000c000000
@@ -342,7 +342,7 @@ MonoBehaviour:
   enableSRPBatcher: 1
   shaderVariantLogLevel: 0
   availableMaterialQualityLevels: -1
-  m_DefaultMaterialQualityLevel: 4
+  m_DefaultMaterialQualityLevel: 2
   diffusionProfileSettings: {fileID: 0}
   diffusionProfileSettingsList:
   - {fileID: 11400000, guid: 2fb68f95febbda24dbf5d4a67e644797, type: 2}

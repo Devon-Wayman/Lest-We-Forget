@@ -15,6 +15,12 @@ namespace WWIIVR.Interaction.Player {
         private bool leftTriggerPressed;
         private bool rightTriggerPressed;
 
+        private void Awake() {
+            // Ensure MenuPressed is false on awake of a new scene
+            MenuPressed = false;
+        }
+
+
         public bool GetApplicationMenuDown() {
             leftController.inputDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
 
