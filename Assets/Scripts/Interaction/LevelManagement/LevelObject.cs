@@ -1,7 +1,6 @@
 ﻿// Author Devon Wayman
 // Date Sept 22 2020
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace WWIIVR.Interaction.LevelManagement {
@@ -60,7 +59,5 @@ namespace WWIIVR.Interaction.LevelManagement {
                     break;
             }
         }
-
-
     }
 }

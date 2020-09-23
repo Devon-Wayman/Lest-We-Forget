@@ -3,9 +3,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using WWIIVR.Interaction.LevelManagement;
+using WWIIVR.Interaction.Player;
 
 /// <summary>
-/// Calls a function to have an object once held by player to float back to its original location
+/// Creates a grab offset for player hand to remove the "snap" that usually occurs
+/// When we release the item, it will float back to its original location
+/// Also hides menu title card when the object is selected and makes it reappear when we let go
 /// </summary>
 public class ItemInteraction : XRGrabInteractable {
 
@@ -20,18 +24,57 @@ public class ItemInteraction : XRGrabInteractable {
     private Vector3 interactorPosition = Vector3.zero;
     private Quaternion interactorRotation = Quaternion.identity;
 
+    // Canvas containing text above item
+    public GameObject titleCard = null;
 
     protected override void Awake() {
         base.Awake();
         startPosition = gameObject.transform.position;
         startRotation = gameObject.transform.rotation;
+
+        // Only get canvas item if level object is visible
+        TryGetComponent<LevelObject>(out var exists);
+        if (!exists) return;
+        titleCard = transform.GetChild(0).gameObject;
+        titleCard.SetActive(false);
     }
 
+    // When Activate button is pressed on controller
+    protected override void OnActivate(XRBaseInteractor interactor) {
+        base.OnActivate(interactor);
+
+        if (TryGetComponent(out LevelObject levelObject)) {
+            // Prevent menu button requests or other controller inputs from
+            // interferring with the current scene load
+            GameController.changingScenes = true;
+
+            levelObject.LoadLevel();
+        }
+    }
+
+    // Enable/disable titlecard when hovering on item
+    protected override void OnHoverEnter(XRBaseInteractor interactor) {
+        base.OnHoverEnter(interactor);
+
+        if (titleCard != null)
+            titleCard.SetActive(true);
+    }
+    protected override void OnHoverExit(XRBaseInteractor interactor) {
+        base.OnHoverExit(interactor);
+
+        if (titleCard != null)
+            titleCard.SetActive(false);
+    }
 
     protected override void OnSelectEnter(XRBaseInteractor interactor) {
         base.OnSelectEnter(interactor);
         StoreInteractor(interactor);
         MatchAttachmentPoints(interactor);
+
+        if (titleCard != null) {
+            if (titleCard.activeSelf)
+                titleCard.SetActive(false);
+        }
     }
     private void StoreInteractor(XRBaseInteractor interactor) {
         interactorPosition = interactor.attachTransform.localPosition;
@@ -43,6 +86,7 @@ public class ItemInteraction : XRGrabInteractable {
         interactor.attachTransform.rotation = hasAttach ? attachTransform.rotation : transform.rotation;
     }
 
+    #region On Player Hand Exit
     protected override void OnSelectExit(XRBaseInteractor interactor) {
         base.OnSelectExit(interactor);
         ResetAttachmentPoiints(interactor);
@@ -57,6 +101,7 @@ public class ItemInteraction : XRGrabInteractable {
         interactorPosition = Vector3.zero;
         interactorRotation = Quaternion.identity;
     }
+
     private IEnumerator SmoothReturn(Vector3 currentPosition, Vector3 targetPosition, Quaternion targetRotation) {
         // Disable collision detections
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -73,4 +118,5 @@ public class ItemInteraction : XRGrabInteractable {
         transform.position = targetPosition;
         transform.rotation = targetRotation;
     }
+    #endregion
 }

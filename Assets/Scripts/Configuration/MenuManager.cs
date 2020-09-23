@@ -14,14 +14,14 @@ public class MenuManager : MonoBehaviour {
     [SerializeField] private AudioSource tutorialAudio = null;
 
     private float radioOriginalVolume = 0f;
-    private float radioTutorialVolume = 0f;
+    private float radioTutorialVolume = 0.3f;
 
     private void Awake() {
         radioOriginalVolume = radioAudio.volume;
-        radioTutorialVolume = radioOriginalVolume / 2;
         tutorialAudio = GetComponent<AudioSource>();
     }
 
+    #region Tutorial Setup
     public void PlayTutorial() {
         TutorialPlaying = true;
         Debug.Log("Beginning tutorial");
@@ -34,7 +34,6 @@ public class MenuManager : MonoBehaviour {
             yield return null;
         }
         radioAudio.volume = radioTutorialVolume;
-
         PlayTutorialAudioClip();
     }
 
@@ -47,7 +46,6 @@ public class MenuManager : MonoBehaviour {
         // Wait for tutorial audio to finish
         yield return new WaitForSeconds(tutorialAudio.clip.length);
 
-        // Bring back up the radio audio volume
         while (radioAudio.volume <= radioOriginalVolume) {
             radioAudio.volume += 0.5f * Time.deltaTime;
             yield return null;
@@ -55,4 +53,5 @@ public class MenuManager : MonoBehaviour {
         radioAudio.volume = radioOriginalVolume;
         TutorialPlaying = false;
     }
+    #endregion
 }
