@@ -1,6 +1,7 @@
 ﻿// Author Devon Wayman
 // Date Sept 21 2020
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -12,6 +13,8 @@ public class MenuManager : MonoBehaviour {
 
     [SerializeField] private AudioSource radioAudio = null;
     [SerializeField] private AudioSource tutorialAudio = null;
+    [SerializeField] private List<GameObject> graphicContentItems = new List<GameObject>();
+    public int graphicContentCondition = 0;
 
     private float radioOriginalVolume = 0f;
     private float radioTutorialVolume = 0.3f;
@@ -19,6 +22,34 @@ public class MenuManager : MonoBehaviour {
     private void Awake() {
         radioOriginalVolume = radioAudio.volume;
         tutorialAudio = GetComponent<AudioSource>();
+
+        GetGraphicContentObjects();
+    }
+
+    private void GetGraphicContentObjects() {
+        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("GraphicContent")) {
+            graphicContentItems.Add(obj);
+        }
+
+        graphicContentCondition = PlayerPrefs.GetInt("GraphicEnabled");
+
+        if(graphicContentCondition != 0 || graphicContentCondition != 1) {
+            graphicContentCondition = 1;
+        }
+
+        SwitchGraphicContent(graphicContentItems);
+    }
+
+    private void SwitchGraphicContent(List<GameObject> graphicContentItems) {
+        if(graphicContentCondition == 1) {
+            foreach(GameObject obj in graphicContentItems) {
+                obj.SetActive(true);
+            }
+        } else if (graphicContentCondition == 0) {
+            foreach(GameObject obj in graphicContentItems) {
+                obj.SetActive(false);
+            }
+        }
     }
 
     #region Tutorial Setup

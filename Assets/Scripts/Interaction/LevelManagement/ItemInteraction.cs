@@ -27,6 +27,9 @@ public class ItemInteraction : XRGrabInteractable {
     // Canvas containing text above item
     public GameObject titleCard = null;
 
+    // Rigidbody on interactable object
+    private Rigidbody rigidBody = null;
+
     protected override void Awake() {
         base.Awake();
         startPosition = gameObject.transform.position;
@@ -37,6 +40,18 @@ public class ItemInteraction : XRGrabInteractable {
         if (!exists) return;
         titleCard = transform.GetChild(0).gameObject;
         titleCard.SetActive(false);
+
+        rigidBody = GetComponent<Rigidbody>();
+        rigidBody.isKinematic = false;
+        rigidBody.useGravity = true;
+        Invoke("SetDefaultLocPos", 2);
+    }
+    private void SetDefaultLocPos() {
+        startPosition = gameObject.transform.position;
+        startRotation = gameObject.transform.rotation;
+        rigidBody.isKinematic = true;
+        rigidBody.useGravity = false;
+        Debug.Log("Position and rotation set");
     }
 
     // When Activate button is pressed on controller
