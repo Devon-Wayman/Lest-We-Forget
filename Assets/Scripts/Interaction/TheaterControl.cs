@@ -16,13 +16,18 @@ namespace WWIIVR.Interaction {
 
         public AudioSource projectorAudio = null;
 
+        // Singletone for this class to reference in the LoadingScreen
+        // scene if the theater is being loaded
+        public TheaterControl current;
+
         private void Awake() {
+            current = this;
+
             videoPlayer = GetComponent<VideoPlayer>(); // Get video player component
+            videoPlayer.playOnAwake = false; 
+            videoPlayer.Pause(); 
 
-            videoPlayer.playOnAwake = false; // Ensure video does not begin playing
-            videoPlayer.Pause(); // Pause video if autoplay is set to true
-
-            projectorAudio.Stop(); // Prevent projector audio from playing
+            projectorAudio.Stop(); 
 
             // Set up requested video to play
             requestedMovie = PlayerPrefs.GetString("Movie");
@@ -35,28 +40,28 @@ namespace WWIIVR.Interaction {
                     videoToPlay = videos[1];
                     break;
                 case "camps":
-                    videoToPlay = videos[2]; // Select third video in videos array to play
+                    videoToPlay = videos[2];
                     break;
             }
         }
 
         private void Start() {  
-            StartCoroutine(PlayVideo());
+            StartCoroutine(PrepareVideo());
         }
 
-        private IEnumerator PlayVideo(){
+        private IEnumerator PrepareVideo(){
             videoPlayer.source = VideoSource.VideoClip;
             videoPlayer.clip = videoToPlay;
             videoPlayer.Prepare();
 
-            // Wait two seconds before checking if video is ready for playback if the status returns false
-            WaitForSeconds waitTime = new WaitForSeconds(1);
+            WaitForSeconds waitTime = new WaitForSeconds(2f);
 
             while (!videoPlayer.isPrepared) {
+                Debug.Log("Video still needs to be prepared");
                 yield return waitTime;
                 break;
             }
-            videoPlayer.Play(); // Play the video
+            videoPlayer.Play();
             projectorAudio.Play();
         }
     }
