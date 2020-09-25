@@ -16,20 +16,12 @@ namespace WWIIVR.Interaction {
 
         public AudioSource projectorAudio = null;
 
-        // Singletone for this class to reference in the LoadingScreen
-        // scene if the theater is being loaded
-        public TheaterControl current;
-
         private void Awake() {
-            current = this;
-
             videoPlayer = GetComponent<VideoPlayer>(); // Get video player component
             videoPlayer.playOnAwake = false; 
             videoPlayer.Pause(); 
 
             projectorAudio.Stop(); 
-
-            // Set up requested video to play
             requestedMovie = PlayerPrefs.GetString("Movie");
 
             switch (requestedMovie) {
