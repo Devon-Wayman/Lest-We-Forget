@@ -1,5 +1,4 @@
 ﻿// Author: Devon Wayman
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,11 +10,16 @@ namespace WWIIVR.ApplicationSettings {
 
         public GameObject textHolder;
         private int openerTextIndex; // Index number to determine what the opener text should read for the VictimsList scene
-        Text openerText, victimNames;
+        private Text openerText, victimNames;
         public CanvasGroup openerCG, victimsListCG, victimsDisplayCG; // Reference to text content of victims rect
         private Image victimImageDisplay; // Image holder to pass in images from sprite sheet 
+        
         private List<Sprite> victimsSprites = new List<Sprite>(); // List of the survivor images pulled from a sprite sheet
-        private bool allowAutoScroll; // Allow autoscrolling of the victims list
+        
+        private bool allowScroll; // Allow autoscrolling of the victims list
+
+        private WaitForSeconds textChangeDelay = new WaitForSeconds(2);
+        private WaitForSeconds textDisplayDuration = new WaitForSeconds(5);
 
         private void Awake() {
             victimImageDisplay = victimsDisplayCG.GetComponent<Image>();
@@ -23,18 +27,22 @@ namespace WWIIVR.ApplicationSettings {
             victimNames = victimsListCG.GetComponent<Text>();
             victimsListCG.alpha = openerCG.alpha = victimsDisplayCG.alpha = openerTextIndex = 0;
 
-            foreach (Sprite sprite in Resources.LoadAll<Sprite>("Sprites/VictimsSS"))
-                victimsSprites.Append(sprite);
         }
         private void Start() {
             var textFile = Resources.Load<TextAsset>("victims"); // Load victims text file
+            GetVictimSprites();
+
             string rawText = textFile.ToString();
             victimNames.text = rawText;
             UpdateOpenerText();
             StartCoroutine(FadeOpenerText()); // Check opener index if we are in the Victims scene after all references are create
         }
+        private void GetVictimSprites() {
+            foreach (Sprite sprite in Resources.LoadAll<Sprite>("Sprites/VictimsSS"))
+                victimsSprites.Add(sprite);
+        }
         private void Update() {
-            if (!allowAutoScroll) return;
+            if (!allowScroll) return;
                 
             textHolder.transform.position += transform.up * Time.deltaTime * 0.3f;
         }
@@ -63,28 +71,31 @@ namespace WWIIVR.ApplicationSettings {
             }
         }
         private IEnumerator FadeOpenerText() {
-            yield return new WaitForSeconds(2);
+            yield return textChangeDelay;
 
             while (openerCG.alpha < 0.8f) {
                 openerCG.alpha += 0.8f * Time.deltaTime;
                 yield return null;
             }
             openerCG.alpha = 0.8f;
-            yield return new WaitForSeconds(5);
+
+            yield return textDisplayDuration;
+
             while (openerCG.alpha > 0f) {
                 openerCG.alpha -= 0.8f * Time.deltaTime;
                 yield return null;
             }
+
             openerCG.alpha = 0;
             openerTextIndex++;
+
             if (!(openerTextIndex > 5)) {
                 UpdateOpenerText();
                 StartCoroutine(FadeOpenerText());
             } else {
-                // BEGIN SLIDESHOW
                 StartCoroutine(SlideshowControl());
                 StartCoroutine(FadeInList());
-                allowAutoScroll = true;
+                allowScroll = true;
             }
         }
         #endregion
@@ -94,13 +105,14 @@ namespace WWIIVR.ApplicationSettings {
         private IEnumerator SlideshowControl() {
             victimImageDisplay.sprite = GrabRandomImage();
 
-            yield return new WaitForSeconds(3);
+            yield return textChangeDelay;
+
             while (victimsDisplayCG.alpha < .8f) {
                 victimsDisplayCG.alpha += 0.8f * Time.deltaTime;
                 yield return null;
             }
             victimsDisplayCG.alpha = 0.8f;
-            yield return new WaitForSeconds(8);
+            yield return textDisplayDuration;
             while (victimsDisplayCG.alpha > 0) {
                 victimsDisplayCG.alpha -= 0.8f * Time.deltaTime;
                 yield return null;
@@ -113,14 +125,13 @@ namespace WWIIVR.ApplicationSettings {
             int index = Random.Range(0, victimsSprites.Count);
             return victimsSprites[index];
         }
-
         private IEnumerator FadeInList() {
             while (victimsListCG.alpha < 0.9f) {
                 victimsListCG.alpha += 0.8f * Time.deltaTime;
                 yield return null;
             }
             victimsListCG.alpha = 0.9f;
-            yield break;
+            //yield break;
         }
         #endregion
     }

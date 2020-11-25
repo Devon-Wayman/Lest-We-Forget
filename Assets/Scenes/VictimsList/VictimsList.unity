@@ -341,7 +341,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 123
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &967217701
 Transform:
@@ -420,7 +420,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 123
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1014879619
 Transform:
@@ -531,8 +531,8 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 0
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!114 &1499608797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 823800c51c0ba0842a43b11636848842, type: 3}
-    m_FontSize: 205
+    m_FontSize: 160
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -880,6 +880,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 174016634, guid: a4bb5ac2e3823ca4c801b763cb8489d4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 918265225, guid: a4bb5ac2e3823ca4c801b763cb8489d4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 378023833897317848, guid: a4bb5ac2e3823ca4c801b763cb8489d4,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -888,6 +896,16 @@ PrefabInstance:
     - target: {fileID: 2520326153602422021, guid: a4bb5ac2e3823ca4c801b763cb8489d4,
         type: 3}
       propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520326153602422021, guid: a4bb5ac2e3823ca4c801b763cb8489d4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4014425470597273631, guid: a4bb5ac2e3823ca4c801b763cb8489d4,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4832209763478287617, guid: a4bb5ac2e3823ca4c801b763cb8489d4,

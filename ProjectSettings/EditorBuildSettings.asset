@@ -17,12 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VictimsList/VictimsList.unity
     guid: 3eae11089b1a8d14588fb21fa3fbf3de
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DDay/DDay.unity
     guid: cc320ce70b676b6449f3f2d5c4acbc48
-  - enabled: 1
-    path: Assets/Scenes/LoadingScene/LoadingScene.unity
-    guid: 0559e0403b6cd5d4db5e4661837f4af3
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bb4c6414a096da44b84e4817e48c299d,
       type: 2}

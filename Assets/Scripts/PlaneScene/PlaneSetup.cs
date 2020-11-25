@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Author Devon Wayman
+// Date November 23 2020 
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -6,13 +8,13 @@ using UnityEngine;
 /// </summary>
 namespace WWIIVR.PlaneScene {    
     public class PlaneSetup : MonoBehaviour {
-        GameObject plane; // Variable to store requested plane model in
-        GameObject planePath; // Variable to store requested plane's path
+        private GameObject plane = null; // Variable to store requested plane model in
+        private GameObject planePath = null; // Variable to store requested plane's path
+
         public string planeOverride;
         public string desiredPlaneValue;
 
-        private void Awake () {
-            
+        private void Awake () {         
             if (planeOverride == String.Empty || planeOverride == null)
                 desiredPlaneValue = PlayerPrefs.GetString ("DesiredPlane");
             else

@@ -473,79 +473,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radioAudio: {fileID: 0}
-  tutorialAudio: {fileID: 0}
   graphicContentItems: []
   graphicContentCondition: 0
---- !u!114 &297733762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a81bcacc415a1f743bfdf703afc52027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  rotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  skyIntensityMode:
-    m_OverrideState: 0
-    m_Value: 0
-  exposure:
-    m_OverrideState: 0
-    m_Value: 0
-  multiplier:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxValue:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxColor:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
-  desiredLuxValue:
-    m_OverrideState: 0
-    m_Value: 20000
-  updateMode:
-    m_OverrideState: 0
-    m_Value: 0
-  updatePeriod:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-  includeSunInBaking:
-    m_OverrideState: 0
-    m_Value: 0
-  top:
-    m_OverrideState: 0
-    m_Value: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
-    hdr: 1
-    showAlpha: 0
-    showEyeDropper: 1
-  middle:
-    m_OverrideState: 0
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
-    hdr: 1
-    showAlpha: 0
-    showEyeDropper: 1
-  bottom:
-    m_OverrideState: 0
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
-    hdr: 1
-    showAlpha: 0
-    showEyeDropper: 1
-  gradientDiffusion:
-    m_OverrideState: 0
-    m_Value: 1
 --- !u!1 &318322558
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +902,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1276027994115437202, guid: 50464fd47ec8ac641abb1ff5669eebe2,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7400615191825136853, guid: 50464fd47ec8ac641abb1ff5669eebe2,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7400615191825136853, guid: 50464fd47ec8ac641abb1ff5669eebe2,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50464fd47ec8ac641abb1ff5669eebe2, type: 3}
 --- !u!4 &396764434 stripped
@@ -1394,7 +1338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &524562161
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3050,6 +2994,76 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2070054073}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1305642704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81bcacc415a1f743bfdf703afc52027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  rotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  skyIntensityMode:
+    m_OverrideState: 0
+    m_Value: 0
+  exposure:
+    m_OverrideState: 0
+    m_Value: 0
+  multiplier:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxValue:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxColor:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
+  desiredLuxValue:
+    m_OverrideState: 0
+    m_Value: 20000
+  updateMode:
+    m_OverrideState: 0
+    m_Value: 0
+  updatePeriod:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+  includeSunInBaking:
+    m_OverrideState: 0
+    m_Value: 0
+  top:
+    m_OverrideState: 0
+    m_Value: {r: 0.015686275, g: 0.015686275, b: 0.015686275, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  middle:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  bottom:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  gradientDiffusion:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!1 &1373903024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4359,6 +4373,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 817980059270590845, guid: 657a02ef1c769e5469ebd298a59c0c9e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.138
+      objectReference: {fileID: 0}
     - target: {fileID: 818006197508331717, guid: 657a02ef1c769e5469ebd298a59c0c9e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4583,7 +4602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: f41d54e2e87b75c438c909854bbbf3f1, type: 2}
   m_StaticLightingSkyUniqueID: 3
-  m_SkySettings: {fileID: 297733762}
+  m_SkySettings: {fileID: 1305642704}
   m_SkySettingsFromProfile: {fileID: 4918568723665163019, guid: f41d54e2e87b75c438c909854bbbf3f1,
     type: 2}
 --- !u!4 &1771480823
@@ -5190,6 +5209,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: eca7dedd1a33106499cf1ad6dd02376d, type: 2}
+    - target: {fileID: 23700353222968962, guid: 6cf423c6b1d07cd418b4cfc924f9a908,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf423c6b1d07cd418b4cfc924f9a908, type: 3}
 --- !u!4 &2141087918 stripped
@@ -5218,7 +5242,7 @@ PrefabInstance:
     - target: {fileID: 4832209765093020674, guid: a4bb5ac2e3823ca4c801b763cb8489d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.194
       objectReference: {fileID: 0}
     - target: {fileID: 4832209765093020674, guid: a4bb5ac2e3823ca4c801b763cb8489d4,
         type: 3}

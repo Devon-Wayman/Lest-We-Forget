@@ -28,6 +28,9 @@ namespace WWIIVR.Interaction.Player {
                 if (menuManager == null) {
                     menuManager = FindObjectOfType<MenuManager>();
                 }
+            } else {
+                // Keep menu manager null if not in main menu scene
+                menuManager = null;
             }
 
             if (inputHandler == null)
@@ -49,15 +52,6 @@ namespace WWIIVR.Interaction.Player {
             #region Main Menu only
             // Nothing passed the next line is required unless at main menu
             if (currentSceneName != "MainMenu") return;
-
-            // Check if both trigger buttons have been pressed at main menu to play the tutorial
-            if (inputHandler.TutorialRequested()) {
-                if (menuManager.TutorialPlaying) {
-                    Debug.Log("Tutorial currently playing!");
-                } else {
-                    menuManager.PlayTutorial();
-                }
-            }
             #endregion
         }
     }

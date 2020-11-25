@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1828668517}
-  m_IndirectSpecularColor: {r: 0.4148124, g: 0.4148124, b: 0.4148124, a: 1}
+  m_IndirectSpecularColor: {r: 0.41487247, g: 0.41487247, b: 0.41487247, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: 561923b003a42cd4788ea65648a41a57, type: 2}
   m_StaticLightingSkyUniqueID: 3
-  m_SkySettings: {fileID: 1452842121}
+  m_SkySettings: {fileID: 1247075093}
   m_SkySettingsFromProfile: {fileID: 6558384643531533938, guid: 561923b003a42cd4788ea65648a41a57,
     type: 2}
 --- !u!4 &1068419242
@@ -627,7 +627,7 @@ MonoBehaviour:
   - {x: -10, y: 0, z: 8}
   - {x: 7, y: 0, z: 10}
   - {x: 6, y: 0, z: 14}
---- !u!114 &1452842121
+--- !u!114 &1247075093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -993,6 +993,10 @@ PrefabInstance:
     - target: {fileID: 1814287603906068, guid: f860c3eecb0d83c4cb6f81bc3a9a2386, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814287603906068, guid: f860c3eecb0d83c4cb6f81bc3a9a2386, type: 3}
+      propertyPath: m_TagString
+      value: SlowMo
       objectReference: {fileID: 0}
     - target: {fileID: 4529322068847132, guid: f860c3eecb0d83c4cb6f81bc3a9a2386, type: 3}
       propertyPath: m_LocalPosition.x

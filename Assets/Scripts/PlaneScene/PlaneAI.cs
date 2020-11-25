@@ -37,7 +37,6 @@ namespace WWIIVR.PlaneScene {
         }
         #endregion
 
-
         private void Update () {
             prop.transform.Rotate (Vector3.back , 2 * (propSpeed * Time.deltaTime)); // Spin plane prop constantly
         }

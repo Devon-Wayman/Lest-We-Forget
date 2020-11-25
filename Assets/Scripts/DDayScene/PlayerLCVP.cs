@@ -1,4 +1,4 @@
-﻿// Copright Devon Wayman 2020
+﻿// Author Devon Wayman 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,7 @@ using WWIIVR.Interaction.LevelManagement;
 /// This is to be placed on the player's boat ONLY! Other boats containing NPCs will be using the Unity's ECS system
 /// to improve stability and lower resources needed for them to function without creating mass amounts of overhead
 /// </summary>
+/// 
 namespace WWIIVR.DDay {
     public class PlayerLCVP : MonoBehaviour {
 
@@ -19,29 +20,32 @@ namespace WWIIVR.DDay {
         public bool AllowNPCActivation { get; private set; } = false; // Boolean to inform NPC manager if NPCs can be activated
 
         private Transform stopPosition; // Position to stop the given boat at
-        private List<AudioSource> audioSources = new List<AudioSource>(); // List of audio sources in scene. Used to create slow motion effect
+        
+        private List<AudioSource> slowmoAudios = new List<AudioSource>(); // List of audio sources in scene. Used to create slow motion effect
+
         public float stopDistance; // Distance to begin slowing down at
         public float boatSpeed; // Speed to have boat travel
 
-        [SerializeField] private Transform lcvpGate = null; // Gate gameobject transform
+        public Transform lcvpGate = null; // Gate gameobject transform
 
-        void OnDrawGizmosSelected () {
+        void OnDrawGizmosSelected() {
             Gizmos.color = Color.red;
-            Vector3 direction = transform.TransformDirection (Vector3.forward) * stopDistance; // Draw ray as long as stop distance. Used to figure out where boat will slow down and where to place stop transform
-            Gizmos.DrawRay (transform.position, direction);
+            Vector3 direction = transform.TransformDirection(Vector3.forward) * stopDistance; // Draw ray as long as stop distance. Used to figure out where boat will slow down and where to place stop transform
+            Gizmos.DrawRay(transform.position, direction);
         }
 
         #region Boat Setup
-        private void Awake () {
-            levelChanger = FindObjectOfType<LevelChanger> ();
+        private void Awake() {
+            levelChanger = FindObjectOfType<LevelChanger>();
             GetComponentInChildren<Camera>().farClipPlane = 900; // Set further far plane distance so beach is visible
 
             CreateStopPoint();
-            ObtainAudioSources();
+            ObtainSlowMoSources();
         }
-        private void ObtainAudioSources() {
+        private void ObtainSlowMoSources() {
             foreach (AudioSource aSource in FindObjectsOfType<AudioSource>())
-                audioSources.Add(aSource);
+                if (aSource.gameObject.tag == "SlowMo")
+                    slowmoAudios.Add(aSource);
         }
         private void CreateStopPoint() {
             GameObject g = new GameObject($"{gameObject.name}_StopPoint");
@@ -53,7 +57,7 @@ namespace WWIIVR.DDay {
         #endregion
 
 
-        void Update () {
+        void Update() {
             // Exit function if speed is 0 and doorDropping has been set to true
             if (boatSpeed == 0 && doorDropping)
                 return;
@@ -62,16 +66,15 @@ namespace WWIIVR.DDay {
 
             // Slow boat down once the stopPosition has been reached or surpassed
             if (transform.localPosition.z >= stopPosition.transform.position.z && !hasCalledToSlow) {
-                Debug.Log("Slowing LCVP", this);
                 hasCalledToSlow = true; // Ensure the coroutine can not be called again in further updates
-                StartCoroutine (SlowVessel (boatSpeed, 0f, 5f)); // Bring vessel speed to 0 in 5 seconds
+                StartCoroutine(SlowVessel(boatSpeed, 0f, 5f)); // Bring vessel speed to 0 in 5 seconds
             }
         }
 
         // Begin slowing the boat down
-        private IEnumerator SlowVessel (float originalSpeed, float desiredSpeed, float stopDelay) {
+        private IEnumerator SlowVessel(float originalSpeed, float desiredSpeed, float stopDelay) {
             for (float t = 0f; t < stopDelay; t += Time.deltaTime) {
-                boatSpeed = Mathf.Lerp (originalSpeed, desiredSpeed, t / stopDelay);
+                boatSpeed = Mathf.Lerp(originalSpeed, desiredSpeed, t / stopDelay);
                 yield return null;
             }
             boatSpeed = desiredSpeed; // Ensure boat speed is exactly at 0 before exiting function
@@ -79,30 +82,28 @@ namespace WWIIVR.DDay {
             StartCoroutine(LowerRamp());
         }
 
-        private IEnumerator LowerRamp () {
-            Debug.Log("Lowering ramp");
-
+        private IEnumerator LowerRamp() {
             doorDropping = true;
 
             while (lcvpGate.localRotation.x <= 0) {
-                lcvpGate.Rotate (+15f * Time.deltaTime, 0, 0);
+                lcvpGate.Rotate(+15f * Time.deltaTime, 0, 0);
                 yield return null;
             }
 
-            /*
+
             Debug.Log("Activating slow motion");
 
             // Start slow motion effect
             while (Time.timeScale >= 0.4f) {
-                if (audioSources.Count >= 1) {
-                    for (int i = 0; i < audioSources.Count; i++)
-                        audioSources[i].pitch = Time.timeScale;
+                if (slowmoAudios.Count >= 1) {
+                    for (int i = 0; i < slowmoAudios.Count; i++)
+                        slowmoAudios[i].pitch = Time.timeScale;
                 }
                 Time.timeScale -= 0.7f * Time.deltaTime;
                 yield return null;
             }
             levelChanger.GetComponent<Animator>().speed = 4f; // Increase animation speed of level transition canvas to compensate for slow motion
-            */
+
 
             // Allow NPCs to begin leaving their boats
             AllowNPCActivation = true;

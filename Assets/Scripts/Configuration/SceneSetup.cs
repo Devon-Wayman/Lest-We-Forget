@@ -12,12 +12,10 @@ public class SceneSetup : MonoBehaviour {
     private Camera userCam = null; // User's vr headset cam
 
     private void Awake() {
-        if (!overrideFarClip)
-            return;
+        if (!overrideFarClip) return;
 
         userCam = Camera.main; // Get the camera
 
-        // If overrideFarClip is enabled, change the farclip value to that assigned by user
         if(overrideFarClip){
             userCam.farClipPlane = farDistanceOverride;
         }
