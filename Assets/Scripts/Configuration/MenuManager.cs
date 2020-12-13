@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Used to play tutorial audio as well as perform other basic tasks for the Main Menu scene only
+/// Used to play manage minor functionality from within the main menu scene (not including object interactions)
 /// </summary>
 public class MenuManager : MonoBehaviour {
 
-    public bool TutorialPlaying { get; private set; } = false;
 
     [SerializeField] private AudioSource radioAudio = null;
     [SerializeField] private List<GameObject> graphicContentItems = new List<GameObject>();

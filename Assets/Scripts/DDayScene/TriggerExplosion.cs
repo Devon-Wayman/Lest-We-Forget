@@ -5,7 +5,10 @@ using System.IO;
 using UnityEngine;
 using WWIIVR.Interfaces;
 
-// Trigger explosions next to LCVPs during DDay scene
+/// <summary>
+/// Sets up and triggers various water explosions for player's entry into Omaha beach. Implements object
+/// pooling for better resource management and less frequent GC.
+/// </summary>
 namespace WWIIVR.DDay {
     public class TriggerExplosion : MonoBehaviour {
 

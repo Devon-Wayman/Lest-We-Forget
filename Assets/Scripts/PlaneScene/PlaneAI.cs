@@ -1,3 +1,4 @@
+// Author Devon Wayman
 using PathCreation;
 using PathCreation.Examples;
 using UnityEngine;
