@@ -163,7 +163,7 @@ Material:
     - _Anisotropy: 0
     - _Blend: 0
     - _BlendMode: 0
-    - _BumpScale: 1.5
+    - _BumpScale: 1
     - _CoatMask: 0
     - _Cull: 2
     - _CullMode: 2
@@ -238,7 +238,7 @@ Material:
     - _ReceivesSSR: 0
     - _RefractionModel: 0
     - _SSRefractionProjectionModel: 0
-    - _Smoothness: 0.252
+    - _Smoothness: 0.568
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
     - _SmoothnessTextureChannel: 0

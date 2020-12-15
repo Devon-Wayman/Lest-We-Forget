@@ -10,30 +10,35 @@ namespace WWIIVR.ApplicationSettings {
 
         public GameObject textHolder;
         private int openerTextIndex; // Index number to determine what the opener text should read for the VictimsList scene
-        private Text openerText, victimNames;
-        public CanvasGroup openerCG, victimsListCG, victimsDisplayCG; // Reference to text content of victims rect
+
+        public Text openerText = null;
+        public Text victimNames = null;
+
+        public CanvasGroup openerCG = null;
+        public CanvasGroup victimsListCG = null;
+        public CanvasGroup victimsDisplayCG = null; // Reference to text content of victims rect
+
         private Image victimImageDisplay; // Image holder to pass in images from sprite sheet 
         
         private List<Sprite> victimsSprites = new List<Sprite>(); // List of the survivor images pulled from a sprite sheet
         
         private bool allowScroll; // Allow autoscrolling of the victims list
 
-        private WaitForSeconds textChangeDelay = new WaitForSeconds(2);
-        private WaitForSeconds textDisplayDuration = new WaitForSeconds(5);
+        private WaitForSeconds textChangeDelay = new WaitForSeconds(1);
+        private WaitForSeconds textDisplayDuration = new WaitForSeconds(7);
 
         private void Awake() {
             victimImageDisplay = victimsDisplayCG.GetComponent<Image>();
             openerText = openerCG.GetComponent<Text>();
             victimNames = victimsListCG.GetComponent<Text>();
             victimsListCG.alpha = openerCG.alpha = victimsDisplayCG.alpha = openerTextIndex = 0;
-
-        }
-        private void Start() {
             var textFile = Resources.Load<TextAsset>("victims"); // Load victims text file
             GetVictimSprites();
-
             string rawText = textFile.ToString();
             victimNames.text = rawText;
+        }
+        private void Start() {
+            
             UpdateOpenerText();
             StartCoroutine(FadeOpenerText()); // Check opener index if we are in the Victims scene after all references are create
         }
@@ -47,7 +52,6 @@ namespace WWIIVR.ApplicationSettings {
             textHolder.transform.position += transform.up * Time.deltaTime * 0.3f;
         }
 
-        #region Opening statements
         private void UpdateOpenerText() {
             switch (openerTextIndex) {
                 case 0:
@@ -98,7 +102,6 @@ namespace WWIIVR.ApplicationSettings {
                 allowScroll = true;
             }
         }
-        #endregion
 
         #region Slideshow and Scroll Text
         // Fade slideshow images in and out and change randomly
@@ -120,7 +123,7 @@ namespace WWIIVR.ApplicationSettings {
             victimsDisplayCG.alpha = 0;
             StartCoroutine(SlideshowControl()); // Pick another image and start again
         }
-        // GRAB RANDOM IMAGE FROM VICTIMS SPRITE SHEET
+
         private Sprite GrabRandomImage() {
             int index = Random.Range(0, victimsSprites.Count);
             return victimsSprites[index];
@@ -131,7 +134,6 @@ namespace WWIIVR.ApplicationSettings {
                 yield return null;
             }
             victimsListCG.alpha = 0.9f;
-            //yield break;
         }
         #endregion
     }

@@ -8,22 +8,33 @@ using UnityEngine.SceneManagement;
 namespace WWIIVR.Interaction.LevelManagement {
     public class LevelChanger : MonoBehaviour {
 
+        public static LevelChanger Instance;
+
         private Animator levelChangeAnimator;
 
-        // Requested level to transition to
         private string levelToLoad;
 
-        // Audio sources in current scene
         private List<AudioSource> allAudio = new List<AudioSource>(); 
 
-        // Amount of time to fade audio our (default 2 second)
-        private int audioFadeTime = 2; 
+        private float audioFadeTime = 2f; 
 
-        // Determine if application is being exited by user
-        private bool quittingGame = false; 
+        private bool quittingGame = false;
+
+        public static LevelChanger Current {
+            get {
+                if (!Instance) Instance = FindObjectOfType<LevelChanger>();
+
+                return Instance;
+            }
+        }
 
         private void Awake() {
-            // Set reference to animator object
+            if (Current != null && Current != this) 
+                DestroyImmediate(this);
+            else 
+                name = "SceneLoadManager";
+            
+
             levelChangeAnimator = GetComponent<Animator>();
 
             // Collect and add all audio sources in scene to the list

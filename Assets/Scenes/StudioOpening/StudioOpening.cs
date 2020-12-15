@@ -1,7 +1,6 @@
 ﻿// Author: Devon Wayman
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using WWIIVR.Interaction.LevelManagement;
 
 /// <summary>
@@ -11,11 +10,7 @@ public class StudioOpening : MonoBehaviour {
 
     public float menuDelay = 6f;
     public float moveDistance = 5f; // Distance to move canvas forward for opener
-    private LevelChanger levelChanger = null; // Reference to LevelChanger
 
-    void Awake() {
-        levelChanger = FindObjectOfType<LevelChanger>(); // Find and store reference to level changer object
-    }
 
     void Start() {
         StartCoroutine(FadeToMain()); // Start coroutine to fade to main menu
@@ -38,9 +33,7 @@ public class StudioOpening : MonoBehaviour {
     // Wait given time before fading out to transition to the main menu
     private IEnumerator FadeToMain() {
         yield return new WaitForSeconds(menuDelay);
-        if (levelChanger != null)
-            levelChanger.FadeToLevel("MainMenu");
-        else
-            SceneManager.LoadScene("MainMenu"); // If level changer can not be found, abruptly switch to main menu scene
+
+        LevelChanger.Instance.FadeToLevel("MainMenu");
     }
 }

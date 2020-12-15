@@ -25,7 +25,10 @@ namespace WWIIVR.DDay {
 
         private bool allowExplosions; // Enable/disable water explosion spawning
         private PlayerLCVP playerBoat = null; // Reference to player's LCVP
-        public Vector3[] explosionOffsets; // Offsets to spawn explosions from in reference to boats current location
+
+        public Vector2 explosionXPlacements;
+        public Vector2 explosionZPlacements;
+        public Vector2 explosionLocation;
 
         private void Awake() {
             allowExplosions = true; // Set to true at start
@@ -52,11 +55,13 @@ namespace WWIIVR.DDay {
 
             while (allowExplosions) {
                 int waitTime = Random.Range(4, 8); // Wait before dropping a bomb
-                int selectedExplosionLocation = Random.Range(0, explosionOffsets.Length); // Select explosion location    
+
+                explosionLocation = GetRandomExplosionLocation();
+                   
                 int selectRandomExplosion = Random.Range(0, explosionsAvailable.Length); // Select explosion type
 
                 try {
-                    SpawnBombFromPool(explosionsAvailable[selectRandomExplosion], explosionOffsets[selectedExplosionLocation]); // Spawn bomb in designated location
+                    SpawnBombFromPool(explosionsAvailable[selectRandomExplosion], new Vector2(explosionLocation.x, explosionLocation.y)); // Spawn bomb in designated location
                 } catch (IOException ex) {
                     Debug.LogError($"Explosion error: {ex.Message}");
                 }
@@ -70,8 +75,22 @@ namespace WWIIVR.DDay {
                 yield return new WaitForSeconds(waitTime); // Wait generated delay time from above
             }
         }
+
+        // Generarate random explosion position using given restraints
+        private Vector2 GetRandomExplosionLocation() {
+            int invertX = Random.Range(0, 1);
+            explosionLocation = new Vector2(Random.Range(explosionXPlacements.x, explosionXPlacements.y), Random.Range(explosionZPlacements.x, explosionZPlacements.y));
+
+            // If invertX = 1, set X placement to negative to place explosion on opposite side of ship
+            if (invertX == 1) {
+                explosionLocation.x =  explosionLocation.x * -1;
+            }
+
+            return explosionLocation;
+        }
+
         // Spawn explosion from pool into the scene
-        private GameObject SpawnBombFromPool(string tag, Vector3 position) {
+        private GameObject SpawnBombFromPool(string tag, Vector2 position) {
             if (!explosionDictionary.ContainsKey(tag)) {
                 Debug.LogWarning($"Pool with tag {tag} does not exist");
                 return null;
@@ -81,7 +100,7 @@ namespace WWIIVR.DDay {
 
             GameObject explosionToSpawn = explosionDictionary[tag].Dequeue(); // Pull out first element in queue
             explosionToSpawn.SetActive(true); // Activate the object
-            explosionToSpawn.transform.position = new Vector3 (boatCurrentPosition.x + position.x, 0, boatCurrentPosition.z + position.z); // Set spawned explosion location to passed in Vector3 + boat's current position
+            explosionToSpawn.transform.position = new Vector3 (boatCurrentPosition.x + position.x, 0, boatCurrentPosition.z + position.y); // Set spawned explosion location to passed in Vector3 + boat's current position
 
             IPooledObject pooledObj = explosionToSpawn.GetComponent<IPooledObject>(); // Try to get rid of this somehow for better performance
             if (pooledObj != null)

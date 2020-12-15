@@ -7,7 +7,6 @@ namespace WWIIVR.Interaction.Player {
     [RequireComponent(typeof(InputHandler))]
     public class GameController : MonoBehaviour {
 
-        private LevelChanger levelChanger = null; // Reference to level changer object
         private MenuManager menuManager = null; // Used at Main Menu scene
         private string currentSceneName; // Get current scene name
         
@@ -20,8 +19,7 @@ namespace WWIIVR.Interaction.Player {
             // Ensure changing scenes is false on awake when loading to a new scene
             changingScenes = false; 
 
-            levelChanger = FindObjectOfType<LevelChanger>(); // Set reference to level changer
-            levelChanger.GetComponent<Animator>().speed = 1f; // Make sure on start that the level changer animation speed is normal
+            LevelChanger.Instance.GetComponent<Animator>().speed = 1f; // Make sure on start that the level changer animation speed is normal
             currentSceneName = SceneManager.GetActiveScene().name;
 
             if(currentSceneName == "MainMenu") {
@@ -45,7 +43,7 @@ namespace WWIIVR.Interaction.Player {
             if (inputHandler.GetApplicationMenuDown()) {
                 if (Time.timeScale != 1)
                     Time.timeScale = 1;
-                levelChanger.FadeToLevel("MainMenu");
+                LevelChanger.Instance.FadeToLevel("MainMenu");
                 changingScenes = true;
             }
 

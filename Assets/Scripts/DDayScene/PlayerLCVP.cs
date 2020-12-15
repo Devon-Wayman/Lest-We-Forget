@@ -8,11 +8,9 @@ using WWIIVR.Interaction.LevelManagement;
 /// This is to be placed on the player's boat ONLY! Other boats containing NPCs will be using the Unity's ECS system
 /// to improve stability and lower resources needed for them to function without creating mass amounts of overhead
 /// </summary>
-/// 
 namespace WWIIVR.DDay {
     public class PlayerLCVP : MonoBehaviour {
 
-        private LevelChanger levelChanger = null; // LevelChanger reference
         private bool doorDropping = false; // Determine if the door has started dropping
         private bool hasCalledToSlow = false; // Determine if we have begun to slow down the boat
 
@@ -36,9 +34,6 @@ namespace WWIIVR.DDay {
 
         #region Boat Setup
         private void Awake() {
-            levelChanger = FindObjectOfType<LevelChanger>();
-            GetComponentInChildren<Camera>().farClipPlane = 900; // Set further far plane distance so beach is visible
-
             CreateStopPoint();
             ObtainSlowMoSources();
         }
@@ -58,9 +53,7 @@ namespace WWIIVR.DDay {
 
 
         void Update() {
-            // Exit function if speed is 0 and doorDropping has been set to true
-            if (boatSpeed == 0 && doorDropping)
-                return;
+            if (boatSpeed == 0 && doorDropping) return;
 
             transform.localPosition += transform.forward * Time.deltaTime * boatSpeed; // Move boat forward
 
@@ -91,8 +84,6 @@ namespace WWIIVR.DDay {
             }
 
 
-            Debug.Log("Activating slow motion");
-
             // Start slow motion effect
             while (Time.timeScale >= 0.4f) {
                 if (slowmoAudios.Count >= 1) {
@@ -102,11 +93,14 @@ namespace WWIIVR.DDay {
                 Time.timeScale -= 0.7f * Time.deltaTime;
                 yield return null;
             }
-            levelChanger.GetComponent<Animator>().speed = 4f; // Increase animation speed of level transition canvas to compensate for slow motion
 
+            LevelChanger.Instance.GetComponent<Animator>().speed = 4f; // Increase animation speed of level transition canvas to compensate for slow motion
 
             // Allow NPCs to begin leaving their boats
             AllowNPCActivation = true;
+
+            // Disable this class as it is no longer needed
+            this.enabled = false;
         }
     }
 }
