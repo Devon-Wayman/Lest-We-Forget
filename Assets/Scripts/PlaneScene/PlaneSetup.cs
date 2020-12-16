@@ -15,23 +15,22 @@ namespace WWIIVR.PlaneScene {
         public string desiredPlaneValue;
 
         private void Awake () {         
-            if (planeOverride == String.Empty || planeOverride == null)
+            if (planeOverride == String.Empty || planeOverride == null || planeOverride == "")
                 desiredPlaneValue = PlayerPrefs.GetString ("DesiredPlane");
             else
                 desiredPlaneValue = planeOverride;
+        }
 
-            Debug.Log($"Requested plane: {desiredPlaneValue}");
+        private void Start() {
+            SpawnPlaneAndPath();
+        }
 
-            if (desiredPlaneValue == null || desiredPlaneValue == "") {
-                Debug.LogError ("Error loading requested plane on Awake");
-                return;
-            }
-
+        private void SpawnPlaneAndPath() {
             // Load the requested plane's path object
-            planePath = (GameObject) Instantiate (Resources.Load<GameObject>($"Planes/{desiredPlaneValue}PATH"), new Vector3 (0, 0, 0), Quaternion.identity);
+            planePath = (GameObject)Instantiate(Resources.Load<GameObject>($"Planes/{desiredPlaneValue}PATH"), new Vector3(0, 0, 0), Quaternion.identity);
 
             // Load in desired plane model
-            plane = (GameObject) Instantiate (Resources.Load<GameObject>($"Planes/{desiredPlaneValue}"), new Vector3 (0, 0, 0), Quaternion.identity);
+            plane = (GameObject)Instantiate(Resources.Load<GameObject>($"Planes/{desiredPlaneValue}"), new Vector3(0, 0, 0), Quaternion.identity);
         }
     }
 }

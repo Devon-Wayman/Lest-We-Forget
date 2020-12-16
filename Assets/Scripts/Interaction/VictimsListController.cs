@@ -6,39 +6,42 @@ using UnityEngine.UI;
 
 // Used to control UI for the victims list scene
 namespace WWIIVR.ApplicationSettings {
-    public class VictimsListController : MonoBehaviour {
-
+    public class VictimsListController : MonoBehaviour {        
         public GameObject textHolder;
-        private int openerTextIndex; // Index number to determine what the opener text should read for the VictimsList scene
+        private int openerTextIndex; 
 
         public Text openerText = null;
-        public Text victimNames = null;
+        public Text scrollingVictimNames = null;
+        public Text imageVictimName = null;
 
         public CanvasGroup openerCG = null;
         public CanvasGroup victimsListCG = null;
         public CanvasGroup victimsDisplayCG = null; // Reference to text content of victims rect
 
-        private Image victimImageDisplay; // Image holder to pass in images from sprite sheet 
+        private Image victimImageDisplay; // Display's selected prisoner sprite
         
-        private List<Sprite> victimsSprites = new List<Sprite>(); // List of the survivor images pulled from a sprite sheet
+        private List<Sprite> victimsSprites = new List<Sprite>(); // List of the prisoner images from spritesheet
         
-        private bool allowScroll; // Allow autoscrolling of the victims list
+        private bool allowScroll; // Enables/disabled scrolling of the victims list
 
+        // Cached wait for seconds used for text fade and display time delays
         private WaitForSeconds textChangeDelay = new WaitForSeconds(1);
         private WaitForSeconds textDisplayDuration = new WaitForSeconds(7);
+        private WaitForSeconds imageDisplayDuration = new WaitForSeconds(10);
 
         private void Awake() {
             victimImageDisplay = victimsDisplayCG.GetComponent<Image>();
             openerText = openerCG.GetComponent<Text>();
-            victimNames = victimsListCG.GetComponent<Text>();
+            scrollingVictimNames = victimsListCG.GetComponent<Text>();
             victimsListCG.alpha = openerCG.alpha = victimsDisplayCG.alpha = openerTextIndex = 0;
+            victimsListCG.gameObject.SetActive(false);
+            victimsDisplayCG.gameObject.SetActive(false);
             var textFile = Resources.Load<TextAsset>("victims"); // Load victims text file
             GetVictimSprites();
             string rawText = textFile.ToString();
-            victimNames.text = rawText;
+            scrollingVictimNames.text = rawText;
         }
         private void Start() {
-            
             UpdateOpenerText();
             StartCoroutine(FadeOpenerText()); // Check opener index if we are in the Victims scene after all references are create
         }
@@ -46,6 +49,7 @@ namespace WWIIVR.ApplicationSettings {
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("Sprites/VictimsSS"))
                 victimsSprites.Add(sprite);
         }
+
         private void Update() {
             if (!allowScroll) return;
                 
@@ -103,8 +107,9 @@ namespace WWIIVR.ApplicationSettings {
             }
         }
 
+
+        // Used to change person image and name as well as fade in and out
         #region Slideshow and Scroll Text
-        // Fade slideshow images in and out and change randomly
         private IEnumerator SlideshowControl() {
             victimImageDisplay.sprite = GrabRandomImage();
 
@@ -115,20 +120,61 @@ namespace WWIIVR.ApplicationSettings {
                 yield return null;
             }
             victimsDisplayCG.alpha = 0.8f;
-            yield return textDisplayDuration;
+
+            yield return imageDisplayDuration;
+            
             while (victimsDisplayCG.alpha > 0) {
                 victimsDisplayCG.alpha -= 0.8f * Time.deltaTime;
                 yield return null;
             }
             victimsDisplayCG.alpha = 0;
-            StartCoroutine(SlideshowControl()); // Pick another image and start again
+            StartCoroutine(SlideshowControl()); 
         }
+
 
         private Sprite GrabRandomImage() {
             int index = Random.Range(0, victimsSprites.Count);
-            return victimsSprites[index];
+
+            string tempName = victimsSprites[index].name;
+
+            if (tempName.ToLower().Contains("unknown")) {
+                imageVictimName.text = "";
+            } else {
+                string[] tempArray = tempName.Split('_');
+
+                // If middle name included
+                if (tempArray.Length == 4) {
+                    // If survived is where age would be
+                    if (tempArray[3] == "survived") {
+                        imageVictimName.text = $"{tempArray[0]} {tempArray[1]} {tempArray[2]}.\nSurvived";
+                    } else {
+                        imageVictimName.text = $"{tempArray[0]} {tempArray[1]} {tempArray[2]}.\nDied age: {tempArray[3]}";
+                    }
+                } 
+                // If only first and last name given
+                else if (tempArray.Length == 2) {
+                    imageVictimName.text = $"{tempArray[0]} {tempArray[1]}. Age/whether or not they survived unknown";
+                } 
+                // If name and age given
+                else {
+                    if (tempArray[2] == "survived") {
+                        imageVictimName.text = $"{tempArray[0]} {tempArray[1]}.\nSurvived";
+                    } else {
+                        imageVictimName.text = $"{tempArray[0]} {tempArray[1]}.\nDied age: {tempArray[2]}";
+                    }
+                    
+                }
+            }
+                return victimsSprites[index];
         }
+
+        // Fade in the long list of names (runs once)
         private IEnumerator FadeInList() {
+            openerText.gameObject.SetActive(false);
+
+            victimsListCG.gameObject.SetActive(true);
+            victimsDisplayCG.gameObject.SetActive(true);
+
             while (victimsListCG.alpha < 0.9f) {
                 victimsListCG.alpha += 0.8f * Time.deltaTime;
                 yield return null;

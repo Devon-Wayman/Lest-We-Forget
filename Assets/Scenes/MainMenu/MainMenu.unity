@@ -336,7 +336,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 235544805}
-  - component: {fileID: 235544807}
   - component: {fileID: 235544806}
   m_Layer: 0
   m_Name: Environment
@@ -459,21 +458,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &235544807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235544804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7cf84db20706af48baa98a8db192565, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radioAudio: {fileID: 0}
-  graphicContentItems: []
-  graphicContentCondition: 0
 --- !u!1 &318322558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,10 +1773,6 @@ MonoBehaviour:
   m_Script: {fileID: 452700517}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Entries:
-  - id: 0
-    category: 0
-    gameObject: {fileID: 557241168}
 --- !u!4 &846018307
 Transform:
   m_ObjectHideFlags: 19
@@ -4173,11 +4153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Profile: {fileID: 11400000, guid: f41d54e2e87b75c438c909854bbbf3f1, type: 2}
-  m_StaticLightingSkyUniqueID: 3
-  m_SkySettings: {fileID: 0}
-  m_SkySettingsFromProfile: {fileID: 4918568723665163019, guid: f41d54e2e87b75c438c909854bbbf3f1,
-    type: 2}
 --- !u!4 &1771480823
 Transform:
   m_ObjectHideFlags: 1
