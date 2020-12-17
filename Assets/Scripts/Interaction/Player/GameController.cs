@@ -1,13 +1,10 @@
 ﻿// Author: Devon Wayman
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using WWIIVR.Interaction.LevelManagement;
 
 namespace WWIIVR.Interaction.Player {
     [RequireComponent(typeof(InputHandler))]
     public class GameController : MonoBehaviour {
-
-        private string currentSceneName; // Get current scene name
         
         [SerializeField] private InputHandler inputHandler;
 
@@ -18,7 +15,6 @@ namespace WWIIVR.Interaction.Player {
             changingScenes = false; 
 
             LevelChanger.Instance.GetComponent<Animator>().speed = 1f; // Make sure on start that the level changer animation speed is normal
-            currentSceneName = SceneManager.GetActiveScene().name;
 
             if (inputHandler == null)
                 inputHandler = GetComponent<InputHandler>();

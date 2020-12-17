@@ -12,8 +12,6 @@ namespace WWIIVR.Interaction.Player {
 
         public bool MenuPressed { get; private set; } = false;
 
-        private bool leftTriggerPressed;
-        private bool rightTriggerPressed;
 
         private void Awake() {
             // Ensure MenuPressed is false on awake of a new scene
@@ -30,16 +28,6 @@ namespace WWIIVR.Interaction.Player {
                 MenuPressed = false;
 
             return pressed;
-        }
-        public bool TutorialRequested() {
-            leftController.inputDevice.TryGetFeatureValue(CommonUsages.gripButton, out leftTriggerPressed);
-            rightController.inputDevice.TryGetFeatureValue(CommonUsages.gripButton, out rightTriggerPressed);
-
-            if (leftTriggerPressed && rightTriggerPressed) {
-                return true;
-            } else {
-                return false;
-            }
         }
     }
 }
