@@ -7,14 +7,19 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace WWIIVR.Interaction.Player {
     public class InputHandler : MonoBehaviour {
 
+        public static InputHandler Instance;
+
         [SerializeField] private XRController leftController = null;
-        [SerializeField] private XRController rightController = null;
 
         public bool MenuPressed { get; private set; } = false;
 
 
         private void Awake() {
-            // Ensure MenuPressed is false on awake of a new scene
+            if (Instance == null)
+                Instance = this;
+            else if (Instance != null)
+                Destroy(this);
+
             MenuPressed = false;
         }
 

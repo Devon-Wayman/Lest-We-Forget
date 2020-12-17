@@ -68,29 +68,30 @@ public class ItemInteraction : XRGrabInteractable {
     }
 
     // Enable/disable titlecard when hovering on item
-    protected override void OnHoverEnter(XRBaseInteractor interactor) {
-        base.OnHoverEnter(interactor);
+    //protected override void OnHoverEnter(XRBaseInteractor interactor) {
+    //    base.OnHoverEnter(interactor);
 
-        if (titleCard != null)
-            titleCard.SetActive(true);
-    }
-    protected override void OnHoverExit(XRBaseInteractor interactor) {
-        base.OnHoverExit(interactor);
+    //    if (titleCard != null)
+    //        titleCard.SetActive(true);
+    //}
+    //protected override void OnHoverExit(XRBaseInteractor interactor) {
+    //    base.OnHoverExit(interactor);
 
-        if (titleCard != null)
-            titleCard.SetActive(false);
-    }
+    //    if (titleCard != null)
+    //        titleCard.SetActive(false);
+    //}
 
-    protected override void OnSelectEnter(XRBaseInteractor interactor) {
-        base.OnSelectEnter(interactor);
-        StoreInteractor(interactor);
-        MatchAttachmentPoints(interactor);
+    // DEVON WAYMAN: NEED TO REWRITE ALL THESE SYSTEMS TO USE THE EVENT SYSTEM FOR NEW XR BUILD
+    //protected override void OnSelectEnter(XRBaseInteractor interactor) {
+    //    base.OnSelectEnter(interactor);
+    //    StoreInteractor(interactor);
+    //    MatchAttachmentPoints(interactor);
 
-        if (titleCard != null) {
-            if (titleCard.activeSelf)
-                titleCard.SetActive(false);
-        }
-    }
+    //    if (titleCard != null) {
+    //        if (titleCard.activeSelf)
+    //            titleCard.SetActive(false);
+    //    }
+    //}
     private void StoreInteractor(XRBaseInteractor interactor) {
         interactorPosition = interactor.attachTransform.localPosition;
         interactorRotation = interactor.attachTransform.localRotation;
@@ -102,12 +103,12 @@ public class ItemInteraction : XRGrabInteractable {
     }
 
     #region On Player Hand Exit
-    protected override void OnSelectExit(XRBaseInteractor interactor) {
-        base.OnSelectExit(interactor);
-        ResetAttachmentPoiints(interactor);
-        ClearInteractor(interactor);
-        StartCoroutine(SmoothReturn(gameObject.transform.position, startPosition, startRotation));
-    }
+    //protected override void OnSelectExit(XRBaseInteractor interactor) {
+    //    base.OnSelectExit(interactor);
+    //    ResetAttachmentPoiints(interactor);
+    //    ClearInteractor(interactor);
+    //    StartCoroutine(SmoothReturn(gameObject.transform.position, startPosition, startRotation));
+    //}
     private void ResetAttachmentPoiints(XRBaseInteractor interactor) {
         interactor.attachTransform.localPosition = interactorPosition;
         interactor.attachTransform.localRotation = interactorRotation;

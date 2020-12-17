@@ -40,6 +40,9 @@ namespace WWIIVR.Interaction.LevelManagement {
             // Collect and add all audio sources in scene to the list
             foreach (AudioSource audioSource in FindObjectsOfType<AudioSource>())
                 allAudio.Add(audioSource);
+
+            // Fade into current level
+            levelChangeAnimator.Play("FadeScene_In");
         }
 
         // Load level passed in
@@ -47,12 +50,12 @@ namespace WWIIVR.Interaction.LevelManagement {
             Debug.Log($"Fading to: {requestedLevel}");
             levelToLoad = requestedLevel; // Set levelToLoad to index passed in
             StartCoroutine(LowerAudio());   // Fade out audio
-            levelChangeAnimator.SetTrigger("FadeOut"); // Trigger the fade out animation
+            levelChangeAnimator.Play("FadeScene_Out"); // Trigger the fade out animation
         }
         public void QuitGame() {
             quittingGame = true;
             StartCoroutine(LowerAudio());
-            levelChangeAnimator.SetTrigger("FadeOut");
+            levelChangeAnimator.Play("FadeScene_Out");
         }
 
         // Fade audio of current scene out

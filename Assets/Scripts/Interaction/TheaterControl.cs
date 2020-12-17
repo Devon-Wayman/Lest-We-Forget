@@ -53,6 +53,7 @@ namespace WWIIVR.Interaction {
                 yield return waitTime;
                 break;
             }
+            Debug.Log("Video ready for playback. Starting now...");
             videoPlayer.Play();
             projectorAudio.Play();
         }
