@@ -55,17 +55,17 @@ public class ItemInteraction : XRGrabInteractable {
     }
 
     // When Activate button is pressed on controller
-    protected override void OnActivate(XRBaseInteractor interactor) {
-        base.OnActivate(interactor);
+    //protected override void OnActivate(XRBaseInteractor interactor) {
+    //    base.OnActivate(interactor);
 
-        if (TryGetComponent(out LevelObject levelObject)) {
-            // Prevent menu button requests or other controller inputs from
-            // interferring with the current scene load
-            GameController.changingScenes = true;
+    //    if (TryGetComponent(out LevelObject levelObject)) {
+    //        // Prevent menu button requests or other controller inputs from
+    //        // interferring with the current scene load
+    //        GameController.changingScenes = true;
 
-            levelObject.LoadLevel();
-        }
-    }
+    //        levelObject.LoadLevel();
+    //    }
+    //}
 
     // Enable/disable titlecard when hovering on item
     //protected override void OnHoverEnter(XRBaseInteractor interactor) {
