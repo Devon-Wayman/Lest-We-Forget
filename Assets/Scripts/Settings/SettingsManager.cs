@@ -4,7 +4,6 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
-using System;
 using UnityEngine.XR.Interaction.Toolkit.Examples;
 
 /// <summary>
@@ -13,7 +12,6 @@ using UnityEngine.XR.Interaction.Toolkit.Examples;
 /// </summary>
 public class SettingsManager : MonoBehaviour {
 
-    public Text appVersion = null;
     public Button movementMode = null;
     public Button turnMode = null;
     public Toggle postProcessToggle = null;
@@ -22,11 +20,9 @@ public class SettingsManager : MonoBehaviour {
     private Text movementModeText = null;
     private Text turnModeText = null;
 
-
     public GameSettings gameSettings;
 
     [SerializeField] private LocomotionSchemeManager locomotionSchemeManager = null;
-
 
 
     private void Awake() {
@@ -59,9 +55,7 @@ public class SettingsManager : MonoBehaviour {
             CreateDefaultValues();
         }
     }
-    private void Start() {
-        appVersion.text = $"WWII VR version {Application.version}";
-    }
+
     private void CreateDefaultValues() {
         gameSettings.snapTurnMovement = true;
         gameSettings.postProcessEnabled = true;
@@ -91,8 +85,7 @@ public class SettingsManager : MonoBehaviour {
             movementModeText.text = "Continuous";
         }
     }
-
-    
+  
 
     private void OnApplyClicked() {
         SaveSettings();

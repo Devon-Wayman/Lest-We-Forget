@@ -9,11 +9,11 @@ using WWIIVR.Interaction.LevelManagement;
 public class StudioOpening : MonoBehaviour {
 
     public float menuDelay = 6f;
-    public float moveDistance = 5f; // Distance to move canvas forward for opener
+    public float moveDistance = 5f;
 
 
     void Start() {
-        StartCoroutine(FadeToMain()); // Start coroutine to fade to main menu
+        StartCoroutine(FadeToMain());
 
         float requestedForwardPosition = transform.position.z - moveDistance;
 
@@ -24,9 +24,9 @@ public class StudioOpening : MonoBehaviour {
     private IEnumerator MoveTitle(Vector3 startPos, Vector3 desiredLocation, float moveTime){
          float t = 0f; // Start time value
          while (t < 1.0f) {
-             t += Time.deltaTime / moveTime; // Sweeps from 0 to 1 in time seconds
-             transform.position = Vector3.Lerp(startPos, desiredLocation, t); // Set position proportional to t
-             yield return null;         // Leave the routine and return here in the next frame
+             t += Time.deltaTime / moveTime;
+             transform.position = Vector3.Lerp(startPos, desiredLocation, t); 
+             yield return null;         
          }
     }
 

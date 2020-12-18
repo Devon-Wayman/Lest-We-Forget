@@ -39,14 +39,10 @@ namespace UnityEngine.XR.Interaction.Toolkit.Examples {
         /// </summary>
         /// <seealso cref="moveScheme"/>
         public enum MoveScheme {
-            /// <summary>
-            /// Use noncontinuous movement control scheme.
-            /// </summary>
+            // Use noncontinuous movement control scheme.
             Noncontinuous,
 
-            /// <summary>
-            /// Use continuous movement control scheme.
-            /// </summary>
+            // Use continuous movement control scheme.
             Continuous,
         }
 
@@ -55,14 +51,10 @@ namespace UnityEngine.XR.Interaction.Toolkit.Examples {
         /// </summary>
         /// <seealso cref="turnStyle"/>
         public enum TurnStyle {
-            /// <summary>
-            /// Use snap turning to rotate the direction you are facing by snapping by a specified angle.
-            /// </summary>
+            // Use snap turning to rotate the direction you are facing by snapping by a specified angle.
             Snap,
 
-            /// <summary>
-            /// Use continuous turning to smoothly rotate the direction you are facing by a specified speed.
-            /// </summary>
+            // Use continuous turning to smoothly rotate the direction you are facing by a specified speed.
             Continuous,
         }
 
@@ -72,19 +64,13 @@ namespace UnityEngine.XR.Interaction.Toolkit.Examples {
         /// <seealso cref="moveForwardSource"/>
         /// <seealso cref="ContinuousMoveProviderBase.forwardSource"/>
         public enum MoveForwardSource {
-            /// <summary>
-            /// Use to continuously move in a direction based on the head orientation.
-            /// </summary>
+            // Use to continuously move in a direction based on the head orientation.
             Head,
 
-            /// <summary>
-            /// Use to continuously move in a direction based on the left hand orientation.
-            /// </summary>
+            // Use to continuously move in a direction based on the left hand orientation.
             LeftHand,
 
-            /// <summary>
-            /// Use to continuously move in a direction based on the right hand orientation.
-            /// </summary>
+            // Use to continuously move in a direction based on the right hand orientation.
             RightHand,
         }
 
@@ -245,6 +231,20 @@ namespace UnityEngine.XR.Interaction.Toolkit.Examples {
             set => m_ContinuousTurnProvider = value;
         }
 
+        // Added by Devon Wayman 12/17/2020:
+        // Get reference to Teleportation Provider to disable if Continuous movement is selected
+        [SerializeField]
+        [Tooltip("Stores the Teleportation Provider for teleportation movement")]
+        TeleportationProvider m_TeleportationProvider;
+        /// <summary>
+        /// Stores the telepoortation provider for teleportation movement
+        /// </summary>
+        public TeleportationProvider teleportationProvider {
+            get => m_TeleportationProvider;
+            set => m_TeleportationProvider = value;
+        }
+
+
         [SerializeField]
         [Tooltip("Stores the locomotion provider for snap turning.")]
         SnapTurnProviderBase m_SnapTurnProvider;
@@ -300,27 +300,33 @@ namespace UnityEngine.XR.Interaction.Toolkit.Examples {
             ClearBindingMasks();
         }
 
+
+        // Nodified by Devon Wayman 12/17/2020: Modified so that teleportation is also disabled if Continuous is set
         void SetMoveScheme(MoveScheme scheme) {
             switch (scheme) {
                 case MoveScheme.Noncontinuous:
                     SetBindingMasks(m_NoncontinuousControlScheme);
-                    if (m_ContinuousMoveProvider != null) {
+                    if (m_ContinuousMoveProvider != null && m_TeleportationProvider != null) {
                         m_ContinuousMoveProvider.enabled = false;
+
+                        // Added by Devon Wayman 12/17/2020: Enable teleportation provider
+                        m_TeleportationProvider.enabled = true;
                     }
 
                     break;
                 case MoveScheme.Continuous:
                     SetBindingMasks(m_ContinuousControlScheme);
-                    if (m_ContinuousMoveProvider != null) {
+                    if (m_ContinuousMoveProvider != null && m_TeleportationProvider != null) {
                         m_ContinuousMoveProvider.enabled = true;
-                    }
 
+                        // Added by Devon Wayman 12/17/2020: Disable teleportation provider
+                        m_TeleportationProvider.enabled = false;
+                    }
                     break;
                 default:
                     throw new InvalidEnumArgumentException(nameof(scheme), (int)scheme, typeof(MoveScheme));
             }
         }
-
         void SetTurnStyle(TurnStyle style) {
             switch (style) {
                 case TurnStyle.Snap:
