@@ -6,7 +6,7 @@ using UnityEngine.Video;
 /// <summary>
 /// Set up and play requested video
 /// </summary>
-namespace WWIIVR.Interaction {
+namespace LWF.Interaction {
     public class TheaterControl : MonoBehaviour {
         
         public VideoClip[] videos; // Array of available video clips

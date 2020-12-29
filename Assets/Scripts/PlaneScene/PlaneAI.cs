@@ -3,7 +3,7 @@ using PathCreation;
 using PathCreation.Examples;
 using UnityEngine;
 
-namespace WWIIVR.PlaneScene {
+namespace LWF.PlaneScene {
     public class PlaneAI : MonoBehaviour {
 
 

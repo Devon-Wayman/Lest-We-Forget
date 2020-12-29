@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WWIIVR.Interaction.LevelManagement;
+using LWF.Interaction.LevelManagement;
 
 /// <summary>
 /// This is to be placed on the player's boat ONLY! Other boats containing NPCs will be using the Unity's ECS system
 /// to improve stability and lower resources needed for them to function without creating mass amounts of overhead
 /// </summary>
-namespace WWIIVR.DDay {
+namespace LWF.DDay {
     public class PlayerLCVP : MonoBehaviour {
 
         private bool doorDropping = false; // Determine if the door has started dropping

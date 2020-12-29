@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Sets up requested plane in Plane scene
 /// </summary>
-namespace WWIIVR.PlaneScene {    
+namespace LWF.PlaneScene {    
     public class PlaneSetup : MonoBehaviour {
         private GameObject plane = null; // Variable to store requested plane model in
         private GameObject planePath = null; // Variable to store requested plane's path

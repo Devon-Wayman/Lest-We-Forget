@@ -1,38 +1,62 @@
-﻿// Author: Devon Wayman
+﻿// Author: Devon Wayman - December 2020
 using UnityEngine;
 
-namespace WWIIVR.Audio {
-    // Require an audio source to be attatched to same gameobject
+namespace LWF.Audio {
+
+    /// <summary>
+    /// Auto plays music files depending on the scene Scene enum is set to
+    /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class MenuMusicControl : MonoBehaviour {
 
-        private AudioClip[] radioSongs; // Array of radio songs (populated from resources on awake)
-        private AudioSource radioAudioSource; // Attatched gameobjects audio source
+        public enum Scene { MainMenu, VictimList };
+
+        public Scene scene;
+
+        public AudioClip[] songs; // Array of radio songs (populated from resources on awake)
+        private AudioSource audioSource; // Attatched gameobjects audio source
+
+        public int songsPlayed = 0; // Amount of songs that have been played (keeps track for some scenes)
 
         private void Awake() {
-            // Retrieve in all radio songs from resources folder
-            radioSongs = Resources.LoadAll<AudioClip>("Audio/RadioSongs"); 
-            
-            // Set reference to this object's audio source
-            radioAudioSource = GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
         }
 
-        private void Start(){   
-            // Start first song 3 seconds after start, then after every 8 seconds, check
-            // if music is still playing. If not, another track will be selected
-            InvokeRepeating("ChooseNextSong", 3, 8);
-        }
-
-        private void ChooseNextSong() { 
-            // If audio source is not playing, select and play the next track
-            if (!radioAudioSource.isPlaying) {
-                radioAudioSource.clip = ChooseRandomSong();
-                radioAudioSource.Play();
+        private void Start() {
+            switch (scene) {
+                case Scene.MainMenu:
+                    songs = Resources.LoadAll<AudioClip>("Audio/RadioSongs");
+                    InvokeRepeating("ChooseNextRadioSong", 3, 8);
+                    break;
+                case Scene.VictimList:
+                    songs = Resources.LoadAll<AudioClip>("Audio/VictimsList");
+                    InvokeRepeating("ChooseVictimListSong", 1, 5);
+                    break;
             }
         }
 
-        private AudioClip ChooseRandomSong(){
-            return radioSongs[Random.Range(0, radioSongs.Length)];
+        private void ChooseNextRadioSong() {
+            if (!audioSource.isPlaying) {
+                audioSource.clip = ChooseRadioSong();
+                audioSource.Play();
+            }
+        }
+
+
+        private void ChooseVictimListSong() {
+            if (songsPlayed == songs.Length) {
+                CancelInvoke();
+                gameObject.SetActive(false);
+            }
+            if (!audioSource.isPlaying) {
+                audioSource.clip = songs[songsPlayed];
+                audioSource.Play();
+                songsPlayed += 1;
+            }
+        }
+
+        private AudioClip ChooseRadioSong() { 
+            return songs[Random.Range(0, songs.Length)];
         }
     }
 }

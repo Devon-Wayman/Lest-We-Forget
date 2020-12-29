@@ -1,7 +1,7 @@
 ﻿// Author: Devon Wayman
 using System.Collections;
 using UnityEngine;
-using WWIIVR.Interaction.LevelManagement;
+using LWF.Interaction.LevelManagement;
 
 /// <summary>
 /// Used to load main menu after studio intro delay

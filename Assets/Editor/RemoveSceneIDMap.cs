@@ -5,7 +5,7 @@ using UnityEditor;
 #endif
 
 public class RemoveSceneIDMap : MonoBehaviour {
-    [MenuItem("Tools/SceneIDMap Fixer")]
+    [MenuItem("LWF/SceneIDMap Fixer")]
     public static void KillSceneIdMap() {
         var obj = GameObject.Find("SceneIDMap");
         if (obj != null) {

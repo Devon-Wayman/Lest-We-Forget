@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Fades current scene out and fades in requested scene
-namespace WWIIVR.Interaction.LevelManagement {
+namespace LWF.Interaction.LevelManagement {
     public class LevelChanger : MonoBehaviour {
 
         public static LevelChanger Instance;
@@ -23,18 +23,11 @@ namespace WWIIVR.Interaction.LevelManagement {
         public static LevelChanger Current {
             get {
                 if (!Instance) Instance = FindObjectOfType<LevelChanger>();
-
                 return Instance;
             }
         }
 
         private void Awake() {
-            if (Current != null && Current != this) 
-                DestroyImmediate(this);
-            else 
-                name = "SceneLoadManager";
-            
-
             levelChangeAnimator = GetComponent<Animator>();
 
             // Collect and add all audio sources in scene to the list

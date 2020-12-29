@@ -8,7 +8,7 @@ using UnityEngine.XR;
 /// Used to scroll text view with the left controller stick. Min and max y position values are clamped to prevent over scrolling. 
 /// Text can be loaded from a resources file or stay at default text attatched to object
 /// </summary>
-namespace WWIIVR.Interaction {
+namespace LWF.Interaction {
     public class TextScroller : MonoBehaviour {
 
         private bool replaceText = false; // Determine if Text element text should be set to contents of a resource folder file

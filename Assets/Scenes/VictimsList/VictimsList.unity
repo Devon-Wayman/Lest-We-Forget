@@ -25,11 +25,11 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
-  m_FlareFadeSpeed: 3
+  m_FlareFadeSpeed: 1
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 65e517fd37d91c34e83f3336d3310f88, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 417b17f013c57d74288d81c3b533f36b, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: ef8d34c6ad854ba4bb25949337144b7c, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -219,13 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8df12c3097b64f4996664b2a4811528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textHolder: {fileID: 1669390835}
+  listTextHolder: {fileID: 1669390835}
   openerText: {fileID: 1499608797}
   scrollingVictimNames: {fileID: 788039904}
-  imageVictimName: {fileID: 791669641}
   openerCG: {fileID: 1499608796}
   victimsListCG: {fileID: 788039906}
-  victimsDisplayCG: {fileID: 1754368451}
 --- !u!1 &235544804
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -3.42}
+  m_AnchoredPosition: {x: 0, y: -3.6}
   m_SizeDelta: {x: 14.91, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791669641
@@ -409,15 +407,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6d8480ecdd9216e4bbc8518eeb857df7, type: 3}
     m_FontSize: 1
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
-    m_RichText: 0
+    m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
@@ -429,7 +427,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791669639}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1 &898366993
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +504,7 @@ Transform:
   m_GameObject: {fileID: 898366993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2.76}
-  m_LocalScale: {x: 0.2, y: 1, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 235544805}
   m_RootOrder: 0
@@ -613,7 +611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669390836}
   m_Layer: 0
-  m_Name: TextHolder
+  m_Name: ListTextHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -639,6 +637,24 @@ RectTransform:
   m_AnchoredPosition: {x: -2.59, y: 0}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1749867060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1460355694646105248, guid: a4bb5ac2e3823ca4c801b763cb8489d4, type: 3}
+  m_PrefabInstance: {fileID: 618762969013736975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1749867061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749867060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf89dfedc0336944cbf04a368fa0ae12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionsSet: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1754368447
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +667,7 @@ GameObject:
   - component: {fileID: 1754368450}
   - component: {fileID: 1754368449}
   - component: {fileID: 1754368451}
+  - component: {fileID: 1754368452}
   m_Layer: 0
   m_Name: Slideshow_IMAGE
   m_TagString: Untagged
@@ -675,7 +692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 13.212001, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.14, y: 1.31}
+  m_AnchoredPosition: {x: 8, y: 1.31}
   m_SizeDelta: {x: 6, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1754368449
@@ -728,6 +745,21 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1754368452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754368447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2286188c2d0d0bd44b6bdff98698049f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  victimsDisplayCG: {fileID: 1754368451}
+  imageVictimName: {fileID: 791669641}
+  spriteIndex: 0
 --- !u!1 &1805928651
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,8 +770,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1805928652}
   - component: {fileID: 1805928654}
+  - component: {fileID: 1805928653}
   m_Layer: 0
-  m_Name: BG_Music
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -759,6 +792,21 @@ Transform:
   m_Father: {fileID: 235544805}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1805928653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805928651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd83666f994cad47a7a4030dfe35d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 1
+  songs: []
+  songsPlayed: 0
 --- !u!82 &1805928654
 AudioSource:
   m_ObjectHideFlags: 0
@@ -770,17 +818,17 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300001, guid: 1dd706bb85d8aef4e83a6229dbd62c36, type: 2}
   m_audioClip: {fileID: 8300000, guid: db1e5d57efd1c2a488c5d657c8e241da, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 50
   DopplerLevel: 0.1
   MinDistance: 1
-  MaxDistance: 100
+  MaxDistance: 12
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -815,7 +863,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.2
+      value: 0.7
       inSlope: 0
       outSlope: 0
       tangentMode: 0

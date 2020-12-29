@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using WWIIVR.Interfaces;
+using LWF.Interfaces;
 
 /// <summary>
 /// Sets up and triggers various water explosions for player's entry into Omaha beach. Implements object
 /// pooling for better resource management and less frequent GC.
 /// </summary>
-namespace WWIIVR.DDay {
+namespace LWF.DDay {
     public class TriggerExplosion : MonoBehaviour {
 
         #region Explosion Object Pools

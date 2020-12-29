@@ -3,8 +3,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using WWIIVR.Interaction.LevelManagement;
-using WWIIVR.Interaction.Player;
+using LWF.Interaction.LevelManagement;
+using LWF.Interaction.Player;
 
 /// <summary>
 /// Creates a grab offset for player hand to remove the "snap" that usually occurs

@@ -3,7 +3,7 @@
 using System;
 using UnityEngine;
 
-namespace WWIIVR.Interaction.LevelManagement {
+namespace LWF.Interaction.LevelManagement {
     public class LevelObject : MonoBehaviour {
 
         public enum SceneType { SimpleScene, Vehicle, Film };

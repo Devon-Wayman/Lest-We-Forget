@@ -9,7 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// Takes input from the VR controller and allows player to move around the scene freely 
 /// (if canMove bool is true)
 /// </summary>
-namespace WWIIVR.Interaction.Player {
+namespace LWF.Interaction.Player {
     public class MovmentProvider : LocomotionProvider {
 
         public float playerSpeed = 1.7f;

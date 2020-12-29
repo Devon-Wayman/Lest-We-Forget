@@ -1,5 +1,4 @@
-﻿// Author Devon Wayman
-// Date 12/16/2020
+﻿// Author: Devon Wayman - December 2020
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,22 +48,22 @@ public class SettingsManager : MonoBehaviour {
             postProcessToggle.onValueChanged.AddListener(delegate { OnPostProcessingChanged(); });
             applyButton.onClick.AddListener(delegate { OnApplyClicked(); });
 
-            if (File.Exists(Application.persistentDataPath + "/wwiisettings.json") == true) {
+            if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == true) {
                 Debug.Log("Game settings file exists...");
                 LoadSettings();
             }
-            else if (File.Exists(Application.persistentDataPath + "/wwiisettings.json") == false) {
+            else if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == false) {
                 Debug.Log("No game settings file found! Generating default values...");
                 CreateDefaultValues();
             }
         }
         // If in any other scene, just load and apply settings (through custom method)
         else {
-            if (File.Exists(Application.persistentDataPath + "/wwiisettings.json") == true) {
+            if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == true) {
                 Debug.Log("Game settings file exists...");
                 LoadSettings();
             }
-            else if (File.Exists(Application.persistentDataPath + "/wwiisettings.json") == false) {
+            else if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == false) {
                 Debug.Log("No game settings file found! Generating default values...");
                 CreateDefaultValues();
             }
@@ -105,13 +104,13 @@ public class SettingsManager : MonoBehaviour {
     }
     private void SaveSettings() {
         string jsonData = JsonUtility.ToJson(gameSettings, true);
-        File.WriteAllText(Application.persistentDataPath + "/wwiisettings.json", jsonData);
+        File.WriteAllText(Application.persistentDataPath + "/lwfsettings.json", jsonData);
 
         LoadSettings();
     }
     private void LoadSettings() {
-        Debug.Log($"Loading game settings from {Application.persistentDataPath}/wwiisettings.json");
-        gameSettings = JsonUtility.FromJson<GameSettings>(File.ReadAllText(Application.persistentDataPath + "/wwiisettings.json"));
+        Debug.Log($"Loading game settings from {Application.persistentDataPath}/lwfsettings.json");
+        gameSettings = JsonUtility.FromJson<GameSettings>(File.ReadAllText(Application.persistentDataPath + "/lwfsettings.json"));
         ApplySettingsToGame(gameSettings);
     }
 
