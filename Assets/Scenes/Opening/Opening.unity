@@ -181,8 +181,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d72129a87b4009e4497869f21ffa9f76, type: 3}
-    m_FontSize: 2
+    m_Font: {fileID: 12800000, guid: 6d8480ecdd9216e4bbc8518eeb857df7, type: 3}
+    m_FontSize: 3
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -193,9 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Split Box Studios
-
-    presents'
+  m_Text: 
 --- !u!222 &494459470
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -303,10 +301,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fe86aab62d3764bafa983e86dbd5bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fonts:
-  - {fileID: 12800000, guid: d72129a87b4009e4497869f21ffa9f76, type: 3}
-  - {fileID: 12800000, guid: 6d8480ecdd9216e4bbc8518eeb857df7, type: 3}
-  openerText: {fileID: 494459469}
+  gameOpenerTranslator:
+    m_TableReference:
+      m_TableCollectionName: GUID:a61817aa3c6330c429ed0ab75664260c
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+  openingText: {fileID: 494459469}
   moveDistance: 9
   moveDuration: 15
 --- !u!1001 &4832209764704433262

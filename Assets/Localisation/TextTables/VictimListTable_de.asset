@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: VictimListTable_de
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: e6af924cbf4362040912af18d7f44014, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11793108992
+    m_Localized: '1941 begannen die von den Nazis besetzten
+
+      Gebiete, Juden
+      zu ermorden'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7837798141952
+    m_Localized: "\xDCber 6 Millionen wurden get\xF6tet; zwei Drittel\nder j\xFCdischen
+      Bev\xF6lkerung Europas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11317833142272
+    m_Localized: Diese Massenmorde endeten erst 1943
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11334543249408
+    m_Localized: "Innerhalb dieser 2 Jahre Spannweite wurden ganze \nunschuldige
+      Familien aus dem Gesicht der Erde ausgel\xF6scht"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11362552811520
+    m_Localized: "Aufgef\xFChrt sind nur einige der Namen der unschuldigen\nMenschen,
+      denen zu fr\xFCh das Leben genommen wurde"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11386540036096
+    m_Localized: "\"Die Toten zu vergessen w\xE4re wie zu t\xF6ten\nsie ein zweites
+      Mal \" - Elie Wiesel Night"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

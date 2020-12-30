@@ -222,6 +222,12 @@ MonoBehaviour:
   openerCG: {fileID: 1499608796}
   victimsListCG: {fileID: 788039906}
   listTextHolder: {fileID: 1669390835}
+  openerTextTranslation:
+    m_TableReference:
+      m_TableCollectionName: GUID:e6af924cbf4362040912af18d7f44014
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
   openerText: {fileID: 1499608797}
   scrollingVictimNames: {fileID: 788039904}
 --- !u!1 &235544804
@@ -419,7 +425,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: names will be here
+  m_Text: 
 --- !u!222 &791669642
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -592,7 +598,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1499608798
 CanvasRenderer:
   m_ObjectHideFlags: 0

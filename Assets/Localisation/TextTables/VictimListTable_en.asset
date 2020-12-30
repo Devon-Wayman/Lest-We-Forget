@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: VictimListTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: e6af924cbf4362040912af18d7f44014, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11793108992
+    m_Localized: 'In 1941, Nazi-occupied regions
+
+      began murdering Jews'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7837798141952
+    m_Localized: 'Over 6 million were killed; two thirds of
+
+      Europes Jewish
+      population'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11317833142272
+    m_Localized: These mass murders did not end until 1943
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11334543249408
+    m_Localized: 'Within this two year span, entire innocent
+
+      families were
+      wiped from the face of the Earth'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11362552811520
+    m_Localized: 'Listed are just some of the names of the innocent
+
+      people
+      who had their lives taken away too soon'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11386540036096
+    m_Localized: '"To forget the dead would be akin to killing
+
+      them a second
+      time" - Elie Wiesel Night'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1
