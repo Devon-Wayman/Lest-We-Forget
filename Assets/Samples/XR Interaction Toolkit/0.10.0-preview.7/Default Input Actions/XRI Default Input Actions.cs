@@ -33,14 +33,6 @@ public class @XRIDefaultInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Quaternion"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""UserPresence"",
-                    ""type"": ""Button"",
-                    ""id"": ""5ce04152-532e-4764-b01d-e072ffb55b6a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -63,28 +55,6 @@ public class @XRIDefaultInputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Generic XR Controller"",
                     ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c58ecbfd-3f2d-42ba-95b2-49a214e1d15b"",
-                    ""path"": ""<OculusHMD>/userPresence"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UserPresence"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1126c447-e977-4cf1-8903-3f2878721afb"",
-                    ""path"": ""<WMRHMD>/userPresence"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UserPresence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -740,7 +710,6 @@ public class @XRIDefaultInputActions : IInputActionCollection, IDisposable
         m_XRIHMD = asset.FindActionMap("XRI HMD", throwIfNotFound: true);
         m_XRIHMD_Position = m_XRIHMD.FindAction("Position", throwIfNotFound: true);
         m_XRIHMD_Rotation = m_XRIHMD.FindAction("Rotation", throwIfNotFound: true);
-        m_XRIHMD_UserPresence = m_XRIHMD.FindAction("UserPresence", throwIfNotFound: true);
         // XRI LeftHand
         m_XRILeftHand = asset.FindActionMap("XRI LeftHand", throwIfNotFound: true);
         m_XRILeftHand_Position = m_XRILeftHand.FindAction("Position", throwIfNotFound: true);
@@ -823,14 +792,12 @@ public class @XRIDefaultInputActions : IInputActionCollection, IDisposable
     private IXRIHMDActions m_XRIHMDActionsCallbackInterface;
     private readonly InputAction m_XRIHMD_Position;
     private readonly InputAction m_XRIHMD_Rotation;
-    private readonly InputAction m_XRIHMD_UserPresence;
     public struct XRIHMDActions
     {
         private @XRIDefaultInputActions m_Wrapper;
         public XRIHMDActions(@XRIDefaultInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_XRIHMD_Position;
         public InputAction @Rotation => m_Wrapper.m_XRIHMD_Rotation;
-        public InputAction @UserPresence => m_Wrapper.m_XRIHMD_UserPresence;
         public InputActionMap Get() { return m_Wrapper.m_XRIHMD; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -846,9 +813,6 @@ public class @XRIDefaultInputActions : IInputActionCollection, IDisposable
                 @Rotation.started -= m_Wrapper.m_XRIHMDActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_XRIHMDActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_XRIHMDActionsCallbackInterface.OnRotation;
-                @UserPresence.started -= m_Wrapper.m_XRIHMDActionsCallbackInterface.OnUserPresence;
-                @UserPresence.performed -= m_Wrapper.m_XRIHMDActionsCallbackInterface.OnUserPresence;
-                @UserPresence.canceled -= m_Wrapper.m_XRIHMDActionsCallbackInterface.OnUserPresence;
             }
             m_Wrapper.m_XRIHMDActionsCallbackInterface = instance;
             if (instance != null)
@@ -859,9 +823,6 @@ public class @XRIDefaultInputActions : IInputActionCollection, IDisposable
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
-                @UserPresence.started += instance.OnUserPresence;
-                @UserPresence.performed += instance.OnUserPresence;
-                @UserPresence.canceled += instance.OnUserPresence;
             }
         }
     }
@@ -1163,7 +1124,6 @@ public class @XRIDefaultInputActions : IInputActionCollection, IDisposable
     {
         void OnPosition(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
-        void OnUserPresence(InputAction.CallbackContext context);
     }
     public interface IXRILeftHandActions
     {

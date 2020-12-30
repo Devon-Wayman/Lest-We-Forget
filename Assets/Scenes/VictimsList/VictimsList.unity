@@ -219,11 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8df12c3097b64f4996664b2a4811528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openerCG: {fileID: 1499608796}
+  victimsListCG: {fileID: 788039906}
   listTextHolder: {fileID: 1669390835}
   openerText: {fileID: 1499608797}
   scrollingVictimNames: {fileID: 788039904}
-  openerCG: {fileID: 1499608796}
-  victimsListCG: {fileID: 788039906}
 --- !u!1 &235544804
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,24 +637,6 @@ RectTransform:
   m_AnchoredPosition: {x: -2.59, y: 0}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1749867060 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1460355694646105248, guid: a4bb5ac2e3823ca4c801b763cb8489d4, type: 3}
-  m_PrefabInstance: {fileID: 618762969013736975}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1749867061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1749867060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf89dfedc0336944cbf04a368fa0ae12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionsSet: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1754368447
 GameObject:
   m_ObjectHideFlags: 0

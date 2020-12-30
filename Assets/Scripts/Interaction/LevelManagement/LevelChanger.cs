@@ -1,24 +1,17 @@
 ﻿// Author: Devon Wayman
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Fades current scene out and fades in requested scene
 namespace LWF.Interaction.LevelManagement {
     public class LevelChanger : MonoBehaviour {
 
+        public Animator levelChangeAnimator;
         public static LevelChanger Instance;
 
-        private Animator levelChangeAnimator;
-
-        private string levelToLoad;
-
-        private List<AudioSource> allAudio = new List<AudioSource>(); 
-
-        private float audioFadeTime = 2f; 
-
         private bool quittingGame = false;
+        private float audioFadeTime = 2f;
+        private string levelToLoad;
 
         public static LevelChanger Current {
             get {
@@ -27,18 +20,11 @@ namespace LWF.Interaction.LevelManagement {
             }
         }
 
-        private void Awake() {
-            levelChangeAnimator = GetComponent<Animator>();
-
-            // Collect and add all audio sources in scene to the list
-            foreach (AudioSource audioSource in FindObjectsOfType<AudioSource>())
-                allAudio.Add(audioSource);
-
-            // Fade into current level
+        private void Start() {
             levelChangeAnimator.Play("FadeScene_In");
+            AudioListener.volume = 1;
         }
 
-        // Load level passed in
         public void FadeToLevel(string requestedLevel) {
             Debug.Log($"Fading to: {requestedLevel}");
             levelToLoad = requestedLevel; // Set levelToLoad to index passed in
@@ -51,21 +37,16 @@ namespace LWF.Interaction.LevelManagement {
             levelChangeAnimator.Play("FadeScene_Out");
         }
 
-        // Fade audio of current scene out
         private IEnumerator LowerAudio() {
             float t = audioFadeTime;
             while (t > 0) {
                 t -= Time.deltaTime; // Decrease value of "t" over time; set by value of audioFadeTime
-
-                for (int i = 0; i < allAudio.Count; i++)
-                    allAudio[i].volume = t / audioFadeTime;
-
+                AudioListener.volume = t / audioFadeTime;
                 yield return null;
             }
             yield break;
         }
         
-        // Load scene after fade out is completed
         public void OnFadeComplete() {
             if (quittingGame) {
                 #if UNITY_EDITOR

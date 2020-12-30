@@ -7,21 +7,18 @@ using UnityEngine.UI;
 // NO LOGIC SHOULD BE PLACED HERE FOR THE SLIDESHOW PORTION
 namespace LWF.Interaction {
     public class VictimsListTextController : MonoBehaviour {        
-        public GameObject listTextHolder;
-        private int openerTextIndex; 
-
-        public Text openerText = null;
-        public Text scrollingVictimNames = null;
 
         public CanvasGroup openerCG = null;
         public CanvasGroup victimsListCG = null;
-
-  
-        private bool canScroll = false; 
-
-        // Cached wait for seconds used for text fade and display time delays
+        public GameObject listTextHolder;
+        public Text openerText = null;
+        public Text scrollingVictimNames = null;
         private WaitForSeconds textChangeDelay = new WaitForSeconds(1);
         private WaitForSeconds textDisplayDuration = new WaitForSeconds(7);
+
+        private bool canScroll = false;
+        private int openerTextIndex;
+
 
         private void Awake() {
             openerText = openerCG.GetComponent<Text>();
@@ -91,6 +88,7 @@ namespace LWF.Interaction {
                 VictimsListSlideshowController.Current.StartSlideshow();
                 StartCoroutine(FadeInList());
                 canScroll = true;
+                yield break; // Ensure we exit this loop
             }
         }
 

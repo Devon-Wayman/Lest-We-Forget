@@ -33,7 +33,7 @@ public class SettingsManager : MonoBehaviour {
         }
 
         gameSettings = new GameSettings();
-        locomotionSchemeManager = FindObjectOfType<LocomotionSchemeManager>();
+        //locomotionSchemeManager = FindObjectOfType<LocomotionSchemeManager>();
 
 
         // IF OUTSIDE MAIN MENU SCENE, JUST LOAD SETTINGS AND APPLY THEM TO THE PLAYER
