@@ -33,7 +33,7 @@ public class SettingsManager : MonoBehaviour {
         }
 
         gameSettings = new GameSettings();
-        //locomotionSchemeManager = FindObjectOfType<LocomotionSchemeManager>();
+        locomotionSchemeManager = FindObjectOfType<LocomotionSchemeManager>();
 
 
         // IF OUTSIDE MAIN MENU SCENE, JUST LOAD SETTINGS AND APPLY THEM TO THE PLAYER
@@ -49,7 +49,6 @@ public class SettingsManager : MonoBehaviour {
             applyButton.onClick.AddListener(delegate { OnApplyClicked(); });
 
             if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == true) {
-                Debug.Log("Game settings file exists...");
                 LoadSettings();
             }
             else if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == false) {
@@ -60,7 +59,6 @@ public class SettingsManager : MonoBehaviour {
         // If in any other scene, just load and apply settings (through custom method)
         else {
             if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == true) {
-                Debug.Log("Game settings file exists...");
                 LoadSettings();
             }
             else if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == false) {

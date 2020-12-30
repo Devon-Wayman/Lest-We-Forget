@@ -794,6 +794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: 1
   songs: []
+  audioSource: {fileID: 1805928654}
   songsPlayed: 0
 --- !u!82 &1805928654
 AudioSource:

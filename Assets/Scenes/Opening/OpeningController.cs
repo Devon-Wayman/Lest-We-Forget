@@ -15,10 +15,10 @@ public class OpeningController : MonoBehaviour {
     public int moveDuration = 13;
     private int textsDisplayed = 1;
 
-
     private void Awake() {
         gameOpenerTranslator.StringChanged += OnStringChange;
     }
+
     void Start() {
         gameOpenerTranslator.TableEntryReference = $"line{textsDisplayed}";
 
@@ -26,11 +26,11 @@ public class OpeningController : MonoBehaviour {
         StartCoroutine(FadeText(1f, openingText.GetComponent<Text>()));
         StartCoroutine(MoveTitle(transform.position, new Vector3(transform.position.x, transform.position.y, requestedForwardPosition), moveDuration));
     }
+
     private void OnStringChange(string value) {
         openingText.text = value;
     }
 
-    
     private IEnumerator FadeText(float fadeDuration, Text text) {
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
 
@@ -57,9 +57,6 @@ public class OpeningController : MonoBehaviour {
             LevelChanger.Current.FadeToLevel("MainMenu");
         }
     }
-
-
-
 
     private IEnumerator MoveTitle(Vector3 startPos, Vector3 desiredLocation, float moveTime){
          float t = 0f; 

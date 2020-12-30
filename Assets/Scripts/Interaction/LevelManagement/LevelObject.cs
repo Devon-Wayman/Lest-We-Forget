@@ -1,6 +1,6 @@
-﻿// Author Devon Wayman
-// Date Sept 22 2020
+﻿// Author: Devon Wayman - September 2020
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace LWF.Interaction.LevelManagement {
@@ -15,6 +15,23 @@ namespace LWF.Interaction.LevelManagement {
         public string requestedVehicle;
 
         public string movieName;
+
+        private Vector3 startPosition;
+        private Vector3 startRotation;
+
+        private void Start() {
+            startPosition = transform.position;
+            startRotation = transform.eulerAngles;
+        }
+
+        //public void PlayerReleased() {
+        //    StartCoroutine(GoToStartPosition(startPosition, startRotation));
+        //}
+
+        //private IEnumerator GoToStartPosition(Vector3 startPosition, Vector3 startRotation) {
+        //    // Move object back to start position when player releases it
+        //    yield return null;
+        //}
 
         public void LoadLevel() {
             switch (sceneType) {

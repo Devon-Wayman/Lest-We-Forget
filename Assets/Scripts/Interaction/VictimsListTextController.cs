@@ -17,13 +17,13 @@ namespace LWF.Interaction {
         private WaitForSeconds textDisplayDuration = new WaitForSeconds(7);
 
         private bool canScroll = false;
-        private int openerTextIndex;
+        private int textIndex;
 
 
         private void Awake() {
             openerTextTranslation.StringChanged += OnStringChange;
 
-            victimsListCG.alpha = openerCG.alpha = openerTextIndex = 0;
+            victimsListCG.alpha = openerCG.alpha = textIndex = 0;
             victimsListCG.gameObject.SetActive(false);
 
             var textFile = Resources.Load<TextAsset>("Text/victims");
@@ -31,7 +31,6 @@ namespace LWF.Interaction {
             scrollingVictimNames.text = rawText;
         }
         
-
         private void Start() {
             UpdateOpenerText();
             StartCoroutine(FadeOpenerText()); 
@@ -45,7 +44,7 @@ namespace LWF.Interaction {
             openerText.text = value;
         }
         private void UpdateOpenerText() {     
-            openerTextTranslation.TableEntryReference = $"line{openerTextIndex + 1}";
+            openerTextTranslation.TableEntryReference = $"line{textIndex + 1}";
         }
         private IEnumerator FadeOpenerText() {
             yield return textChangeDelay;
@@ -64,9 +63,9 @@ namespace LWF.Interaction {
             }
 
             openerCG.alpha = 0;
-            openerTextIndex++;
+            textIndex++;
 
-            if (!(openerTextIndex > 5)) {
+            if (!(textIndex > 5)) {
                 UpdateOpenerText();
                 StartCoroutine(FadeOpenerText());
             } else {
@@ -75,7 +74,6 @@ namespace LWF.Interaction {
                 yield break;
             }
         }
-
         private IEnumerator FadeInList() {
             openerText.gameObject.SetActive(false);
 
