@@ -1,5 +1,4 @@
-﻿// Author: Devon Wayman
-// Date: Sept 21 2020
+﻿// Author: Devon Wayman - September 2020
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -12,17 +11,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace LWF.Interaction.Player {
     public class MovmentProvider : LocomotionProvider {
 
-        public float playerSpeed = 1.7f;
-        public float gravityMultiplier = 1f;
-        [SerializeField] private bool canMove = true;
-        [SerializeField] private bool useGravity = true;
-
-        // List of XR controllers
-        public List<XRController> controllers = null;
-
         private CharacterController characterController = null;
         private GameObject head = null;
-
+        public List<XRController> controllers = null;
+        [SerializeField] private bool canMove = true;
+        [SerializeField] private bool useGravity = true;
+        public float playerSpeed = 1.7f;
+        public float gravityMultiplier = 1f;
 
         protected override void Awake() {
             characterController = GetComponent<CharacterController>();
@@ -36,9 +31,9 @@ namespace LWF.Interaction.Player {
         private void FixedUpdate() {
             PositionController();
 
-            if (canMove) 
+            if (canMove)
                 CheckForInput();
-            
+
             if (useGravity)
                 ApplyGravity();
         }
@@ -60,10 +55,9 @@ namespace LWF.Interaction.Player {
             // Apply adjustments
             characterController.center = newCenter;
         }
-        
+
         private void CheckForInput() {
             foreach (XRController controller in controllers) {
-                // If input is redily available
                 if (controller.enableInputActions) {
                     CheckForMovement(controller.inputDevice);
                 }
@@ -71,7 +65,6 @@ namespace LWF.Interaction.Player {
         }
 
         private void CheckForMovement(InputDevice device) {
-            // Get joystick input
             if (device.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 position)) {
                 StartMove(position);
             }
@@ -96,6 +89,5 @@ namespace LWF.Interaction.Player {
             gravity.y *= Time.deltaTime;
             characterController.Move(gravity * Time.deltaTime);
         }
-
     }
 }

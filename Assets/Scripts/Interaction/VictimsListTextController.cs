@@ -5,7 +5,7 @@ using UnityEngine.Localization;
 using UnityEngine.UI;
 
 namespace LWF.Interaction {
-    public class VictimsListTextController : MonoBehaviour {        
+    public class VictimsListTextController : MonoBehaviour {
 
         public CanvasGroup openerCG = null;
         public CanvasGroup victimsListCG = null;
@@ -30,10 +30,10 @@ namespace LWF.Interaction {
             string rawText = textFile.ToString();
             scrollingVictimNames.text = rawText;
         }
-        
+
         private void Start() {
             UpdateOpenerText();
-            StartCoroutine(FadeOpenerText()); 
+            StartCoroutine(FadeOpenerText());
         }
         private void Update() {
             if (!canScroll) return;
@@ -43,9 +43,11 @@ namespace LWF.Interaction {
         private void OnStringChange(string value) {
             openerText.text = value;
         }
-        private void UpdateOpenerText() {     
+
+        private void UpdateOpenerText() {
             openerTextTranslation.TableEntryReference = $"line{textIndex + 1}";
         }
+
         private IEnumerator FadeOpenerText() {
             yield return textChangeDelay;
 
@@ -74,6 +76,7 @@ namespace LWF.Interaction {
                 yield break;
             }
         }
+
         private IEnumerator FadeInList() {
             openerText.gameObject.SetActive(false);
 

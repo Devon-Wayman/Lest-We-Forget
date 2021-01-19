@@ -1,22 +1,17 @@
-﻿// Author Devon Wayman 
-// Date Sept 22 2020
+﻿// Author: Devon Wayman - September 2020
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using LWF.Interaction.LevelManagement;
-using LWF.Interaction.Player;
 
 /// <summary>
-/// Creates a grab offset for player hand to remove the "snap" that usually occurs
-/// When we release the item, it will float back to its original location
-/// Also hides menu title card when the object is selected and makes it reappear when we let go
+/// Creates a grab offset for player hand to remove the "snap" that usually occurs. When we release the item, it 
+/// will float back to its original location. Also hides menu title card when the object is selected and makes it reappear when we let go
 /// </summary>
 public class ItemInteraction : XRGrabInteractable {
 
-    // Amount of time to take to return to default location when player lets go of object
     private float returnDelay = 0.3f;
 
-    // Object's initial rotation and position
     private Vector3 startPosition = Vector3.zero;
     private Quaternion startRotation = Quaternion.identity;
 
@@ -27,7 +22,6 @@ public class ItemInteraction : XRGrabInteractable {
     // Canvas containing text above item
     public GameObject titleCard = null;
 
-    // Rigidbody on interactable object
     private Rigidbody rigidBody = null;
 
     protected override void Awake() {
@@ -117,9 +111,7 @@ public class ItemInteraction : XRGrabInteractable {
         interactorPosition = Vector3.zero;
         interactorRotation = Quaternion.identity;
     }
-
     private IEnumerator SmoothReturn(Vector3 currentPosition, Vector3 targetPosition, Quaternion targetRotation) {
-
         float startTime = Time.time;
         while (Time.time < startTime + returnDelay) {
             transform.position = Vector3.Lerp(currentPosition, targetPosition, (Time.time - startTime) / returnDelay);

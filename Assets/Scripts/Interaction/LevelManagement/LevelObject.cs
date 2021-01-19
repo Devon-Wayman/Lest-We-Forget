@@ -1,6 +1,5 @@
 ﻿// Author: Devon Wayman - September 2020
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace LWF.Interaction.LevelManagement {
@@ -8,16 +7,12 @@ namespace LWF.Interaction.LevelManagement {
 
         public enum SceneType { SimpleScene, Vehicle, Film };
         public SceneType sceneType;
-
-        public string sceneName;
-
-        public string vehicleScene;
-        public string requestedVehicle;
-
-        public string movieName;
-
         private Vector3 startPosition;
         private Vector3 startRotation;
+        public string sceneName;
+        public string vehicleScene;
+        public string requestedVehicle;
+        public string movieName;
 
         private void Start() {
             startPosition = transform.position;

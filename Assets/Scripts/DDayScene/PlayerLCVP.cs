@@ -1,4 +1,4 @@
-﻿// Author Devon Wayman 
+﻿// Author: Devon Wayman - January 2021 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,20 +11,14 @@ using LWF.Interaction.LevelManagement;
 namespace LWF.DDay {
     public class PlayerLCVP : MonoBehaviour {
 
+        private List<AudioSource> slowmoAudios = new List<AudioSource>(); // List of audio sources in scene. Used to create slow motion effect
+        public Transform lcvpGate = null; // Gate gameobject transform
+        private Transform stopPosition; // Position to stop the given boat at
+        public bool AllowNPCActivation { get; private set; } = false; // Boolean to inform NPC manager if NPCs can be activated
         private bool doorDropping = false; // Determine if the door has started dropping
         private bool hasCalledToSlow = false; // Determine if we have begun to slow down the boat
-
-        // USING ACCESSOR SO THAT VALUE CAN BE MODIFIED IN THIS CLASS BUT ONLY READ BY OTHERS
-        public bool AllowNPCActivation { get; private set; } = false; // Boolean to inform NPC manager if NPCs can be activated
-
-        private Transform stopPosition; // Position to stop the given boat at
-        
-        private List<AudioSource> slowmoAudios = new List<AudioSource>(); // List of audio sources in scene. Used to create slow motion effect
-
-        public float stopDistance; // Distance to begin slowing down at
         public float boatSpeed; // Speed to have boat travel
-
-        public Transform lcvpGate = null; // Gate gameobject transform
+        public float stopDistance; // Distance to begin slowing down at
 
         void OnDrawGizmosSelected() {
             Gizmos.color = Color.red;
@@ -38,9 +32,11 @@ namespace LWF.DDay {
             ObtainSlowMoSources();
         }
         private void ObtainSlowMoSources() {
-            foreach (AudioSource aSource in FindObjectsOfType<AudioSource>())
-                if (aSource.gameObject.tag == "SlowMo")
+            foreach (AudioSource aSource in FindObjectsOfType<AudioSource>()) {
+                if (aSource.gameObject.tag == "SlowMo") {
                     slowmoAudios.Add(aSource);
+                }
+            }
         }
         private void CreateStopPoint() {
             GameObject g = new GameObject($"{gameObject.name}_StopPoint");
@@ -51,9 +47,8 @@ namespace LWF.DDay {
         }
         #endregion
 
-
         void Update() {
-            if (boatSpeed == 0 && doorDropping) return;
+            if (doorDropping) return;
 
             transform.localPosition += transform.forward * Time.deltaTime * boatSpeed; // Move boat forward
 
@@ -83,23 +78,20 @@ namespace LWF.DDay {
                 yield return null;
             }
 
-
             // Start slow motion effect
             while (Time.timeScale >= 0.4f) {
-                if (slowmoAudios.Count >= 1) {
-                    for (int i = 0; i < slowmoAudios.Count; i++)
-                        slowmoAudios[i].pitch = Time.timeScale;
-                }
                 Time.timeScale -= 0.7f * Time.deltaTime;
+
+                if (slowmoAudios.Count >= 1) {
+                    for (int i = 0; i < slowmoAudios.Count; i++) {
+                        slowmoAudios[i].pitch = Time.timeScale;
+                    }
+                }
                 yield return null;
             }
 
             LevelChanger.Instance.GetComponent<Animator>().speed = 4f; // Increase animation speed of level transition canvas to compensate for slow motion
-
-            // Allow NPCs to begin leaving their boats
             AllowNPCActivation = true;
-
-            // Disable this class as it is no longer needed
             this.enabled = false;
         }
     }

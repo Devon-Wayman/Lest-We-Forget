@@ -3,74 +3,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace LWF.Interaction {
     public class VictimsListSlideshowController : MonoBehaviour {
 
-        public CanvasGroup victimsDisplayCG = null; // Reference to text content of victims rect
-        private Image victimImageDisplay; // Display's selected prisoner sprite
+        [SerializeField] private CanvasGroup victimsDisplayCG; // Reference to text content of victims rect
+        [SerializeField] private Image victimImageDisplay; // Display's selected prisoner sprite
         private List<Sprite> victimsSprites = new List<Sprite>(); // List of the prisoner images from spritesheet
-        public Text imageVictimName = null;
-        private WaitForSeconds textChangeDelay = new WaitForSeconds(1);
-        private WaitForSeconds imageDisplayDuration = new WaitForSeconds(10);
-
+        [SerializeField] private Text imageVictimName = null;
         private static VictimsListSlideshowController Instance;
-
-        public int spriteIndex = 0; // Index of currently activated sprite selected from victimSprites
-
         public static VictimsListSlideshowController Current {
             get {
                 if (Instance == null) Instance = FindObjectOfType<VictimsListSlideshowController>();
                 return Instance;
             }
         }
+        private WaitForSeconds textChangeDelay = new WaitForSeconds(1);
+        private WaitForSeconds imageDisplayDuration = new WaitForSeconds(10);
+
+        private int spriteIndex = 0; // Index of currently activated sprite selected from victimSprites
 
         private void Awake() {
-            victimImageDisplay = victimsDisplayCG.GetComponent<Image>();
             victimsDisplayCG.alpha = 0;
             GetVictimSprites();
         }
-
         private void GetVictimSprites() {
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("Sprites/VictimsSS"))
                 victimsSprites.Add(sprite);
         }
 
-
+        // Called from opening text system
         public void StartSlideshow() {
             StartCoroutine(SlideshowControl());
         }
 
         private IEnumerator SlideshowControl() {
-            victimImageDisplay.sprite = GrabRandomImage();
+            while (victimsSprites.Count != 0) {
+                victimImageDisplay.sprite = GrabRandomImage();
 
-            yield return textChangeDelay;
+                yield return textChangeDelay;
 
-            while (victimsDisplayCG.alpha < .8f) {
-                victimsDisplayCG.alpha += 0.8f * Time.deltaTime;
-                yield return null;
+                while (victimsDisplayCG.alpha < .8f) {
+                    victimsDisplayCG.alpha += 0.8f * Time.deltaTime;
+                    yield return null;
+                }
+
+                victimsDisplayCG.alpha = 0.8f;
+
+                yield return imageDisplayDuration;
+
+                while (victimsDisplayCG.alpha > 0) {
+                    victimsDisplayCG.alpha -= 0.8f * Time.deltaTime;
+                    yield return null;
+                }
+                victimsDisplayCG.alpha = 0;
+                victimsSprites.RemoveAt(spriteIndex);
             }
 
-            victimsDisplayCG.alpha = 0.8f;
-
-            yield return imageDisplayDuration;
-
-            while (victimsDisplayCG.alpha > 0) {
-                victimsDisplayCG.alpha -= 0.8f * Time.deltaTime;
-                yield return null;
-            }
-
-            victimsDisplayCG.alpha = 0;
-
-            victimsSprites.RemoveAt(spriteIndex);
-
-            // If there are no more sprites to show from the sprite sheet, break out of coroutine
-            if (victimsSprites.Count == 0) {
-                Debug.Log("All sprites for slideshow have been shown. Exiting coroutine...");
-                yield break;
-            }
-
-            StartCoroutine(SlideshowControl());
+            Debug.Log("Slide show images have been used up");
         }
 
         private Sprite GrabRandomImage() {

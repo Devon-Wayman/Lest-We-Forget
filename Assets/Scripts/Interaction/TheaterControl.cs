@@ -1,59 +1,45 @@
-﻿// Author: Devon Wayman
+﻿// Author: Devon Wayman - January 2021
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
 
-/// <summary>
-/// Set up and play requested video
-/// </summary>
 namespace LWF.Interaction {
     public class TheaterControl : MonoBehaviour {
-        
-        public VideoClip[] videos; // Array of available video clips
-        public string requestedMovie; // String value of RequestedMovie
-        private VideoClip videoToPlay; // Video clip to play (selected depending on user input)
-        private VideoPlayer videoPlayer = null; // Video player 
 
-        public AudioSource projectorAudio = null;
+        [SerializeField] private AudioSource projectorAudio = null;
+        [SerializeField] private AudioSource videoAudio = null;
+        [SerializeField] private VideoPlayer videoPlayer = null; // Video player 
+        private WaitForSeconds waitTime = new WaitForSeconds(1);
+
+        private string requestedMovie;
 
         private void Awake() {
-            videoPlayer = GetComponent<VideoPlayer>(); // Get video player component
-            videoPlayer.playOnAwake = false; 
-            videoPlayer.Pause(); 
-
-            projectorAudio.Stop(); 
             requestedMovie = PlayerPrefs.GetString("Movie");
 
-            switch (requestedMovie) {
-                case "assorted":
-                    videoToPlay = videos[0];
-                    break;
-                case "bombing":
-                    videoToPlay = videos[1];
-                    break;
-                case "camps":
-                    videoToPlay = videos[2];
-                    break;
+            if (requestedMovie == String.Empty || requestedMovie == "") {
+                requestedMovie = "survivor";
             }
+
+            // if survior video with audio, get audio source and set it
+            if (requestedMovie == "survivor") {
+                videoPlayer.SetTargetAudioSource(0, videoAudio);
+            }
+
+            videoPlayer.clip = Resources.Load<VideoClip>($"TheaterClips/{requestedMovie}") as VideoClip;
         }
 
-        private void Start() {  
+        private void Start() {
             StartCoroutine(PrepareVideo());
         }
 
-        private IEnumerator PrepareVideo(){
-            videoPlayer.source = VideoSource.VideoClip;
-            videoPlayer.clip = videoToPlay;
+        private IEnumerator PrepareVideo() {
             videoPlayer.Prepare();
 
-            WaitForSeconds waitTime = new WaitForSeconds(2f);
-
             while (!videoPlayer.isPrepared) {
-                Debug.Log("Video still needs to be prepared");
                 yield return waitTime;
                 break;
             }
-            Debug.Log("Video ready for playback. Starting now...");
             videoPlayer.Play();
             projectorAudio.Play();
         }

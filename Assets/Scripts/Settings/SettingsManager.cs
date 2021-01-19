@@ -12,18 +12,15 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SettingsManager : MonoBehaviour {
 
+    public Button applyButton = null;
     public Button movementMode = null;
     public Button turnMode = null;
-    public Toggle postProcessToggle = null;
-    public Button applyButton = null;
-
+    public GameSettings gameSettings;
     private Text movementModeText = null;
     private Text turnModeText = null;
-
-    public GameSettings gameSettings;
+    public Toggle postProcessToggle = null;
 
     [SerializeField] private LocomotionSchemeManager locomotionSchemeManager = null;
-
 
     private void Awake() {
         if (Application.platform == RuntimePlatform.Android) {
@@ -50,8 +47,7 @@ public class SettingsManager : MonoBehaviour {
 
             if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == true) {
                 LoadSettings();
-            }
-            else if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == false) {
+            } else if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == false) {
                 Debug.Log("No game settings file found! Generating default values...");
                 CreateDefaultValues();
             }
@@ -60,12 +56,11 @@ public class SettingsManager : MonoBehaviour {
         else {
             if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == true) {
                 LoadSettings();
-            }
-            else if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == false) {
+            } else if (File.Exists(Application.persistentDataPath + "/lwfsettings.json") == false) {
                 Debug.Log("No game settings file found! Generating default values...");
                 CreateDefaultValues();
             }
-        }    
+        }
     }
 
     private void CreateDefaultValues() {
@@ -118,7 +113,7 @@ public class SettingsManager : MonoBehaviour {
         if (gameSettings.teleportMovement) {
             movementModeText.text = "Teleport";
             locomotionSchemeManager.moveScheme = LocomotionSchemeManager.MoveScheme.Noncontinuous;
-        } else if(!gameSettings.teleportMovement) {
+        } else if (!gameSettings.teleportMovement) {
             movementModeText.text = "Continuous";
             locomotionSchemeManager.moveScheme = LocomotionSchemeManager.MoveScheme.Continuous;
         }

@@ -12,8 +12,8 @@ using LWF.Interfaces;
 namespace LWF.DDay {
     public class TriggerExplosion : MonoBehaviour {
 
-        #region Explosion Object Pools
         public Dictionary<string, Queue<GameObject>> explosionDictionary;
+        private PlayerLCVP playerBoat = null; // Reference to player's LCVP
         [System.Serializable]
         public class Pool {
             public string tag;
@@ -21,14 +21,10 @@ namespace LWF.DDay {
             public int maxQuantity; // Amount of reusable objects to allow
         }
         public List<Pool> pools;
-        #endregion
-
-        private bool allowExplosions; // Enable/disable water explosion spawning
-        private PlayerLCVP playerBoat = null; // Reference to player's LCVP
-
         public Vector2 explosionXPlacements;
         public Vector2 explosionZPlacements;
         public Vector2 explosionLocation;
+        private bool allowExplosions; // Enable/disable water explosion spawning
 
         private void Awake() {
             allowExplosions = true; // Set to true at start
@@ -51,19 +47,17 @@ namespace LWF.DDay {
         }
 
         private IEnumerator DropBombs() {
-            string[] explosionsAvailable = {"BigExplosion", "BigExplosion2"}; 
+            string[] explosionsAvailable = { "BigExplosion", "BigExplosion2" };
 
             while (allowExplosions) {
                 int waitTime = Random.Range(4, 8); // Wait before dropping a bomb
-
                 explosionLocation = GetRandomExplosionLocation();
-                   
                 int selectRandomExplosion = Random.Range(0, explosionsAvailable.Length); // Select explosion type
 
                 try {
                     SpawnBombFromPool(explosionsAvailable[selectRandomExplosion], new Vector2(explosionLocation.x, explosionLocation.y)); // Spawn bomb in designated location
                 } catch (IOException ex) {
-                    Debug.LogError($"Explosion error: {ex.Message}");
+                    Debug.LogError($"Explosion error: {ex}");
                 }
 
                 // Exit loop if player boat speed is less than 9 on next check
@@ -71,7 +65,7 @@ namespace LWF.DDay {
                     allowExplosions = false;
                     Debug.Log("Exiting DropBombs");
                     break; // Discontinue this coroutine
-                } 
+                }
                 yield return new WaitForSeconds(waitTime); // Wait generated delay time from above
             }
         }
@@ -81,11 +75,9 @@ namespace LWF.DDay {
             int invertX = Random.Range(0, 1);
             explosionLocation = new Vector2(Random.Range(explosionXPlacements.x, explosionXPlacements.y), Random.Range(explosionZPlacements.x, explosionZPlacements.y));
 
-            // If invertX = 1, set X placement to negative to place explosion on opposite side of ship
             if (invertX == 1) {
-                explosionLocation.x =  explosionLocation.x * -1;
+                explosionLocation.x = explosionLocation.x * -1;
             }
-
             return explosionLocation;
         }
 
@@ -97,10 +89,10 @@ namespace LWF.DDay {
             }
 
             Vector3 boatCurrentPosition = gameObject.transform.localPosition; // Save boats current position
-
             GameObject explosionToSpawn = explosionDictionary[tag].Dequeue(); // Pull out first element in queue
+
             explosionToSpawn.SetActive(true); // Activate the object
-            explosionToSpawn.transform.position = new Vector3 (boatCurrentPosition.x + position.x, 0, boatCurrentPosition.z + position.y); // Set spawned explosion location to passed in Vector3 + boat's current position
+            explosionToSpawn.transform.position = new Vector3(boatCurrentPosition.x + position.x, 0, boatCurrentPosition.z + position.y); // Set spawned explosion location to passed in Vector3 + boat's current position
 
             IPooledObject pooledObj = explosionToSpawn.GetComponent<IPooledObject>(); // Try to get rid of this somehow for better performance
             if (pooledObj != null)

@@ -15,12 +15,12 @@ namespace LWF.Interaction.Player {
 
 
         private void Awake() {
-            if (SceneManager.GetActiveScene().name != "MainMenu")
+            if (SceneManager.GetActiveScene().name != "MainMenu") {
                 canGoHome = true;
-            else
+            } else {
                 canGoHome = false;
+            }
 
-            
             var leftHandMap = actionsSet.FindActionMap("XRI LeftHand");
             homePressed = leftHandMap.FindAction("Home");
             homePressed.performed += OnHomePressed;
