@@ -37,8 +37,9 @@ namespace LWF.Interaction {
             videoPlayer.Prepare();
 
             while (!videoPlayer.isPrepared) {
+                Debug.LogWarning($"Video is not yet ready for playback. Waiting1 second then trying again");
                 yield return waitTime;
-                break;
+                //break;
             }
             videoPlayer.Play();
             projectorAudio.Play();

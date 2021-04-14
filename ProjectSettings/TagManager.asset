@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GraphicContent
   - SlowMo
+  - ContentPanel
   layers:
   - Default
   - TransparentFX
