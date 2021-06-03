@@ -6,10 +6,10 @@ using UnityEngine.UI;
 namespace LWF.Interaction {
     public class VictimsListSlideshowController : MonoBehaviour {
 
-        [SerializeField] private CanvasGroup victimsDisplayCG; // Reference to text content of victims rect
-        [SerializeField] private Image victimImageDisplay; // Display's selected prisoner sprite
-        [SerializeField] private Text imageVictimName = null;
-        private List<Sprite> victimsSprites = new List<Sprite>(); // List of the prisoner images from spritesheet
+        [SerializeField] private CanvasGroup photoAlpha; // Reference to text content of victims rect
+        [SerializeField] private Image victimImage; // Display's selected prisoner sprite
+        [SerializeField] private Text victimName = null;
+        private List<Sprite> victimsSprites = new List<Sprite>();
         private static VictimsListSlideshowController Instance;
         public static VictimsListSlideshowController Current {
             get {
@@ -17,13 +17,13 @@ namespace LWF.Interaction {
                 return Instance;
             }
         }
-        private WaitForSeconds textChangeDelay = new WaitForSeconds(1);
+        private WaitForSeconds nextImageDelay = new WaitForSeconds(1);
         private WaitForSeconds imageDisplayDuration = new WaitForSeconds(10);
 
-        private int spriteIndex = 0; // Index of currently activated sprite selected from victimSprites
+        private int spriteIndex = 0;
 
         private void Awake() {
-            victimsDisplayCG.alpha = 0;
+            photoAlpha.alpha = 0;
             GetVictimSprites();
         }
         private void GetVictimSprites() {
@@ -32,82 +32,57 @@ namespace LWF.Interaction {
             }
         }
 
-        // Called from VictimsListTextController
         public void StartSlideshow() {
             StartCoroutine(SlideshowControl());
         }
 
-        /// <summary>
-        /// As long as all sprites havent been used, loops a fade in/out animation
-        /// on the holocaust victim image display. Contains function calls to select images
-        /// at random as well as to set up their names for the display.
-        /// </summary>
-        /// <returns></returns>
         private IEnumerator SlideshowControl() {
             while (victimsSprites.Count != 0) {
-                victimImageDisplay.sprite = GrabRandomImage();
-
-                yield return textChangeDelay;
-
-                while (victimsDisplayCG.alpha < .8f) {
-                    victimsDisplayCG.alpha += 0.8f * Time.deltaTime;
-                    yield return null;
-                }
-
-                victimsDisplayCG.alpha = 0.8f;
-
+                victimImage.sprite = GrabRandomImage();
+                yield return nextImageDelay;
+                LeanTween.alphaCanvas(photoAlpha, 0.8f, 1);
                 yield return imageDisplayDuration;
-
-                while (victimsDisplayCG.alpha > 0) {
-                    victimsDisplayCG.alpha -= 0.8f * Time.deltaTime;
-                    yield return null;
-                }
-                victimsDisplayCG.alpha = 0;
+                LeanTween.alphaCanvas(photoAlpha, 0, 1);
+                yield return nextImageDelay;
                 victimsSprites.RemoveAt(spriteIndex);
             }
+            VictimsListTextController.Current.ListToCenter();
         }
 
-        /// <summary>
-        /// Grabs a random sprite image from Victims spritesheet and sets it to active in 
-        /// the scene for user to view. A function call to setup the display name is also here
-        /// </summary>
         private Sprite GrabRandomImage() {
             spriteIndex = Random.Range(0, victimsSprites.Count);
             string tempName = victimsSprites[spriteIndex].name;
 
             if (tempName.ToLower().Contains("unknown")) {
-                imageVictimName.text = "";
+                victimName.text = "";
             } else {
-                imageVictimName.text = SetNameForPhotograph(tempName);
+                victimName.text = SetNameForPhotograph(tempName);
             }
             return victimsSprites[spriteIndex];
         }
 
-        /// <summary>
-        /// Returns the formatted name, age and status of person chosen
-        /// </summary>
         private string SetNameForPhotograph(string tempName) {
-            string[] tempNameArray = tempName.Split('_');
+            string[] temp = tempName.Split('_');
 
             // If middle name included
-            if (tempNameArray.Length == 4) {
+            if (temp.Length == 4) {
                 // If "survived" is where age would be
-                if (tempNameArray[3] == "survived") {
-                    return $"{tempNameArray[0]} {tempNameArray[1]} {tempNameArray[2]}.\nSurvived";
+                if (temp[3] == "survived") {
+                    return $"{temp[0]} {temp[1]} {temp[2]}\nSurvived";
                 } else {
-                    return $"{tempNameArray[0]} {tempNameArray[1]} {tempNameArray[2]}.\nDied age: {tempNameArray[3]}";
+                    return $"{temp[0]} {temp[1]} {temp[2]}\nMurdered at age {temp[3]}";
                 }
             }
             // If only first and last name given
-            else if (tempNameArray.Length == 2) {
-                return $"{tempNameArray[0]} {tempNameArray[1]}. Age/whether or not they survived unknown";
+            else if (temp.Length == 2) {
+                return $"{temp[0]} {temp[1]}. Age and whether survived: Unknown";
             }
             // If name and age given
             else {
-                if (tempNameArray[2] == "survived") {
-                    return $"{tempNameArray[0]} {tempNameArray[1]}.\nSurvived";
+                if (temp[2] == "survived") {
+                    return $"{temp[0]} {temp[1]}\nSurvived";
                 } else {
-                    return $"{tempNameArray[0]} {tempNameArray[1]}.\nDied age: {tempNameArray[2]}";
+                    return $"{temp[0]} {temp[1]}\nMurdered at age {temp[2]}";
                 }
             }
         }

@@ -15,19 +15,13 @@ public class LevelObjectEditor : Editor {
 
         //switch statement for different variables
         switch (levelObjectScript.sceneType) {
-
-            // If simply loading a scene is needed with no other 
             case LevelObject.SceneType.SimpleScene:
                 levelObjectScript.sceneName = EditorGUILayout.TextField("Scene name", levelObjectScript.sceneName); //Vector3 example
                 break;
-
-            // If loading a vehicle in a vehicle scene
             case LevelObject.SceneType.Vehicle:
                 levelObjectScript.vehicleScene = EditorGUILayout.TextField("Vehicle scene", levelObjectScript.vehicleScene);
                 levelObjectScript.requestedVehicle = EditorGUILayout.TextField("Vehicle", levelObjectScript.requestedVehicle);
                 break;
-
-            // If loading a film for the theater scene
             case LevelObject.SceneType.Film:
                 levelObjectScript.movieName = EditorGUILayout.TextField("Movie name", levelObjectScript.movieName);
                 break;

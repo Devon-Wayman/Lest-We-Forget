@@ -4,82 +4,82 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 219693907922432161
-    second: unknown_9
+    second: Louis_Salomon_5
   - first:
       213: -1900162990453278542
-    second: unknown_8
+    second: Betje_van_Delft_Under 1
   - first:
       213: -7264991604956624975
-    second: Rachel_Cozijn-Rijne_28
+    second: Rosetta_Ejzenberg_16
   - first:
       213: 7830940117938384541
-    second: Pola_Kazimierz
+    second: Marketa_Lubikova_29
   - first:
       213: -1843282396862309046
-    second: unknown_7
+    second: Alzbeta_Buschova_35
   - first:
       213: 4432487400325438277
-    second: unknown_6
+    second: Zofia_Lucarz_16
   - first:
       213: 6934785987161041020
-    second: Jozefa_Glazowska_survived
+    second: Ulrich_Basar_31
   - first:
       213: 2909280771259524253
-    second: unknown_5
+    second: Hana_Neuschulova_13
   - first:
       213: -3795148273103792025
-    second: unknown_4
+    second: Margot_Steinhardt_5
   - first:
       213: -6607459762196182293
-    second: unknown_3
+    second: Hana_Bradyova_13
   - first:
       213: 4613262938413636939
-    second: "Czes\u0142awa_Kwoka_14"
+    second: Leah_Miriam_Brainer_2
   - first:
       213: 3421257363947916686
-    second: unknown_9
+    second: Louis_Salomon_5
   - first:
       213: -739967422586894908
-    second: unknown_8
+    second: Betje_van_Delft_Under 1
   - first:
       213: -4278625739204855567
-    second: Rachel_Cozijn-Rijne_28
+    second: Rosetta_Ejzenberg_16
   - first:
       213: 4491801991821057999
-    second: Pola_Kazimierz
+    second: Marketa_Lubikova_29
   - first:
       213: -510818561632007308
-    second: unknown_7
+    second: Alzbeta_Buschova_35
   - first:
       213: -778112886785699558
-    second: unknown_6
+    second: Zofia_Lucarz_16
   - first:
       213: 317927763186906589
-    second: Jozefa_Glazowska_survived
+    second: Ulrich_Basar_31
   - first:
       213: 548413593004453502
-    second: unknown_5
+    second: Hana_Neuschulova_13
   - first:
       213: -915890629541705594
-    second: unknown_4
+    second: Margot_Steinhardt_5
   - first:
       213: -6112533957755683010
-    second: unknown_3
+    second: Hana_Bradyova_13
   - first:
       213: 6404007553773931383
-    second: "Czes\u0142awa_Kwoka_14"
+    second: Leah_Miriam_Brainer_2
   - first:
       213: 6360575541042120315
-    second: unknown_2
+    second: Mozes_de_Wolf_28
   - first:
       213: 4992854839202750422
-    second: unknown
+    second: Helena_Weigertova_20
   - first:
       213: -1496807651742958926
-    second: unknown_2
+    second: Mozes_de_Wolf_28
   - first:
       213: -5785226013367845764
-    second: unknown
+    second: Helena_Weigertova_20
   - first:
       213: 6927015530475716067
     second: Eliska_Sternova_28
@@ -200,7 +200,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 2
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -217,12 +217,14 @@ TextureImporter:
   spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
-  alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaUsage: 0
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -231,7 +233,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -243,7 +245,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -255,7 +257,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -359,10 +361,10 @@ TextureImporter:
       name: Pola_Kazimierz
       rect:
         serializedVersion: 2
-        x: 1748
-        y: 3727
-        width: 674
-        height: 318
+        x: 1763
+        y: 3746
+        width: 650
+        height: 287
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -380,10 +382,10 @@ TextureImporter:
       name: unknown_7
       rect:
         serializedVersion: 2
-        x: 2459
-        y: 3599
-        width: 331
-        height: 446
+        x: 2466
+        y: 3610
+        width: 312
+        height: 426
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -401,10 +403,10 @@ TextureImporter:
       name: unknown_6
       rect:
         serializedVersion: 2
-        x: 2827
+        x: 2836
         y: 3599
-        width: 505
-        height: 308
+        width: 496
+        height: 304
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -629,27 +631,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Helena_Weigertova_20
-      rect:
-        serializedVersion: 2
-        x: 1023
-        y: 2425
-        width: 489
-        height: 618
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7269ee1ec97915d80800000000000000
-      internalID: -8263657141186947545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Martha_Doof_8
       rect:
         serializedVersion: 2
@@ -776,27 +757,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mozes_de_Wolf_28
-      rect:
-        serializedVersion: 2
-        x: 581
-        y: 1741
-        width: 411
-        height: 617
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 187797486d5e00cf0800000000000000
-      internalID: -287977666643396735
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Nely_Konigova_40
       rect:
         serializedVersion: 2
@@ -813,111 +773,6 @@ TextureImporter:
       bones: []
       spriteID: dad1d7f47e97fee50800000000000000
       internalID: 6840820393377078701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Louis_Salomon_5
-      rect:
-        serializedVersion: 2
-        x: 1462
-        y: 1812
-        width: 351
-        height: 546
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68807637c10a65800800000000000000
-      internalID: 600843644356200582
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Betje_van_Delft_Under 1 year
-      rect:
-        serializedVersion: 2
-        x: 1851
-        y: 1979
-        width: 525
-        height: 379
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc205ded022f7e4b0800000000000000
-      internalID: -5411090204270984499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rosetta_Ejzenberg_16
-      rect:
-        serializedVersion: 2
-        x: 2390
-        y: 1831
-        width: 432
-        height: 527
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb8eb8fcde844c050800000000000000
-      internalID: 5819856804696025278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marketa_Lubikova_29
-      rect:
-        serializedVersion: 2
-        x: 2859
-        y: 1828
-        width: 386
-        height: 530
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e90b8e44a3d8b3be0800000000000000
-      internalID: -1496447169766838114
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Alzbeta_Buschova_35
-      rect:
-        serializedVersion: 2
-        x: 3290
-        y: 1852
-        width: 494
-        height: 506
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 607fe17dfbf617a80800000000000000
-      internalID: -8470866554368624890
       vertices: []
       indices: 
       edges: []
@@ -1010,10 +865,10 @@ TextureImporter:
       name: Rosalia_Elisabeth_10
       rect:
         serializedVersion: 2
-        x: 1645
-        y: 1201
-        width: 295
-        height: 471
+        x: 1660
+        y: 1212
+        width: 268
+        height: 445
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1052,10 +907,10 @@ TextureImporter:
       name: Selma_Nieweg-Cohen_28
       rect:
         serializedVersion: 2
-        x: 2367
-        y: 1160
-        width: 332
-        height: 508
+        x: 2382
+        y: 1179
+        width: 304
+        height: 479
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1112,13 +967,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Zofia_Lucarz_16
+      name: Louis_Salomon_5
       rect:
         serializedVersion: 2
-        x: 112
-        y: 673
-        width: 900
-        height: 411
+        x: 1554
+        y: 2026
+        width: 293
+        height: 427
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1126,8 +981,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8001451f2f4d45da0800000000000000
-      internalID: -5956902267208331256
+      spriteID: 1a0b80df1728c0300800000000000000
+      internalID: 219693907922432161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Betje_van_Delft_Under 1
+      rect:
+        serializedVersion: 2
+        x: 1909
+        y: 2085
+        width: 523
+        height: 376
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b830b2e3d341a5e0800000000000000
+      internalID: -1900162990453278542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rosetta_Ejzenberg_16
+      rect:
+        serializedVersion: 2
+        x: 2453
+        y: 1930
+        width: 423
+        height: 531
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b78d5a70a09d2b90800000000000000
+      internalID: -7264991604956624975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Marketa_Lubikova_29
+      rect:
+        serializedVersion: 2
+        x: 2933
+        y: 1930
+        width: 361
+        height: 531
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9ea2131c861dac60800000000000000
+      internalID: 7830940117938384541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alzbeta_Buschova_35
+      rect:
+        serializedVersion: 2
+        x: 3352
+        y: 1957
+        width: 492
+        height: 496
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4d9a4a1d685b66e0800000000000000
+      internalID: -1843282396862309046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zofia_Lucarz_16
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 726
+        width: 619
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54bdac76ecb538d30800000000000000
+      internalID: 4432487400325438277
       vertices: []
       indices: 
       edges: []
@@ -1136,10 +1096,10 @@ TextureImporter:
       name: Ulrich_Basar_31
       rect:
         serializedVersion: 2
-        x: 1040
-        y: 677
-        width: 900
-        height: 407
+        x: 734
+        y: 731
+        width: 568
+        height: 385
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1147,8 +1107,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24a386b6685382de0800000000000000
-      internalID: -1357776436208321982
+      spriteID: c78271efc1f4d3060800000000000000
+      internalID: 6934785987161041020
       vertices: []
       indices: 
       edges: []
@@ -1157,10 +1117,10 @@ TextureImporter:
       name: Hana_Neuschulova_13
       rect:
         serializedVersion: 2
-        x: 1981
-        y: 673
-        width: 279
-        height: 405
+        x: 1344
+        y: 756
+        width: 247
+        height: 360
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1168,8 +1128,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d169f79d028b9c90800000000000000
-      internalID: -7161987787506753069
+      spriteID: d946cca8277df5820800000000000000
+      internalID: 2909280771259524253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Margot_Steinhardt_5
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 758
+        width: 265
+        height: 356
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76816bfc0cce45bc0800000000000000
+      internalID: -3795148273103792025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hana_Bradyova_13
+      rect:
+        serializedVersion: 2
+        x: 1903
+        y: 753
+        width: 261
+        height: 354
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea0c96aa569d44a0800000000000000
+      internalID: -6607459762196182293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leah_Miriam_Brainer_2
+      rect:
+        serializedVersion: 2
+        x: 2192
+        y: 753
+        width: 250
+        height: 352
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4d9e9b433a950040800000000000000
+      internalID: 4613262938413636939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mozes_de_Wolf_28
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 1799
+        width: 373
+        height: 560
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b768ada31cd454850800000000000000
+      internalID: 6360575541042120315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helena_Weigertova_20
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 2424
+        width: 489
+        height: 617
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df15c1e50f2a4540800000000000000
+      internalID: 4992854839202750422
       vertices: []
       indices: 
       edges: []

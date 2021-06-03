@@ -321,22 +321,24 @@ public class OVROverlayEditor : Editor
 		}
 
 
-		EditorGUILayout.Separator();
-		EditorGUILayout.LabelField("Color Scale", EditorStyles.boldLabel);
-		EditorGUILayout.Space();
-		overlay.overridePerLayerColorScaleAndOffset = EditorGUILayout.Toggle(new GUIContent("Override Color Scale", "Manually set color scale and offset of this layer, regardless of what the global values are from OVRManager.SetColorScaleAndOffset()."), overlay.overridePerLayerColorScaleAndOffset);
-		if (overlay.overridePerLayerColorScaleAndOffset)
-		{
-			Vector4 colorScale = EditorGUILayout.Vector4Field(new GUIContent("Color Scale", "Scale that the color values for this overlay will be multiplied by."), overlay.colorScale);
-			Vector4 colorOffset = EditorGUILayout.Vector4Field(new GUIContent("Color Offset", "Offset that the color values for this overlay will be added to."), overlay.colorOffset);
-			overlay.SetPerLayerColorScaleAndOffset(colorScale, colorOffset);
-		}
 
-		EditorGUILayout.Separator();
-		EditorGUILayout.LabelField("Preview", EditorStyles.boldLabel);
-		overlay.previewInEditor = EditorGUILayout.Toggle(new GUIContent("Preview in Editor (Experimental)", "Preview the overlay in the editor using a mesh renderer."), overlay.previewInEditor);
+            EditorGUILayout.Separator();
+		    EditorGUILayout.LabelField("Color Scale", EditorStyles.boldLabel);
+		    EditorGUILayout.Space();
+		    overlay.overridePerLayerColorScaleAndOffset = EditorGUILayout.Toggle(new GUIContent("Override Color Scale", "Manually set color scale and offset of this layer, regardless of what the global values are from OVRManager.SetColorScaleAndOffset()."), overlay.overridePerLayerColorScaleAndOffset);
+		    if (overlay.overridePerLayerColorScaleAndOffset)
+		    {
+			    Vector4 colorScale = EditorGUILayout.Vector4Field(new GUIContent("Color Scale", "Scale that the color values for this overlay will be multiplied by."), overlay.colorScale);
+			    Vector4 colorOffset = EditorGUILayout.Vector4Field(new GUIContent("Color Offset", "Offset that the color values for this overlay will be added to."), overlay.colorOffset);
+			    overlay.SetPerLayerColorScaleAndOffset(colorScale, colorOffset);
+		    }
 
-		EditorUtility.SetDirty(overlay);
+		    EditorGUILayout.Separator();
+		    EditorGUILayout.LabelField("Preview", EditorStyles.boldLabel);
+		    overlay.previewInEditor = EditorGUILayout.Toggle(new GUIContent("Preview in Editor (Experimental)", "Preview the overlay in the editor using a mesh renderer."), overlay.previewInEditor);
+
+
+        EditorUtility.SetDirty(overlay);
 	}
 
 	private Rect Clamp01(Rect rect)

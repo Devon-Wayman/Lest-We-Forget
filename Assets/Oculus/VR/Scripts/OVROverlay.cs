@@ -16,6 +16,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 
+
 /// <summary>
 /// Add OVROverlay script to an object with an optional mesh primitive
 /// rendered as a TimeWarp overlay instead by drawing it into the eye buffer.
@@ -113,6 +114,7 @@ public class OVROverlay : MonoBehaviour
 	//Property that can hide overlays when required. Should be false when present, true when hidden.
 	public bool hidden = false;
 
+
 	/// <summary>
 	/// If true, the layer will be created as an external surface. externalSurfaceObject contains the Surface object. It's effective only on Android.
 	/// </summary>
@@ -136,6 +138,7 @@ public class OVROverlay : MonoBehaviour
 	/// </summary>
 	[Tooltip("The compositionDepth defines the order of the OVROverlays in composition. The overlay/underlay with smaller compositionDepth would be composited in the front of the overlay/underlay with larger compositionDepth.")]
 	public int compositionDepth = 0;
+	private int layerCompositionDepth = 0;
 
 	/// <summary>
 	/// The noDepthBufferTesting will stop layer's depth buffer compositing even if the engine has "Depth buffer sharing" enabled on Rift.
@@ -293,7 +296,8 @@ public class OVROverlay : MonoBehaviour
 			layerDesc.Layout != layout ||
 			layerDesc.LayerFlags != flags ||
 			!layerDesc.TextureSize.Equals(size) ||
-			layerDesc.Shape != shape);
+			layerDesc.Shape != shape ||
+			layerCompositionDepth != compositionDepth);
 
 		if (!needsSetup)
 			return false;
@@ -305,6 +309,7 @@ public class OVROverlay : MonoBehaviour
 		if (layerId > 0)
 		{
 			layerDesc = desc;
+			layerCompositionDepth = compositionDepth;
 			if (isExternalSurface)
 			{
 				stageCount = 1;
@@ -807,7 +812,7 @@ public class OVROverlay : MonoBehaviour
 				UnityEngine.Object.DestroyImmediate(previewObject);
 				previewObject = null;
 			}
-		#endif
+#endif
 	}
 
 
@@ -982,6 +987,12 @@ public class OVROverlay : MonoBehaviour
 				Debug.LogWarning("Cylinder overlay's arc angle has to be below 180 degree, current arc angle is " + arcAngle + " degree." );
 				return false;
 			}
+		}
+
+		if (OVRPlugin.nativeXrApi == OVRPlugin.XrApi.OpenXR && currentOverlayShape == OverlayShape.Fisheye)
+		{
+			Debug.LogWarning("Fisheye overlay shape is not support on OpenXR");
+			return false;
 		}
 
 		return true;

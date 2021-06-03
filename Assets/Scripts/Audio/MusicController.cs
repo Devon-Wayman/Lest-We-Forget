@@ -4,7 +4,6 @@ using UnityEngine;
 namespace LWF.Audio {
     public class MusicController : MonoBehaviour {
 
-
         public AudioClip[] songs; // Array of radio songs (populated from resources on awake)
         public AudioSource audioSource; // Attatched gameobjects audio source
         public enum Scene { MainMenu, VictimList };
@@ -15,8 +14,7 @@ namespace LWF.Audio {
         private void Awake() {
             if (audioSource == null)
                 audioSource = GetComponent<AudioSource>();
-        }
-        private void Start() {
+
             switch (scene) {
                 case Scene.MainMenu:
                     songs = Resources.LoadAll<AudioClip>("Audio/RadioSongs");

@@ -43,7 +43,7 @@ public static class OVRPlugin
 #if OVRPLUGIN_UNSUPPORTED_PLATFORM
 	public static readonly System.Version wrapperVersion = _versionZero;
 #else
-	public static readonly System.Version wrapperVersion = OVRP_1_57_0.version;
+	public static readonly System.Version wrapperVersion = OVRP_1_60_0.version;
 #endif
 
 #if !OVRPLUGIN_UNSUPPORTED_PLATFORM
@@ -923,7 +923,11 @@ public static class OVRPlugin
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
 		public Rectf[] VisibleRect;
 		public Sizei MaxViewportSize;
-		EyeTextureFormat DepthFormat;
+		public EyeTextureFormat DepthFormat;
+
+		public EyeTextureFormat MotionVectorFormat;
+		public EyeTextureFormat MotionVectorDepthFormat;
+		public Sizei MotionVectorTextureSize;
 
 		public override string ToString()
 		{
@@ -936,6 +940,15 @@ public static class OVRPlugin
 				+ delim + Format.ToString()
 				+ delim + LayerFlags.ToString();
 		}
+	}
+
+	public enum BlendFactor {
+		Zero = 0,
+		One = 1,
+		SrcAlpha = 2,
+		OneMinusSrcAlpha = 3,
+		DstAlpha = 4,
+ 		OneMinusDstAlpha = 5
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1299,6 +1312,8 @@ public static class OVRPlugin
 		public byte[] EventData;
 	}
 
+
+/// Insight SDK type definitions
 
 	public static bool initialized
 	{
@@ -2019,7 +2034,6 @@ public static class OVRPlugin
 #endif
 				return false;
 			}
-
 			if (version >= OVRP_1_34_0.version && layerId != -1)
 				return OVRP_1_34_0.ovrp_EnqueueSubmitLayer2(flags, leftTexture, rightTexture, layerId, frameIndex, ref pose, ref scale, layerIndex,
 				overrideTextureRectMatrix ? Bool.True : Bool.False, ref textureRectMatrix, overridePerLayerColorScaleAndOffset ? Bool.True : Bool.False, ref colorScale, ref colorOffset) == Result.Success;
@@ -6272,6 +6286,23 @@ public static class OVRPlugin
 
 		[DllImport(pluginName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern Result ovrp_SetKeyboardOverlayUV(Vector2f uv);
+	}
+
+	private static class OVRP_1_58_0
+	{
+		public static readonly System.Version version = new System.Version(1, 58, 0);
+	}
+
+	private static class OVRP_1_59_0
+	{
+		public static readonly System.Version version = new System.Version(1, 59, 0);
+
+	}
+
+	private static class OVRP_1_60_0
+	{
+		public static readonly System.Version version = new System.Version(1, 60, 0);
+
 	}
 #endif // !OVRPLUGIN_UNSUPPORTED_PLATFORM
 }

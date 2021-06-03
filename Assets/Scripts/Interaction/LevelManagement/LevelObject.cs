@@ -7,26 +7,10 @@ namespace LWF.Interaction.LevelManagement {
 
         public enum SceneType { SimpleScene, Vehicle, Film };
         public SceneType sceneType;
-        private Vector3 startPosition;
-        private Vector3 startRotation;
         public string sceneName;
         public string vehicleScene;
         public string requestedVehicle;
         public string movieName;
-
-        private void Start() {
-            startPosition = transform.position;
-            startRotation = transform.eulerAngles;
-        }
-
-        //public void PlayerReleased() {
-        //    StartCoroutine(GoToStartPosition(startPosition, startRotation));
-        //}
-
-        //private IEnumerator GoToStartPosition(Vector3 startPosition, Vector3 startRotation) {
-        //    // Move object back to start position when player releases it
-        //    yield return null;
-        //}
 
         public void LoadLevel() {
             switch (sceneType) {
@@ -35,8 +19,7 @@ namespace LWF.Interaction.LevelManagement {
                         Debug.Log("Scene name not given. Returning");
                         return;
                     }
-
-                    FindObjectOfType<LevelChanger>().FadeToLevel(sceneName);
+                    LevelChanger.Current.FadeToLevel(sceneName);
                     break;
 
                 case SceneType.Vehicle:
@@ -49,7 +32,7 @@ namespace LWF.Interaction.LevelManagement {
                         PlayerPrefs.SetString("requestedPlane", requestedVehicle);
                     }
 
-                    FindObjectOfType<LevelChanger>().FadeToLevel(vehicleScene);
+                    LevelChanger.Current.FadeToLevel(vehicleScene);
                     break;
 
                 case SceneType.Film:
@@ -58,7 +41,7 @@ namespace LWF.Interaction.LevelManagement {
                         return;
                     }
                     PlayerPrefs.SetString("Movie", movieName);
-                    FindObjectOfType<LevelChanger>().FadeToLevel("Theater");
+                    LevelChanger.Current.FadeToLevel("Theater");
                     break;
             }
         }
