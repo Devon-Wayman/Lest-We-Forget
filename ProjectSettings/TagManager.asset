@@ -4,9 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - GraphicContent
-  - SpecialCollider
-  - SlowMoTrigger
+  - ContentPanel
   layers:
   - Default
   - TransparentFX
@@ -14,13 +12,13 @@ TagManager:
   - 
   - Water
   - UI
+  - Grabbable
   - 
   - 
-  - PostProcessing
-  - Obstacle
-  - TeleportAllowed
-  - Walkable
-  - SlowMo
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

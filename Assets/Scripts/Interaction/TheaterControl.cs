@@ -1,63 +1,47 @@
-﻿using System;
-// Author: Devon Wayman
+﻿// Author: Devon Wayman - January 2021
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
 
-/// <summary>
-/// Set up and play requested video
-/// </summary>
-namespace WWIIVR.Interaction {
+namespace LWF.Interaction {
     public class TheaterControl : MonoBehaviour {
-        
-        public VideoClip[] videos; // Array of available video clips
-        public string requestedMovie; // String value of RequestedMovie
-        private VideoClip videoToPlay; // Video clip to play (selected depending on user input)
-        private VideoPlayer videoPlayer = null; // Video player 
 
-        public AudioSource projectorAudio = null;
+        [SerializeField] private AudioSource projectorAudio = null;
+        [SerializeField] private AudioSource videoAudio = null;
+        [SerializeField] private VideoPlayer videoPlayer = null; // Video player 
+        private WaitForSeconds waitTime = new WaitForSeconds(1);
+
+        private string requestedMovie;
 
         private void Awake() {
-            videoPlayer = GetComponent<VideoPlayer>(); // Get video player component
-
-            videoPlayer.playOnAwake = false; // Ensure video does not begin playing
-            videoPlayer.Pause(); // Pause video if autoplay is set to true
-
-            projectorAudio.Stop(); // Prevent projector audio from playing
-
-            // Set up requested video to play
             requestedMovie = PlayerPrefs.GetString("Movie");
 
-            switch (requestedMovie) {
-                case "assorted":
-                    videoToPlay = videos[0];
-                    break;
-                case "bombing":
-                    videoToPlay = videos[1];
-                    break;
-                case "camps":
-                    videoToPlay = videos[2]; // Select third video in videos array to play
-                    break;
+            if (requestedMovie == String.Empty || requestedMovie == "") {
+                requestedMovie = "survivor";
             }
+
+            // if survior video with audio, get audio source and set it
+            if (requestedMovie == "survivor") {
+                videoPlayer.SetTargetAudioSource(0, videoAudio);
+            }
+
+            videoPlayer.clip = Resources.Load<VideoClip>($"TheaterClips/{requestedMovie}") as VideoClip;
         }
 
-        private void Start() {  
-            StartCoroutine(PlayVideo());
+        private void Start() {
+            StartCoroutine(PrepareVideo());
         }
 
-        private IEnumerator PlayVideo(){
-            yield return new WaitForSeconds(1);
-            videoPlayer.source = VideoSource.VideoClip;
-            videoPlayer.clip = videoToPlay;
+        private IEnumerator PrepareVideo() {
             videoPlayer.Prepare();
 
-            // Wait two seconds before checking if video is ready for playback if the status returns false
-            WaitForSeconds waitTime = new WaitForSeconds(2);
             while (!videoPlayer.isPrepared) {
+                Debug.LogWarning($"Video is not yet ready for playback. Waiting1 second then trying again");
                 yield return waitTime;
-                break;
+                //break;
             }
-            videoPlayer.Play(); // Play the video
+            videoPlayer.Play();
             projectorAudio.Play();
         }
     }
