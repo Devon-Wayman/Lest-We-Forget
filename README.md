@@ -1,7 +1,6 @@
 # Lest-We-Forget
 Lest We Forget
 
-<!-- PROJECT SHIELDS -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -10,13 +9,13 @@ Lest We Forget
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-<!-- PROJECT LOGO -->
 <br />
 <p align="center">
 
   <!-- <a href="https://github.com/othneildrew/Best-README-Template"> <img src="images/logo.png" alt="Logo" width="80" height="80"></a> -->
+  <!-- <h1 align="center">Lest We Forget</h1> -->
+  [![Product Name Preview][product-screenshot]](https://github.com/Devon-Wayman/Lest-We-Forget)
 
-  <h1 align="center">Lest We Forget</h1>
 
   <p align="center">
     An immersive VR experience to take you back to a dark era from not so long ago.
@@ -29,7 +28,6 @@ Lest We Forget
 </p>
 
 
-<!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
@@ -55,13 +53,12 @@ Lest We Forget
 </details>
 
 
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
-[![Product Name Screen Shot][product-screenshot]](https://github.com/Devon-Wayman/Lest-We-Forget)
-
 Lest We Forget has been in development for over 6 years. What started as a simple AR app made in my free time would later become a much larger scale project.
+
+[![AR App Preview][ar-app]](images/ar_app.jpg)
+
 When I was able to have access to VR equipment for the first time in my life via my university, I realized first-hand the power VR held when it came to increasing user immersion in a variety of situations.
 
 Between classes, projects, study hours and sleeping, I found myself researching VR 
@@ -82,12 +79,9 @@ A list of commonly used resources in which I have obtained plethora of informati
 * [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
 
 
-<!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
+<!-- This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps. -->
 ### Prerequisites
 
 Please ensure you have one of the supported VR headsets in order to interact with the application:
@@ -96,10 +90,9 @@ Please ensure you have one of the supported VR headsets in order to interact wit
 
 
 
-<!-- USAGE EXAMPLES -->
 ## Usage
 <!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources. -->
-Lest We Forget's 
+Lest We Forget can be used as a teaching tool to educate the general public about a period in history that has since only been taught via books, films, and television documentaries. With the ability to enable parental controls, people of all ages can enjoy 
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
@@ -114,9 +107,7 @@ See the [open issues](https://github.com/Devon-Wayman/Lest-We-Forget/issues) for
 
 Making contributions to the project via the open source community not only helps with taking some of the weight off, but also helps myself as well as others
 who view the repo in learning new methods of solving problems, and inspires others to move forward with their ideas. Any contribution to the project made is highly appreciated!
-Whether it be a bug fix, feature addition, or anything else you believe would enhance the user's experience.
-
-The process for making a contribution if you wish to do so are as follows
+Whether it be a bug fix, feature addition, or anything else you believe would enhance the user's experience. Please follow this template for contributing to the project:
 
 1. Fork the Project
 2. Create your Feature Branch
@@ -131,9 +122,11 @@ PLEASE NOTE: In order to keep things clean, please submit one feature or bug fix
 Having a multitude of refactored code submitted all at once may present problems in the future so for the time being we ask that each PR have one main fix focused on. Thank you in advance :) 
 
 
+
 <!-- LICENSE -->
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
+
 
 
 <!-- CONTACT -->
@@ -142,6 +135,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Devon Wayman - [@dway115](https://twitter.com/dway115) - devonwayman97@gmail.com
 
 Project Link: [https://github.com/Devon-Wayman/Lest-We-Forget](https://github.com/Devon-Wayman/Lest-We-Forget)
+
 
 
 <!-- ACKNOWLEDGEMENTS -->
@@ -161,7 +155,7 @@ Also special thanks to my friends and family who have assisted in the applicatio
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Devon-Wayman/Lest-We-Forget.svg?style=for-the-badge
 [contributors-url]: https://github.com/Devon-Wayman/Lest-We-Forget/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Devon-Wayman/Lest-We-Forget.svg?style=for-the-badge
 [forks-url]: https://github.com/Devon-Wayman/Lest-We-Forget/network/members
