@@ -1,5 +1,4 @@
 # Lest-We-Forget
-Lest We Forget
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -14,7 +13,7 @@ Lest We Forget
 
   <!-- <a href="https://github.com/othneildrew/Best-README-Template"> <img src="images/logo.png" alt="Logo" width="80" height="80"></a> -->
   <!-- <h1 align="center">Lest We Forget</h1> -->
-  [![Product Name Preview][product-screenshot]]
+  ![Product Name Preview][product-screenshot]
 
 
   <p align="center">
@@ -57,7 +56,8 @@ Lest We Forget
 
 Lest We Forget has been in development for over 6 years. What started as a simple AR app made in my free time would later become a much larger scale project.
 
-[![AR App Preview][ar-app]]
+<!-- [![AR App Preview][ar-app]] -->
+ <img src="images/ar_app.png" alt="Logo" width="50" height="50">
 
 When I was able to have access to VR equipment for the first time in my life via my university, I realized first-hand the power VR held when it came to increasing user immersion in a variety of situations.
 
