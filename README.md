@@ -11,14 +11,11 @@
 <br />
 <p align="center">
 
-  <!-- <a href="https://github.com/othneildrew/Best-README-Template"> <img src="images/logo.png" alt="Logo" width="80" height="80"></a> -->
   <!-- <h1 align="center">Lest We Forget</h1> -->
   ![Product Name Preview][product-screenshot]
 
-
   <p align="center">
     An immersive VR experience to take you back to a dark era from not so long ago.
-    <br />
     <br />
     <a href="https://github.com/Devon-Wayman/Lest-We-Forget/issues">Report Bug</a>
     ·
