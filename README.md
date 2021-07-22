@@ -57,7 +57,7 @@
 Lest We Forget has been in development for over 6 years. What started as a simple AR app made in my free time would later become a much larger scale project.
 
 <!-- [![AR App Preview][ar-app]] -->
- <img src="images/ar_app.png" alt="AR app preview">
+ <img src="images/ar_app.png" alt="AR app preview" width="50%" height="50%">
 
 When I was able to have access to VR equipment for the first time in my life via my university, I realized first-hand the power VR held when it came to increasing user immersion in a variety of situations.
 
