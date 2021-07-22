@@ -68,8 +68,6 @@ The major goals of this application:
 * Increase people's appreciation of history through the use of modern tech
 * Allow those that may be unable to have access to museums an alternate method of learning
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
-
 A list of commonly used resources in which I have obtained plethora of information are listed in the acknowledgements below. 
 
 ### Built With
@@ -107,7 +105,9 @@ See the [open issues](https://github.com/Devon-Wayman/Lest-We-Forget/issues) for
 
 Making contributions to the project via the open source community not only helps with taking some of the weight off, but also helps myself as well as others
 who view the repo in learning new methods of solving problems, and inspires others to move forward with their ideas. Any contribution to the project made is highly appreciated!
-Whether it be a bug fix, feature addition, or anything else you believe would enhance the user's experience. Please follow this template for contributing to the project:
+Whether it be a bug fix, feature addition, or anything else you believe would enhance the user's experience.
+
+<h3>PLEASE NOTE:</h3> Please submit one feature or bug fix per PR. Having a multitude of refactored code submitted all at once may present problems in the future so for the time being we ask that each PR have one main fix focused on. Also pleasre enjsure you have Unity version 2020.3.5f1 installed as to not cause merge conflicts with the ProjectSettings preferences. Thank you in advance :) 
 
 1. Fork the Project
 2. Create your Feature Branch
@@ -118,8 +118,6 @@ Whether it be a bug fix, feature addition, or anything else you believe would en
 4. Push to the Branch you created
 5. Open a Pull Request
 
-PLEASE NOTE: In order to keep things clean, please submit one feature or bug fix per PR.
-Having a multitude of refactored code submitted all at once may present problems in the future so for the time being we ask that each PR have one main fix focused on. Thank you in advance :) 
 
 
 
@@ -154,7 +152,6 @@ Also special thanks to my friends and family who have assisted in the applicatio
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/Devon-Wayman/Lest-We-Forget.svg?style=for-the-badge
 [contributors-url]: https://github.com/Devon-Wayman/Lest-We-Forget/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Devon-Wayman/Lest-We-Forget.svg?style=for-the-badge
