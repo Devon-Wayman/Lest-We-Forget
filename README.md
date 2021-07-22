@@ -14,7 +14,7 @@ Lest We Forget
 
   <!-- <a href="https://github.com/othneildrew/Best-README-Template"> <img src="images/logo.png" alt="Logo" width="80" height="80"></a> -->
   <!-- <h1 align="center">Lest We Forget</h1> -->
-  [![Product Name Preview][product-screenshot]](https://github.com/Devon-Wayman/Lest-We-Forget)
+  [![Product Name Preview][product-screenshot]]
 
 
   <p align="center">
@@ -57,7 +57,7 @@ Lest We Forget
 
 Lest We Forget has been in development for over 6 years. What started as a simple AR app made in my free time would later become a much larger scale project.
 
-[![AR App Preview][ar-app]](images/ar_app.jpg)
+[![AR App Preview][ar-app]]
 
 When I was able to have access to VR equipment for the first time in my life via my university, I realized first-hand the power VR held when it came to increasing user immersion in a variety of situations.
 
@@ -169,4 +169,4 @@ Also special thanks to my friends and family who have assisted in the applicatio
 [linkedin-url]: https://www.linkedin.com/in/devon-wayman/
 [product-screenshot]: images/lwf_readme.gif
 [family-photo]: images/family.jpg
-[ar-app]: images/ar_app.jpg
+[ar-app]: images/ar_app.png
