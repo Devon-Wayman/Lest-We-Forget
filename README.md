@@ -57,7 +57,7 @@
 Lest We Forget has been in development for over 6 years. What started as a simple AR app made in my free time would later become a much larger scale project.
 
 <!-- [![AR App Preview][ar-app]] -->
- <img src="images/ar_app.png" alt="Logo" width="50" height="50">
+ <img src="images/ar_app.png" alt="AR app preview">
 
 When I was able to have access to VR equipment for the first time in my life via my university, I realized first-hand the power VR held when it came to increasing user immersion in a variety of situations.
 
@@ -111,9 +111,9 @@ Whether it be a bug fix, feature addition, or anything else you believe would en
 
 1. Fork the Project
 2. Create your Feature Branch
-  * If you are contributing a new feature, please have your branch name begin with "feature", followed
+  . If you are contributing a new feature, please have your branch name begin with "feature", followed
     by a forward slash and a basic name description. Example: (`git checkout -b feature/your-new-feature`)
-  * Same goes for a bug fix. Example: (`git checkout -b bugfix/your-bug-fix`)
+  . Same goes for a bug fix. Example: (`git checkout -b bugfix/your-bug-fix`)
 3. Commit your Changes (`git commit -m 'Basic description here'`)
 4. Push to the Branch you created
 5. Open a Pull Request
