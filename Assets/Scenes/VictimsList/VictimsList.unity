@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cee1a6d55234e4e9f352b858e8dea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeClickedActionReference: {fileID: 5191850843219795078, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &614726772
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,11 +703,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6512313469887146825, guid: e65c0695e5d171747b6057bd7182fc5e, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512313469887146825, guid: e65c0695e5d171747b6057bd7182fc5e, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512313469887146825, guid: e65c0695e5d171747b6057bd7182fc5e, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512313469887146825, guid: e65c0695e5d171747b6057bd7182fc5e, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e65c0695e5d171747b6057bd7182fc5e, type: 3}
 --- !u!20 &1482323822 stripped
 Camera:
-  m_CorrespondingSourceObject: {fileID: 1352244856513614202, guid: e65c0695e5d171747b6057bd7182fc5e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6512313469887146825, guid: e65c0695e5d171747b6057bd7182fc5e, type: 3}
   m_PrefabInstance: {fileID: 1482323821}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1499608794

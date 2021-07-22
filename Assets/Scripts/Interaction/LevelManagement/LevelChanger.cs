@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 namespace LWF.Interaction.LevelManagement {
     public class LevelChanger : MonoBehaviour {
 
-        public static LevelChanger Instance;
-
         [SerializeField] private CanvasGroup levelFadeGroup = null;
 
         private bool quittingGame = false;
         private float audioFadeTime = 2f;
         private string levelToLoad;
+
+        public static LevelChanger Instance;
 
         public static LevelChanger Current {
             get {
@@ -51,7 +51,6 @@ namespace LWF.Interaction.LevelManagement {
                 AudioListener.volume = t / audioFadeTime;
                 yield return null;
             }
-            yield break;
         }
 
         public void OnFadeComplete() {
@@ -59,7 +58,7 @@ namespace LWF.Interaction.LevelManagement {
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
 #else
-                    Application.Quit();
+                Application.Quit();
 #endif
             }
 
