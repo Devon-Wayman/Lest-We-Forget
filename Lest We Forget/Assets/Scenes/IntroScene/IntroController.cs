@@ -1,48 +1,36 @@
 ﻿// Author: Devon Wayman - December 2020
 using System.Collections;
 using UnityEngine;
-using LWF.Interaction.LevelManagement;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class IntroController : MonoBehaviour {
 
-    [SerializeField] private Text introText;
-    private WaitForSeconds displayDuration = new WaitForSeconds(4);
+    [SerializeField] TMPro.TMP_Text introText;
+    [SerializeField] CanvasGroup introCanvas;
 
-    private float moveSpeed = 0.6f;
-    private int introTextIndex = 0;
-    private string[] introductionTexts = new string[] { "Split Box Studios\npresents", "In association with\nJW Indie" };
+    WaitForSeconds displayDuration = new WaitForSeconds(4);
+    WaitForSeconds breakDuration = new WaitForSeconds(1);
+
+    string[] introductionTexts = new string[] { "Split Box Studios\npresents", "In association with\nJW Indie" };
 
     void Start() {
+        introCanvas.alpha = 0;
+        introText.text = introductionTexts[0];
         StartCoroutine(FadeText(1f));
+        LeanTween.moveZ(gameObject, 10, 20);
     }
 
-    private void Update() {
-        transform.position -= transform.forward * Time.deltaTime * moveSpeed;
-    }
-
-    private IEnumerator FadeText(float fadeSpeed) {
-
-        while (introTextIndex < introductionTexts.Length) {
-            introText.text = introductionTexts[introTextIndex];
-            introText.color = new Color(introText.color.r, introText.color.g, introText.color.b, 0);
-
-            while (introText.color.a < 0.8f) {
-                introText.color = new Color(introText.color.r, introText.color.g, introText.color.b, introText.color.a + (Time.deltaTime / fadeSpeed));
-                yield return null;
-            }
-
-            introText.color = new Color(introText.color.r, introText.color.g, introText.color.b, 0.8f);
-            yield return displayDuration;
-
-            while (introText.color.a > 0) {
-                introText.color = new Color(introText.color.r, introText.color.g, introText.color.b, introText.color.a - (Time.deltaTime / fadeSpeed));
-                yield return null;
-            }
-
-            introTextIndex++;
-        }
-
-        LevelChanger.Current.FadeToLevel("MainMenu");
+    IEnumerator FadeText(float fadeSpeed) {
+        yield return breakDuration;
+        LeanTween.alphaCanvas(introCanvas, 0.9f, 0.5f);
+        yield return displayDuration;
+        LeanTween.alphaCanvas(introCanvas, 0, 0.5f);
+        yield return breakDuration;
+        introText.text = introductionTexts[1];
+        LeanTween.alphaCanvas(introCanvas, 0.9f, 0.5f);
+        yield return displayDuration;
+        LeanTween.alphaCanvas(introCanvas, 0, 0.5f);
+        yield return breakDuration;
+        SceneManager.LoadScene(1); // Load main menu scene (whichever version it may be at index 1)
     }
 }

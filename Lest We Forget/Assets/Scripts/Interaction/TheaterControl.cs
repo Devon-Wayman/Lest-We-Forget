@@ -1,48 +1,33 @@
 ﻿// Author: Devon Wayman - January 2021
-using System;
 using System.Collections;
+using LWF.Settings;
 using UnityEngine;
 using UnityEngine.Video;
 
 namespace LWF.Interaction {
     public class TheaterControl : MonoBehaviour {
 
-        [SerializeField] private AudioSource projectorAudio = null;
-        [SerializeField] private AudioSource videoAudio = null;
-        [SerializeField] private VideoPlayer videoPlayer = null; // Video player 
-        private WaitForSeconds waitTime = new WaitForSeconds(1);
+        [SerializeField] VideoPlayer videoPlayer = null; // Video player 
+        WaitForSeconds waitTime = new WaitForSeconds(1);
 
-        private string requestedMovie;
-
-        private void Awake() {
-            requestedMovie = PlayerPrefs.GetString("Movie");
-
-            if (requestedMovie == String.Empty || requestedMovie == "") {
-                requestedMovie = "survivor";
-            }
-
-            // if survior video with audio, get audio source and set it
-            if (requestedMovie == "survivor") {
-                videoPlayer.SetTargetAudioSource(0, videoAudio);
-            }
-
+        void Awake() {
+            string requestedMovie = PlayerSaveLoadManager.Instance.playerSettings.requestedMovie;
             videoPlayer.clip = Resources.Load<VideoClip>($"TheaterClips/{requestedMovie}") as VideoClip;
-        }
-
-        private void Start() {
             StartCoroutine(PrepareVideo());
         }
 
-        private IEnumerator PrepareVideo() {
+        IEnumerator PrepareVideo() {
             videoPlayer.Prepare();
 
             while (!videoPlayer.isPrepared) {
-                Debug.LogWarning($"Video is not yet ready for playback. Waiting1 second then trying again");
+                Debug.LogWarning("Video is not yet ready for playback.");
                 yield return waitTime;
-                //break;
+
+                if (videoPlayer.isPrepared) break;
             }
+
+            Debug.Log("Video player ready. Starting now");
             videoPlayer.Play();
-            projectorAudio.Play();
         }
     }
 }

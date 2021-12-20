@@ -1,56 +1,48 @@
 ﻿// Author: Devon Wayman
-using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace LWF.Interaction.LevelManagement {
-    public class LevelChanger : MonoBehaviour {
+    public class LevelChanger : DevSingleton<LevelChanger> {
 
-        [SerializeField] private CanvasGroup levelFadeGroup = null;
+        [SerializeField] CanvasGroup levelChangeFade = null;
 
-        private bool quittingGame = false;
-        private float audioFadeTime = 2f;
-        private string levelToLoad;
+        public Action onFadeCompleteAction;
+        [SerializeField] GameObject locomotionManager;
+        bool quittingGame = false;
+        int levelToLoad;
 
-        public static LevelChanger Instance;
 
-        public static LevelChanger Current {
-            get {
-                if (!Instance) Instance = FindObjectOfType<LevelChanger>();
-                return Instance;
+        void Awake() {
+            levelChangeFade.alpha = 1;
+            onFadeCompleteAction = OnFadeComplete;
+        }
+
+        void Start() {
+            levelChangeFade.FadeCanvasGroup(0, 4);
+            if (AudioListener.volume != 1) AudioListener.volume = 1;
+
+            if (SceneManager.GetActiveScene().buildIndex == (int)SceneEnums.MAINMENU) {
+                locomotionManager.SetActive(true);
+            } else {
+                locomotionManager.SetActive(false);
             }
         }
 
+        public void FadeToLevel(int levelIndex) {
+            Debug.Log("Fading to new level");
+            levelToLoad = levelIndex;
 
-        private void Awake() {
-            levelFadeGroup.alpha = 1; // ensure we can see the black screen on start
-        }
+            // TODO: Make a coroutine in the Helpers class that does this!)
+            AudioListener.volume.ChangeValueOverTime(AudioListener.volume, 0);
 
-        private void Start() {
-            LeanTween.alphaCanvas(levelFadeGroup, 0, 4);
-
-            if (AudioListener.volume != 1)
-                AudioListener.volume = 1;
-        }
-
-        public void FadeToLevel(string requestedLevel) {
-            levelToLoad = requestedLevel; // Set levelToLoad to index passed in
-            StartCoroutine(LowerAudio());   // Fade out audio
-            LeanTween.alphaCanvas(levelFadeGroup, 1, 4).setOnComplete(() => { OnFadeComplete(); });
+            levelChangeFade.SceneChangeFade(1, 4);
         }
         public void QuitGame() {
             quittingGame = true;
-            StartCoroutine(LowerAudio());
-            LeanTween.alphaCanvas(levelFadeGroup, 1, 4).setOnComplete(() => { OnFadeComplete(); });
-        }
-
-        private IEnumerator LowerAudio() {
-            float t = audioFadeTime;
-            while (t > 0) {
-                t -= Time.deltaTime; // Decrease value of "t" over time; set by value of audioFadeTime
-                AudioListener.volume = t / audioFadeTime;
-                yield return null;
-            }
+            AudioListener.volume.ChangeValueOverTime(AudioListener.volume, 0);
+            levelChangeFade.SceneChangeFade(1, 4);
         }
 
         public void OnFadeComplete() {

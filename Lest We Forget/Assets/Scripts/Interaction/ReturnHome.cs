@@ -3,17 +3,19 @@ using LWF.Interaction.LevelManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace WWIIVR.Interaction {
+namespace LWF.Interaction {
     public class ReturnHome : MonoBehaviour {
-        //public GameObject baseControllerGameobject;
-        public InputActionReference homeClickedActionReference;
-        //public UnityEvent onHomePressed;
 
-        private void Start() {
+        public InputActionReference homeClickedActionReference;
+
+        void Start() {
             homeClickedActionReference.action.performed += GoBackHome;
         }
 
-        //private void GoBackHome(InputAction.CallbackContext obj) => onHomePressed.Invoke();
-        private void GoBackHome(InputAction.CallbackContext obj) => LevelChanger.Current.FadeToLevel("MainMenu");
+        void GoBackHome(InputAction.CallbackContext obj) {
+            Debug.Log("Application home button pressed");
+            LevelChanger.Instance.FadeToLevel((int)SceneEnums.MAINMENU);
+            AudioListener.volume.ChangeValueOverTime(AudioListener.volume, 0);
+        }
     }
 }

@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroScene/IntroScene.unity
     guid: 8634b9b66272c884083c61e166c4eef1
   - enabled: 1
-    path: Assets/Scenes/MainMenu_CURRENT/MainMenu.unity
-    guid: 2db044b5a0e2b804e8ab6d1be83de174
+    path: Assets/Scenes/MainMenu/MainMenu.unity
+    guid: b7969a2924e2c8c4184394bf161f816f
   - enabled: 1
     path: Assets/Scenes/Theater/Theater.unity
     guid: 43e2d0ff8f87b08479759f09e7f7fea0
@@ -18,11 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/VictimsList/VictimsList.unity
     guid: 3eae11089b1a8d14588fb21fa3fbf3de
   - enabled: 1
-    path: Assets/Scenes/Planes/Planes.unity
-    guid: a21f077a9e41b7a4a998481d318f3c87
-  - enabled: 0
     path: Assets/Scenes/DDay/DDay.unity
     guid: cc320ce70b676b6449f3f2d5c4acbc48
+  - enabled: 0
+    path: Assets/Scenes/Planes/Planes.unity
+    guid: a21f077a9e41b7a4a998481d318f3c87
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bb4c6414a096da44b84e4817e48c299d, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: f67e0cf5d27af90438f6247d71e5614f, type: 2}
@@ -30,3 +30,4 @@ EditorBuildSettings:
     com.unity.input.settings: {fileID: 11400000, guid: 8516c1bc5487a194f8dc7d5fa8e23796, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 95fa691774cea73478eb9949be908f0a, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3b88afdab2606a64e94bdf1154bd358a, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: ff64effff0190844f856beb073229f6e, type: 2}
