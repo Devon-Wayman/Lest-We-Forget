@@ -16,12 +16,6 @@ namespace LWF {
         [SerializeField] CharacterController characterController;
         [SerializeField] CharacterControllerDriver driver;
 
-
-
-        private void Start() {
-
-        }
-
         void Update() {
             UpdateCharacterController();
         }

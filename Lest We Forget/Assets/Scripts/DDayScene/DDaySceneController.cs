@@ -12,15 +12,10 @@ namespace LWF.DDay {
         [Header("Slideshow Control Items")]
         [SerializeField] CanvasGroup slideshowCanvas;
         [SerializeField] TMPro.TMP_Text slideText;
-        [SerializeField] Image slideGraphicImage;
-
-        [Header("Slideshow Graphics")]
-        public Sprite[] slideGraphics;
 
         void Awake() {
             sceneAudioSources = Extensions.FindAllInScene<AudioSource>();
         }
-
 
         // Call from Cinemachine timeline to flash a slide in front of player (renders in front of everything else!)
         public static void DisplaySlide() {

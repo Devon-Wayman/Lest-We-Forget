@@ -90,7 +90,6 @@ namespace LWF {
             Save(playerSettings);
         }
 
-
         /// <summary>
         /// Serializes and saves a file in the persistent data path /GoatSave.g
         /// </summary>
