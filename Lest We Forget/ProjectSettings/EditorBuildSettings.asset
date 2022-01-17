@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VictimsList/VictimsList.unity
     guid: 3eae11089b1a8d14588fb21fa3fbf3de
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DDay/DDay.unity
     guid: cc320ce70b676b6449f3f2d5c4acbc48
   - enabled: 0

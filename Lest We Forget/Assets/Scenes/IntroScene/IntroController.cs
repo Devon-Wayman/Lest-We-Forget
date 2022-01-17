@@ -1,7 +1,7 @@
 ﻿// Author: Devon Wayman - December 2020
+using LWF.Managers;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class IntroController : MonoBehaviour {
 
@@ -9,7 +9,7 @@ public class IntroController : MonoBehaviour {
     [SerializeField] CanvasGroup introCanvas;
 
     WaitForSeconds displayDuration = new WaitForSeconds(4);
-    WaitForSeconds breakDuration = new WaitForSeconds(1);
+    WaitForSeconds breakDuration = new WaitForSeconds(0.5f);
 
     string[] introductionTexts = new string[] { "Split Box Studios\npresents", "In association with\nJW Indie" };
 
@@ -31,6 +31,6 @@ public class IntroController : MonoBehaviour {
         yield return displayDuration;
         LeanTween.alphaCanvas(introCanvas, 0, 0.5f);
         yield return breakDuration;
-        SceneManager.LoadScene(1); // Load main menu scene (whichever version it may be at index 1)
+        GameManager.LoadToScene((int)SceneEnums.MENU);
     }
 }

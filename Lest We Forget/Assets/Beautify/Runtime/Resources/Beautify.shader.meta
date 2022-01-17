@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: db2d065681f3b45c1a50728e6ce14d55
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _FrostTex: {fileID: 2800000, guid: f1a9c2d17f17f425b80cc393a9e838f1, type: 3}
+  - _FrostNormals: {fileID: 2800000, guid: 7fec60c40593744f5a7a3696de5204d4, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
