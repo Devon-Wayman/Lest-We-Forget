@@ -192,6 +192,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -201,11 +202,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 2
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -1261,6 +1262,52 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Nely_Konigova_40: 6840820393377078701
+      Salo_de_Vries_4: 3870422691235912909
+      Hana_Neuschulova_13: 2909280771259524253
+      Rachel_Cozijn-Rijne_28: -4278625739204855567
+      unknown_2: -1496807651742958926
+      Mendel_Jaffe_21: 3514051188998886744
+      Hana_Bradyova_13: -6607459762196182293
+      Jozefa_Glazowska_survived: 317927763186906589
+      Leon_Herbstman_Under 1 year: 327211871626396424
+      "Czes\u0142awa_Kwoka_14": 6404007553773931383
+      unknown_7: -510818561632007308
+      Gizela_Rutarova_27: -1895228628285339158
+      Selma_Nieweg-Cohen_28: -1818107120984911813
+      Marketa_Lubikova_29: 7830940117938384541
+      Martha_Doof_8: 6002819117803177119
+      Daniel_Claes_37: -1318456490055714795
+      unknown_3: -6112533957755683010
+      Etty_Hillesum_29: 4082225698415639790
+      Alzbeta_Buschova_35: -1843282396862309046
+      unknown_6: -778112886785699558
+      Pola_Kazimierz: 4491801991821057999
+      unknown: -5785226013367845764
+      Charlotte_Ellenbogen_83: 8756454372182398171
+      Gedale_Hejblum_12: 2788867471333470024
+      Francisca_Bierman_7: 1979362904011137993
+      Helena_Weigertova_20: 4992854839202750422
+      Ulrich_Basar_31: 6934785987161041020
+      Zofia_Lucarz_16: 4432487400325438277
+      Eliska_Sternova_28: 6927015530475716067
+      Louis_Salomon_5: 219693907922432161
+      Betje_van_Delft_Under 1: -1900162990453278542
+      unknown_9: 3421257363947916686
+      Margot_Steinhardt_5: -3795148273103792025
+      Gertruda_Weissova_31: -5360908467421160637
+      unknown_5: 548413593004453502
+      Ida_Kominikova_42: -6644568314904831137
+      Rosetta_Ejzenberg_16: -7264991604956624975
+      Mozes_de_Wolf_28: 6360575541042120315
+      Rosalia_Elisabeth_10: -8320413789635582323
+      unknown_8: -739967422586894908
+      Marie_Margoliusova_33: 3159704000551504408
+      Otto_Schwarz_19: 4456918609066105986
+      unknown_4: -915890629541705594
+      Stepanka_Kollinova_36: -9092116838229371275
+      Leah_Miriam_Brainer_2: 4613262938413636939
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1

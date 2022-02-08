@@ -106,14 +106,13 @@ namespace BeautifyHDRP {
         }
 
         public override void OnInspectorGUI() {
-
             GUILayout.BeginHorizontal(blackBack);
             GUILayout.Label(headerTex, blackBack, GUILayout.ExpandWidth(true));
             GUILayout.EndHorizontal();
 
             PropertyField(intensity);
-
             PropertyField(sharpen, new GUIContent("Sharpen"));
+
             if (sharpen.value.floatValue > 0) {
                 PropertyField(sharpenMinDepth, new GUIContent("Min Depth", "Applies sharpen beyond certain depth in the scene"));
                 PropertyField(sharpenMaxDepth, new GUIContent("Max Depth", "Applies sharpen until certain depth in the scene"));
@@ -125,13 +124,14 @@ namespace BeautifyHDRP {
             }
 
             PropertyField(ditherStrength, new GUIContent("Dither Strength", "Fast dithering that reduces banding artifacts in scene"));
-
             PropertyField(tonemap, new GUIContent("Tonemap", "Apply linear or custom ACES tonemap operator"));
+
             if (tonemap.value.boolValue) {
                 EditorGUI.indentLevel++;
                 PropertyField(tonemapExposure, new GUIContent("Exposure", "Exposure applied before tonemapping"));
                 EditorGUI.indentLevel--;
             }
+
             PropertyField(saturate, new GUIContent("Saturate", "Positive value increases color saturation making the scene more vivid. Negative value desaturares the colors towards grayscale"));
             PropertyField(brightness);
             PropertyField(contrast);
@@ -141,10 +141,13 @@ namespace BeautifyHDRP {
 
             EditorGUILayout.BeginHorizontal();
             PropertyField(lut, new GUIContent("LUT", "Lookup texture"));
+
             if (lut.overrideState.boolValue) {
+
                 if (GUILayout.Button("Help", GUILayout.Width(50))) {
                     EditorUtility.DisplayDialog("LUT Requirements", "Sample LUT textureS can be found in Beautify/Demo/DemoSources/Textures folder.\n\nEnsure the following import settings are set in your LUT textures:\n- Uncheck sRGB Texture (no gamma conversion)\n- No compression\n- Disable mip mapping\n- Aniso set to 0\n- Filtering set to Bilinear\n- Wrapping set to Clamp", "Ok");
                 }
+
                 EditorGUILayout.EndHorizontal();
                 EditorGUI.indentLevel++;
                 CheckLUTSettings((Texture2D)lut.value.objectReferenceValue);
@@ -161,6 +164,7 @@ namespace BeautifyHDRP {
             }
 
             PropertyField(depthOfField, new GUIContent("Depth of Field", "Enabled depth of field effect"));
+
             if (depthOfField.value.boolValue) {
                 PropertyField(depthOfFieldFocusMode, new GUIContent("Focus Mode"));
                 EditorGUI.indentLevel++;
@@ -282,6 +286,5 @@ namespace BeautifyHDRP {
 
             return result;
         }
-
     }
 }

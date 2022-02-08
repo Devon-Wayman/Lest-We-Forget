@@ -18,14 +18,14 @@ namespace LWF.Audio {
         [SerializeField] private AudioMixer sceneAudioMixer;
 
         [Header("Debugging")]
-        private int songIndex;
-        private float songLengthSeconds;
-        private float distanceToRecord;
-        public bool discParented = false;
         public Transform currentSongVinyl;
-
+        public bool discParented = false;
         public bool musicPlaying = false;
         public bool isLowering = false;
+        private float songLengthSeconds;
+        private float distanceToRecord;
+        private int songIndex;
+
 
         private void Awake() {
             var songsTemp = Resources.LoadAll<AudioClip>("Audio/RadioSongs");
@@ -49,7 +49,6 @@ namespace LWF.Audio {
                 allDiscs.Add(copy.transform);
             }
         }
-
         private void Start() {
             PickNewSong();
         }
@@ -65,7 +64,6 @@ namespace LWF.Audio {
                 });
             });
         }
-
         private void PlayRecord() {
             audioSource.Play();
             musicPlaying = true;
@@ -78,7 +76,6 @@ namespace LWF.Audio {
                 ReturnDisc(PickNewSong);
             });
         }
-
         private void ReturnDisc(System.Action callback) {
             isLowering = true;
             musicPlaying = false;
@@ -104,7 +101,6 @@ namespace LWF.Audio {
             if (musicPlaying && discParented) return;
 
             distanceToRecord = Vector3.Distance(restHead.position, currentSongVinyl.position);
-            Debug.Log(distanceToRecord);
 
             if (distanceToRecord < 0.31f && !discParented && !isLowering) {
                 Debug.Log("PARENTING!!!!!");

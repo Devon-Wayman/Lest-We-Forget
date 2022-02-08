@@ -8,11 +8,10 @@ namespace LWF.Interaction {
     public class TheaterControl : MonoBehaviour {
 
         [SerializeField] VideoPlayer videoPlayer = null; // Video player 
-        WaitForSeconds waitTime = new WaitForSeconds(3);
+        WaitForSeconds waitTime = new WaitForSeconds(2);
 
-        void Awake() {
+        private void Awake() {
             string requestedMovie = PlayerManager.Instance.playerSettings.requestedMovie;
-
 
             if (requestedMovie == string.Empty || requestedMovie == null) {
                 Debug.LogWarning("Movie string from settings empty. Playing random");
@@ -24,7 +23,7 @@ namespace LWF.Interaction {
             StartCoroutine(PrepareVideo());
         }
 
-        IEnumerator PrepareVideo() {
+        private IEnumerator PrepareVideo() {
             videoPlayer.Prepare();
 
             while (!videoPlayer.isPrepared) {

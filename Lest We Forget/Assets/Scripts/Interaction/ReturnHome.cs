@@ -15,7 +15,7 @@ namespace LWF.Interaction {
             homeClickedActionReference.action.performed += GoBackHome;
         }
 
-        void GoBackHome(InputAction.CallbackContext obj) {
+        private void GoBackHome(InputAction.CallbackContext obj) {
             Debug.Log("Application home button pressed");
             GUIManager.Instance.FadeLevel(1, () => SceneManager.LoadScene((int)SceneEnums.MENU));
             AudioListener.volume.ChangeValueOverTime(AudioListener.volume, 0);

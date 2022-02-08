@@ -8,7 +8,7 @@ public class DevSingleton<T> : MonoBehaviour where T : Component {
             if (instance == null) {
                 var objs = FindObjectsOfType(typeof(T)) as T[];
 
-                Debug.Log($"Founds instances count: {objs.Length} of time {objs.ToString()}");
+                Debug.Log($"Founds instances count: {objs.Length} of time {typeof(T).Name}");
 
                 if (objs.Length > 0) {
                     instance = objs[0];

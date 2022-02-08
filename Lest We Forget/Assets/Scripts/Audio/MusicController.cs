@@ -17,8 +17,6 @@ namespace LWF.Audio {
         [SerializeField] AudioMixer sceneAudioMixer;
 
         void Awake() {
-            if (audioSource == null) audioSource = GetComponent<AudioSource>();
-
             audioSource.loop = canLoop;
 
             switch (scene) {
@@ -44,11 +42,12 @@ namespace LWF.Audio {
 
         void ChooseNextRadioSong() {
             if (!audioSource.isPlaying) {
-                audioSource.clip = ChooseRadioSong();
+                //audioSource.clip = ChooseRadioSong();
+                audioSource.clip = songs.RandomListSelection();
                 audioSource.Play();
             }
         }
-        AudioClip ChooseRadioSong() {
+        private AudioClip ChooseRadioSong() {
             return songs[Random.Range(0, songs.Length)];
         }
     }

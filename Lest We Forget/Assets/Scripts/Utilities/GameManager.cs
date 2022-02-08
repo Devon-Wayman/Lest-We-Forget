@@ -8,7 +8,6 @@ namespace LWF.Managers {
         public static int currentSceneIndex { get; private set; }
         public static bool ScenePrepped { get; private set; }
 
-        public static Camera playerCamera;
         private static GUIManager guiManager;
 
         [RuntimeInitializeOnLoadMethod]
@@ -22,17 +21,12 @@ namespace LWF.Managers {
             }
 
             SceneManager.sceneLoaded += OnSceneLoaded;
-            SceneManager.LoadScene((int)SceneEnums.MENU);
-        }
-
-        public static void CloseApplication() {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.LoadScene((int)SceneEnums.INTRO);
         }
 
         private static void OnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
             // Do all AI initializations, camera setup, procedural generation, etc here
             currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
 
             GUIManager.Instance.levelFadeCanvas.gameObject.SetActive(true);
             GUIManager.Instance.FadeLevel(0, () => {
@@ -43,12 +37,22 @@ namespace LWF.Managers {
 
         public static void LoadToScene(int levelIndex) {
             ScenePrepped = false;
+
+            // If unable to get the GUIManager from scene, just load right into the level requested
+            if (GUIManager.Instance == null) {
+                Debug.LogWarning("Was unable to find GUIManager. Loading directly to scene without transition");
+                SceneManager.LoadScene(levelIndex);
+                return;
+            }
+
             GUIManager.Instance.levelFadeCanvas.gameObject.SetActive(true);
             GUIManager.Instance.FadeLevel(1, () => SceneManager.LoadScene(levelIndex));
         }
 
         public static void QuitGame() {
             ScenePrepped = false;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+
             GUIManager.Instance.FadeLevel(1, () => {
 
 #if UNITY_EDITOR
