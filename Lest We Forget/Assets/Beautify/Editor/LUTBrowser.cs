@@ -1,14 +1,12 @@
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
 using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 namespace BeautifyHDRP {
-
     public class LUTBrowser : EditorWindow {
 
         const string MASTER_FOLDER_NAME = "LUT Pack";
-
         Material referenceMaterial;
         Vector2 scrollPos;
         static int columnCount = 4;
@@ -24,8 +22,8 @@ namespace BeautifyHDRP {
             public List<LUTEntry> luts;
             public bool visible;
         }
-        LUTGroup[] groups;
 
+        LUTGroup[] groups;
 
         [MenuItem("Window/LUT Browser")]
         public static void ShowBrowser() {
@@ -41,12 +39,13 @@ namespace BeautifyHDRP {
         }
 
         private void OnGUI() {
-
             if (groups == null) {
                 EditorGUILayout.HelpBox("LUT Pack not found.", MessageType.Info);
+
                 if (GUILayout.Button("View LUT Pack on the Unity Asset Store")) {
                     Application.OpenURL("https://assetstore.unity.com/packages/slug/202502");
                 }
+
                 if (GUILayout.Button("Reload LUT Pack")) {
                     RefreshLUTs();
                 }
@@ -54,41 +53,47 @@ namespace BeautifyHDRP {
             }
 
             EditorGUILayout.BeginHorizontal();
+
             if (GUILayout.Button("Find LUTs")) {
                 RefreshLUTs();
             }
+
             if (GUILayout.Button("Capture SceneView")) {
                 RequestCapture(CameraType.SceneView);
             }
+
             if (GUILayout.Button("Capture GameView")) {
                 RequestCapture(CameraType.Game);
             }
+
             EditorGUILayout.EndHorizontal();
-
             columnCount = EditorGUILayout.IntSlider("Columns:", columnCount, 1, 5);
-
             Texture2D wt = Texture2D.whiteTexture;
             float rowHeight = 0.5f * EditorGUIUtility.currentViewWidth / columnCount;
-
             EditorGUILayout.HelpBox("Click on the name of a LUT to toggle it on/off. Use the Intensity slider in Beautify inspector to customize the LUT strength.", MessageType.Info);
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
             Beautify b = BeautifySettings.sharedSettings;
+
             if (b == null) {
                 EditorGUILayout.HelpBox("Beautify not found in the scene.", MessageType.Warning);
             } else {
                 for (int k = 0; k < groups.Length; k++) {
                     groups[k].visible = EditorGUILayout.Foldout(groups[k].visible, "Category: " + groups[k].categoryName);
+
                     if (groups[k].visible) {
                         int c = groups[k].luts.Count;
                         int matIndex = 0;
+
                         while (matIndex < c) {
                             EditorGUILayout.BeginVertical();
                             Rect rect = EditorGUILayout.GetControlRect();
                             float w = rect.width / columnCount;
                             rect.width = w - 5;
+
                             for (int col = 0; col < columnCount; col++) {
                                 if (matIndex < c) {
                                     LUTEntry lutEntry = groups[k].luts[matIndex];
+
                                     if (lutEntry.mat != null) {
                                         rect.height = rowHeight;
                                         lutEntry.mat.SetTexture(ShaderParams.LUTTex, lutEntry.lutTex);
@@ -101,7 +106,9 @@ namespace BeautifyHDRP {
                                         } else {
                                             lutName = lutEntry.mat.name;
                                         }
+
                                         if (GUI.Button(rect, lutName)) {
+
                                             if (b.lut.overrideState && b.lut == lutEntry.lutTex) {
                                                 b.lut.Override(null);
                                                 b.lut.overrideState = false;
@@ -111,7 +118,9 @@ namespace BeautifyHDRP {
                                                     b.lutIntensity.Override(1f);
                                                 }
                                             }
+
                                             EditorUtility.SetDirty(b);
+
                                             if (!Application.isPlaying) {
                                                 UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
                                             }
@@ -153,50 +162,56 @@ namespace BeautifyHDRP {
         }
 
         void RequestCapture(CameraType cameraType) {
-
             if (FindObjectOfType<BeautifySettings>() == null) {
                 Debug.LogError("Beautify not found. It's requred for the LUT Browser functionality.");
                 return;
             }
+
             Beautify.captureCameraType = cameraType;
             Beautify.requestScreenCapture = true;
             EditorUtility.SetDirty(BeautifySettings.sharedSettings);
         }
 
-
         void RefreshLUTs() {
-
             RequestCapture(Beautify.captureCameraType);
             ReleaseGroups();
+
             if (referenceMaterial == null) {
                 referenceMaterial = new Material(Shader.Find("Hidden/Beautify/LUTThumbnail"));
             }
+
             string[] res = Directory.GetDirectories(Application.dataPath, "*" + MASTER_FOLDER_NAME + "*", SearchOption.AllDirectories);
             string path = null;
+
             for (int k = 0; k < res.Length; k++) {
                 if (res[k].Contains("LUT Pack")) {
                     path = res[k];
                     break;
                 }
             }
-            if (path == null) {
-                return;
-            }
+
+            if (path == null) return;
+
             string[] categories = Directory.GetDirectories(path, "*", SearchOption.AllDirectories);
             groups = new LUTGroup[categories.Length];
+
             for (int c = 0; c < categories.Length; c++) {
                 LUTGroup group = new LUTGroup();
                 group.categoryPath = categories[c];
                 group.categoryName = Path.GetFileName(group.categoryPath);
                 group.luts = new List<LUTEntry>();
                 string[] luts = Directory.GetFiles(group.categoryPath, "*.png", SearchOption.AllDirectories);
+
                 if (luts != null) {
                     for (int l = 0; l < luts.Length; l++) {
                         string lutPath = luts[l];
                         int i = lutPath.IndexOf("/Assets");
+
                         if (i < 0) continue;
+
                         lutPath = lutPath.Substring(i + 1);
                         Texture2D lutTex = AssetDatabase.LoadAssetAtPath<Texture>(lutPath) as Texture2D;
+
                         if (lutTex != null) {
                             Material mat = Instantiate(referenceMaterial);
                             mat.name = Path.GetFileNameWithoutExtension(lutPath);
@@ -209,9 +224,6 @@ namespace BeautifyHDRP {
                 }
                 groups[c] = group;
             }
-
         }
-
     }
-
 }

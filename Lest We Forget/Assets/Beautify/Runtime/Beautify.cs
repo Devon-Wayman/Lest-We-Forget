@@ -164,6 +164,7 @@ namespace BeautifyHDRP {
         float currSens;
         Vector4 dofLastBokehData;
         float dofPrevDistance, dofLastAutofocusDistance;
+
         // Scene dependant settings
         BeautifySettings sceneSettings;
         RTHandle rtSource;
@@ -181,6 +182,7 @@ namespace BeautifyHDRP {
         RTHandle rtCapture;
 #endif
         #endregion
+
 
         public bool IsActive() => m_Material != null && intensity.value > 0f;
 
@@ -250,12 +252,13 @@ namespace BeautifyHDRP {
             } else {
                 Debug.LogError($"Unable to find shader '{kShaderName}'. Post Process Volume Beautify is unable to load.");
             }
+
             if (defaultFrost == null) {
                 defaultFrost = Resources.Load<Texture2D>("FrostFX/Frost");
                 defaultFrostDisp = Resources.Load<Texture2D>("FrostFX/FrostNormals");
             }
-            rtHandles = new List<RTHandle>();
 
+            rtHandles = new List<RTHandle>();
             CheckSceneSettings();
             BeautifySettings.UnloadBeautify();
         }
@@ -271,6 +274,7 @@ namespace BeautifyHDRP {
                     return;
                 }
             }
+
             rt = RTHandles.Alloc(w, h, colorFormat: colorFormat, filterMode: filterMode, depthBufferBits: 0, autoGenerateMips: false, msaaSamples: MSAASamples.None, dimension: rtSource.rt.dimension);
             rtHandles.Add(rt);
         }
@@ -289,8 +293,7 @@ namespace BeautifyHDRP {
         }
 
         public override void Render(CommandBuffer cmd, HDCamera camera, RTHandle source, RTHandle destination) {
-            if (m_Material == null)
-                return;
+            if (m_Material == null) return;
 
             rtSource = source;
             Camera cam = camera.camera;
@@ -298,9 +301,11 @@ namespace BeautifyHDRP {
 #if UNITY_EDITOR
             if (requestScreenCapture && cam != null && cam.cameraType == captureCameraType) {
                 requestScreenCapture = false;
+
                 if (rtCapture != null) {
                     rtCapture.Release();
                 }
+
                 rtCapture = RTHandles.Alloc(Vector3.one);
                 FullScreenBlit(cmd, source, rtCapture, (int)ShaderParams.Pass.Copy);
                 cmd.SetGlobalTexture(ShaderParams.lutPreview, rtCapture);
@@ -308,6 +313,7 @@ namespace BeautifyHDRP {
 #endif
 
             float power = intensity.value;
+
             // Motion sensibility
             if (Application.isPlaying) {
                 Transform camTransform = cam.transform;
@@ -317,11 +323,14 @@ namespace BeautifyHDRP {
                 float posDiff = (camPos - camPrevPos).sqrMagnitude * 10f * sharpenMotionSensibility.value;
 
                 float diff = angleDiff + posDiff;
+
                 if (diff > 0.1f) {
                     camPrevForward = camForward;
                     camPrevPos = camPos;
+
                     if (diff > sharpenMotionSensibility.value)
                         diff = sharpenMotionSensibility.value;
+
                     currSens += diff;
                     float min = sharpen.value * sharpenMotionSensibility.value * 0.75f;
                     float max = sharpen.value * (1f + sharpenMotionSensibility.value) * 0.5f;
@@ -344,11 +353,8 @@ namespace BeautifyHDRP {
             m_Material.SetVector(ShaderParams.colorBoost, new Vector4(tempBrightness, tempContrast, tempSat, daltonize.value * 10f * power));
 
             DoDoF(camera, source, cmd);
-
             DoLUT();
-
             DoVignette(cam);
-
             DoFrost();
 
             if (tonemap.value == TonemapOperator.ACES) {
@@ -357,9 +363,11 @@ namespace BeautifyHDRP {
             } else {
                 m_Material.DisableKeyword(ShaderParams.SKW_TONEMAP_ACES);
             }
+
             cmd.SetGlobalTexture(ShaderParams.sourceTex, source);
             cmd.SetGlobalVector(ShaderParams.inputScale, source.rtHandleProperties.rtHandleScale);
             float pixelScale = 1f / pixelateSize.value;
+
             if (pixelScale != 1f) {
                 CheckDownscaledRT(camera);
                 HDUtils.DrawFullScreen(cmd, m_Material, rtDownscaled, shaderPassId: (int)ShaderParams.Pass.Beautify);
@@ -376,20 +384,20 @@ namespace BeautifyHDRP {
         }
 
         void DoDoF(HDCamera camera, RTHandle source, CommandBuffer cmd) {
-
             Camera cam = camera.camera;
+
             if (!depthOfField.value || cam.cameraType != CameraType.Game) {
                 m_Material.DisableKeyword(ShaderParams.SKW_DEPTH_OF_FIELD);
                 return;
             }
 
             m_Material.EnableKeyword(ShaderParams.SKW_DEPTH_OF_FIELD);
-
             CheckDepthOfFieldRTs(camera);
-
             UpdateDepthOfFieldData(cmd, cam);
+
             // compute coc
             FullScreenBlit(cmd, source, rtDoF, (int)ShaderParams.Pass.DoFCoC);
+
             if (depthOfFieldForegroundBlur.value && depthOfFieldForegroundBlurHQ.value) {
                 BlurThisAlpha(cmd, rtDoF, depthOfFieldForegroundBlurHQSpread.value);
             }
@@ -408,19 +416,17 @@ namespace BeautifyHDRP {
             }
 
             cmd.SetGlobalTexture(ShaderParams.dofRT, rtDoF);
-
         }
 
         void BlurThisDoF(CommandBuffer cmd, RTHandle rt, int renderPass) {
             UpdateDepthOfFieldBlurData(cmd, new Vector2(0.44721f, -0.89443f));
             FullScreenBlit(cmd, rt, rtDoFTempBlur1, renderPass);
-
             UpdateDepthOfFieldBlurData(cmd, new Vector2(-1f, 0f));
             FullScreenBlit(cmd, rtDoFTempBlur1, rtDoFTempBlur2, renderPass);
-
             UpdateDepthOfFieldBlurData(cmd, new Vector2(0.44721f, 0.89443f));
             FullScreenBlit(cmd, rtDoFTempBlur2, rt, renderPass);
         }
+
 
         void BlurThisAlpha(CommandBuffer cmd, RTHandle rt, float blurScale = 1f) {
             cmd.SetGlobalFloat(ShaderParams.blurScale, blurScale);
@@ -431,7 +437,9 @@ namespace BeautifyHDRP {
         void UpdateDepthOfFieldData(CommandBuffer cmd, Camera cam) {
             // TODO: get focal length from camera FOV: FOV = 2 arctan (x/2f) x = diagonal of film (0.024mm)
             if (!CheckSceneSettings()) return;
+
             float d = depthOfFieldDistance.value;
+
             switch ((int)depthOfFieldFocusMode.value) {
                 case (int)DoFFocusMode.AutoFocus:
                     UpdateDoFAutofocusDistance(cam);
@@ -453,8 +461,10 @@ namespace BeautifyHDRP {
             if (sceneSettings.OnBeforeFocus != null) {
                 d = sceneSettings.OnBeforeFocus(d);
             }
+
             dofPrevDistance = Mathf.Lerp(dofPrevDistance, d, Application.isPlaying ? depthOfFieldFocusSpeed.value * Time.unscaledDeltaTime * 30f : 1f);
             float dofCoc;
+
             if (depthOfFieldCameraSettings.value == DoFCameraSettings.Real) {
                 float focalLength = depthOfFieldFocalLengthReal.value;
                 float aperture = (focalLength / depthOfFieldFStop.value);
@@ -462,6 +472,7 @@ namespace BeautifyHDRP {
             } else {
                 dofCoc = depthOfFieldAperture.value * (depthOfFieldFocalLength.value / Mathf.Max(dofPrevDistance - depthOfFieldFocalLength.value, 0.001f)) * (1f / 0.024f);
             }
+
             dofLastBokehData = new Vector4(dofPrevDistance, dofCoc, 0, 0);
             cmd.SetGlobalVector(ShaderParams.dofBokehData, dofLastBokehData);
             cmd.SetGlobalVector(ShaderParams.dofBokehData2, new Vector4(depthOfFieldForegroundBlur.value ? depthOfFieldForegroundDistance.value : cam.farClipPlane, depthOfFieldMaxSamples.value, depthOfFieldBokehThreshold.value, depthOfFieldBokehIntensity.value * depthOfFieldBokehIntensity.value));
@@ -472,6 +483,7 @@ namespace BeautifyHDRP {
             Vector3 p = depthOfFieldAutofocusViewportPoint.value;
             p.z = 10f;
             Ray r = cam.ViewportPointToRay(p);
+
             if (Physics.Raycast(r, out RaycastHit hit, cam.farClipPlane, depthOfFieldAutofocusLayerMask.value)) {
                 // we don't use hit.distance as ray origin has a small shift from camera
                 float distance = Vector3.Distance(cam.transform.position, hit.point);
@@ -505,10 +517,12 @@ namespace BeautifyHDRP {
             float currentBlink = blink > 0 ? Mathf.Clamp01(blink) : vignettingBlink.value;
             bool vignettingEnabled = outerRing < 1 || innerRing < 1f || vignettingFade.value > 0 || currentBlink > 0;
             bool usesVignetteMask = false;
+
             if (vignettingEnabled) {
                 if (innerRing >= outerRing) {
                     innerRing = outerRing - 0.0001f;
                 }
+
                 Color vignettingColorAdjusted = vignettingColor.value;
                 float vb = 1f - currentBlink * 2f;
                 if (vb < 0) vb = 0;
@@ -517,11 +531,12 @@ namespace BeautifyHDRP {
                 vignettingColorAdjusted.b *= vb;
                 m_Material.SetColor(ShaderParams.vignette, vignettingColorAdjusted);
                 Vector4 vignetteData = new Vector4(vignettingCenter.value.x, vignettingCenter.value.y, (vignettingCircularShape.value && currentBlink <= 0) ? 1.0f / cam.aspect : vignettingAspectRatio.value + 1.001f / (1.001f - currentBlink) - 1f);
+
                 if (vignettingBlinkStyle.value == BlinkStyle.Human) {
                     vignetteData.y -= currentBlink * 0.5f;
                 }
-                m_Material.SetVector(ShaderParams.vignetteData, vignetteData);
 
+                m_Material.SetVector(ShaderParams.vignetteData, vignetteData);
                 float vd = vignettingFade.value + currentBlink * 0.5f;
                 if (currentBlink > 0.99f) vd = 1f;
                 Vector4 vignetteData2 = new Vector4(vd, innerRing, outerRing, 0);
@@ -532,6 +547,7 @@ namespace BeautifyHDRP {
                     usesVignetteMask = true;
                 }
             }
+
             if (usesVignetteMask) {
                 m_Material.EnableKeyword(ShaderParams.SKW_VIGNETTING_MASK);
             } else {
@@ -547,7 +563,6 @@ namespace BeautifyHDRP {
             m_Material.SetTexture(ShaderParams.frostTexture, frostTexture.value != null ? frostTexture.value : defaultFrost);
             m_Material.SetTexture(ShaderParams.frostDistortionTexture, frostDistortTexture.value != null ? frostDistortTexture.value : defaultFrostDisp);
         }
-
 
         bool CheckSceneSettings() {
             sceneSettings = BeautifySettings.instance;
@@ -573,11 +588,10 @@ namespace BeautifyHDRP {
         /// <returns>The blink.</returns>
         /// <param name="duration">Duration.</param>
         public static IEnumerator Blink(float duration, float maxValue = 1f) {
-
             float start = Time.time;
             WaitForEndOfFrame w = new WaitForEndOfFrame();
-
             float t;
+
             // Close
             do {
                 t = (Time.time - start) / duration;
@@ -601,5 +615,4 @@ namespace BeautifyHDRP {
         }
         #endregion
     }
-
 }

@@ -9,6 +9,7 @@ namespace SensorToolkit {
     [RequireComponent(typeof(PolygonCollider2D))]
     [ExecuteInEditMode]
     public class FOVCollider2D : MonoBehaviour {
+
         [Tooltip("The length of the field of view cone in world units.")]
         public float Length = 5f;
 
@@ -24,9 +25,9 @@ namespace SensorToolkit {
         // Returns the generated collider mesh so that it can be rendered.
         public Mesh FOVMesh { get { return mesh; } }
 
-        PolygonCollider2D pc;
-        Vector2[] pts;
-        Mesh mesh;
+        private PolygonCollider2D pc;
+        private Vector2[] pts;
+        private Mesh mesh;
 
         void Awake() {
             pc = GetComponent<PolygonCollider2D>();

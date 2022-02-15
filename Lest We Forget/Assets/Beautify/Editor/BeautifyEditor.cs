@@ -143,7 +143,6 @@ namespace BeautifyHDRP {
             PropertyField(lut, new GUIContent("LUT", "Lookup texture"));
 
             if (lut.overrideState.boolValue) {
-
                 if (GUILayout.Button("Help", GUILayout.Width(50))) {
                     EditorUtility.DisplayDialog("LUT Requirements", "Sample LUT textureS can be found in Beautify/Demo/DemoSources/Textures folder.\n\nEnsure the following import settings are set in your LUT textures:\n- Uncheck sRGB Texture (no gamma conversion)\n- No compression\n- Disable mip mapping\n- Aniso set to 0\n- Filtering set to Bilinear\n- Wrapping set to Clamp", "Ok");
                 }
@@ -155,9 +154,11 @@ namespace BeautifyHDRP {
                 EditorGUI.indentLevel--;
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Label("", GUILayout.Width(EditorGUIUtility.labelWidth + 16));
+
                 if (GUILayout.Button("Open LUT Browser")) {
                     LUTBrowser.ShowBrowser();
                 }
+
                 EditorGUILayout.EndHorizontal();
             } else {
                 EditorGUILayout.EndHorizontal();
@@ -168,6 +169,7 @@ namespace BeautifyHDRP {
             if (depthOfField.value.boolValue) {
                 PropertyField(depthOfFieldFocusMode, new GUIContent("Focus Mode"));
                 EditorGUI.indentLevel++;
+
                 switch ((Beautify.DoFFocusMode)depthOfFieldFocusMode.value.intValue) {
                     case Beautify.DoFFocusMode.AutoFocus:
                         PropertyField(depthOfFieldAutofocusMinDistance, new GUIContent("Min Distance"));
@@ -185,8 +187,10 @@ namespace BeautifyHDRP {
                         }
                         break;
                 }
+
                 EditorGUI.indentLevel--;
                 PropertyField(depthOfFieldCameraSettings, new GUIContent("Camera Lens Settings"));
+
                 if (depthOfFieldCameraSettings.value.intValue == (int)Beautify.DoFCameraSettings.Classic) {
                     PropertyField(depthOfFieldFocalLength, new GUIContent("Focal Length"));
                     PropertyField(depthOfFieldAperture, new GUIContent("Aperture"));
@@ -195,19 +199,25 @@ namespace BeautifyHDRP {
                     PropertyField(depthOfFieldFStop, new GUIContent("F-Stop"));
                     PropertyField(depthOfFieldImageSensorHeight, new GUIContent("Image Sensor Height"));
                 }
+
                 PropertyField(depthOfFieldFocusSpeed, new GUIContent("Focus Speed"));
 
                 PropertyField(depthOfFieldForegroundBlur, new GUIContent("Foreground Blur"));
+
                 if (depthOfFieldForegroundBlur.value.boolValue) {
                     EditorGUI.indentLevel++;
                     PropertyField(depthOfFieldForegroundBlurHQ, new GUIContent("HQ Blur"));
+
                     if (depthOfFieldForegroundBlurHQ.value.boolValue) {
                         PropertyField(depthOfFieldForegroundBlurHQSpread, new GUIContent("Blur Spread"));
                     }
+
                     PropertyField(depthOfFieldForegroundDistance, new GUIContent("Foreground Distance"));
                     EditorGUI.indentLevel--;
                 }
+
                 PropertyField(depthOfFieldBokeh, new GUIContent("Bokeh"));
+
                 if (depthOfFieldBokeh.value.boolValue) {
                     EditorGUI.indentLevel++;
                     PropertyField(depthOfFieldBokehComposition, new GUIContent("Composition", "Integrated means the bokeh is computed in the same pass than the DoF blur (faster)"));
@@ -215,6 +225,7 @@ namespace BeautifyHDRP {
                     PropertyField(depthOfFieldBokehIntensity, new GUIContent("Intensity"));
                     EditorGUI.indentLevel--;
                 }
+
                 PropertyField(depthOfFieldDownsampling, new GUIContent("Downsampling"));
                 PropertyField(depthOfFieldMaxSamples, new GUIContent("Max Samples"));
                 PropertyField(depthOfFieldMaxBrightness, new GUIContent("Max Brightness"));
@@ -225,17 +236,17 @@ namespace BeautifyHDRP {
             PropertyField(vignettingInnerRing, new GUIContent("Inner Ring"));
             PropertyField(vignettingFade, new GUIContent("Fade"));
             PropertyField(vignettingCircularShape, new GUIContent("Circular Shape"));
+
             if (!vignettingCircularShape.value.boolValue) {
                 PropertyField(vignettingAspectRatio, new GUIContent("Aspect Ratio"));
             }
+
             PropertyField(vignettingBlink, new GUIContent("Blink"));
             PropertyField(vignettingBlinkStyle, new GUIContent("Blink Style"));
             PropertyField(vignettingCenter, new GUIContent("Center"));
             PropertyField(vignettingColor, new GUIContent("Color"));
             PropertyField(vignettingMask, new GUIContent("Mask", "Optional texture mask for the vignetting effect"));
-
             PropertyField(pixelateSize, new GUIContent("Size"));
-
             PropertyField(frostIntensity, new GUIContent("Intensity"));
             PropertyField(frostSpread, new GUIContent("Spread"));
             PropertyField(frostDistortion, new GUIContent("Distortion"));
@@ -245,18 +256,21 @@ namespace BeautifyHDRP {
         }
 
         public static void CheckLUTSettings(Texture2D tex) {
-            if (Application.isPlaying || tex == null)
-                return;
+            if (Application.isPlaying || tex == null) return;
+
             string path = AssetDatabase.GetAssetPath(tex);
-            if (string.IsNullOrEmpty(path))
-                return;
+
+            if (string.IsNullOrEmpty(path)) return;
+
             TextureImporter imp = (TextureImporter)AssetImporter.GetAtPath(path);
-            if (imp == null)
-                return;
+
+            if (imp == null) return;
+
             if (imp.textureType != TextureImporterType.Default || imp.sRGBTexture || imp.mipmapEnabled || imp.textureCompression != TextureImporterCompression.Uncompressed || imp.wrapMode != TextureWrapMode.Clamp || imp.filterMode != FilterMode.Bilinear) {
                 EditorGUILayout.HelpBox("Texture has invalid import settings.", MessageType.Warning);
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
+
                 if (GUILayout.Button("Fix Texture Import Settings", GUILayout.Width(200))) {
                     imp.textureType = TextureImporterType.Default;
                     imp.sRGBTexture = false;
@@ -267,6 +281,7 @@ namespace BeautifyHDRP {
                     imp.anisoLevel = 0;
                     imp.SaveAndReimport();
                 }
+
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
             }

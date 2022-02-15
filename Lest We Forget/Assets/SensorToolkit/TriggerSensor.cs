@@ -65,9 +65,11 @@ namespace SensorToolkit {
             // Mark all detected colliders as stale. Unity runs FixedUpdate before OnTriggerStay so any healthy colliders will overwrite back to 0 before Update called.
             // Any colliders still marked as 1 are stale: they've been deactivated or destroyed but didnt send an associated OnTriggerExit message.
             tempColliderList.Clear();
+
             foreach (var test in isColliderStale) {
                 tempColliderList.Add(test.Key);
             }
+
             foreach (var c in tempColliderList) {
                 isColliderStale[c] = 1; // 1 = stale
             }
@@ -89,6 +91,7 @@ namespace SensorToolkit {
 
             // Remove all stale collider detections.
             tempColliderList.Clear();
+
             foreach (var test in isColliderStale) {
                 var c = test.Key;
                 int isStale;
@@ -96,6 +99,7 @@ namespace SensorToolkit {
                     tempColliderList.Add(c);
                 }
             }
+
             foreach (var c in tempColliderList) {
                 removeCollider(c);
                 isColliderStale.Remove(c);
@@ -115,26 +119,31 @@ namespace SensorToolkit {
         new void addCollider(Collider other) {
             var newDetected = base.addCollider(other);
             isColliderStale[other] = 0;
+
             if (newDetected != null) {
                 OnDetected.Invoke(newDetected, this);
                 previousDetectedObjects.Add(newDetected);
             }
+
             if (OnSensorUpdate != null) OnSensorUpdate();
         }
 
         new void removeCollider(Collider other) {
             isColliderStale.Remove(other);
             var detectionLost = base.removeCollider(other);
+
             if (detectionLost != null) {
                 OnLostDetection.Invoke(detectionLost, this);
                 previousDetectedObjects.Remove(detectionLost);
             }
+
             if (OnSensorUpdate != null) OnSensorUpdate();
         }
 
         void testSensor() {
             refreshLineOfSight();
             sensorDetectionEvents();
+
             if (OnSensorUpdate != null) OnSensorUpdate();
         }
 
@@ -157,6 +166,7 @@ namespace SensorToolkit {
 
             // Any object still in previousDetectedObjects is no longer detected
             var previousDetectedEnumerator = previousDetectedObjects.GetEnumerator();
+
             while (previousDetectedEnumerator.MoveNext()) {
                 var go = previousDetectedEnumerator.Current;
                 OnLostDetection.Invoke(go, this);
@@ -164,6 +174,7 @@ namespace SensorToolkit {
 
             previousDetectedObjects.Clear();
             detectedEnumerator = DetectedObjects.GetEnumerator();
+
             while (detectedEnumerator.MoveNext()) {
                 previousDetectedObjects.Add(detectedEnumerator.Current);
             }
@@ -171,6 +182,7 @@ namespace SensorToolkit {
 
         bool checkForTriggers() {
             var hasRB = GetComponent<Rigidbody>() != null;
+
             if (hasRB) {
                 foreach (Collider c in GetComponentsInChildren<Collider>()) {
                     if (c.enabled && c.isTrigger) return true;
@@ -180,6 +192,7 @@ namespace SensorToolkit {
                     if (c.enabled && c.isTrigger) return true;
                 }
             }
+
             return false;
         }
     }

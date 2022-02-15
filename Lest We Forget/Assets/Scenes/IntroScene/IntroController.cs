@@ -1,11 +1,11 @@
 ﻿// Author: Devon Wayman - December 2020
 using LWF.Managers;
+using TMPro;
 using UnityEngine;
-
 public class IntroController : MonoBehaviour {
 
-    [SerializeField] TMPro.TMP_Text introText;
-    [SerializeField] CanvasGroup introCanvas;
+    [SerializeField] private TMP_Text introText;
+    [SerializeField] private CanvasGroup introCanvas;
 
     private string[] introductionTexts = new string[] { "Split Box Studios\npresents", "In association with\nJW Indie", "Lest We Forget" };
     private int textsDisplayed = 0;

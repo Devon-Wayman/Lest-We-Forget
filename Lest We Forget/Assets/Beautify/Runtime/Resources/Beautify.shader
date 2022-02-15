@@ -6,7 +6,6 @@
     }
 
     HLSLINCLUDE
-
     #pragma target 4.5
     #pragma only_renderers d3d11 ps4 xboxone vulkan metal switch
 
@@ -16,9 +15,7 @@
     #include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderVariables.hlsl"
     #include "Packages/com.unity.render-pipelines.high-definition/Runtime/PostProcessing/Shaders/FXAA.hlsl"
     #include "Packages/com.unity.render-pipelines.high-definition/Runtime/PostProcessing/Shaders/RTUpscale.hlsl"
-
     ENDHLSL
-
 
     SubShader
     {
@@ -119,8 +116,6 @@
                 #include "BeautifyDoF.hlsl"
             ENDHLSL
         }
-
-
     }
     Fallback Off
 }

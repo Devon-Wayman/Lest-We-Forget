@@ -6,6 +6,7 @@ namespace SensorToolkit {
         public Transform[] Targets;
 
         protected static readonly Color GizmoColor = new Color(51 / 255f, 255 / 255f, 255 / 255f);
+
         public virtual void OnDrawGizmosSelected() {
             if (Targets == null) return;
 

@@ -93,8 +93,6 @@ namespace LWF.Interaction {
             });
         }
 
-
-
         #region Slideshow
         private void LoadAllSprites() {
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("Sprites/VictimsSS")) {

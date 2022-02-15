@@ -13,6 +13,7 @@ namespace SensorToolkit {
      */
     [ExecuteInEditMode]
     public class RaySensor2D : Sensor {
+
         // Specified whether the ray sensor will pulse automatically each frame or will be updated manually by having its Pulse() method called when needed.
         public enum UpdateMode { EachFrame, Manual }
 
@@ -115,9 +116,11 @@ namespace SensorToolkit {
         // the Raycasthit data associated with this object.
         public RaycastHit2D GetRayHit(GameObject detectedGameObject) {
             RaycastHit2D val;
+
             if (!detectedObjectHits.TryGetValue(detectedGameObject, out val)) {
                 Debug.LogWarning("Tried to get the RaycastHit for a GameObject that isn't detected by RaySensor.");
             }
+
             return val;
         }
 
@@ -151,6 +154,7 @@ namespace SensorToolkit {
         void testRay() {
             var canDetectMultiple = !layerMaskIsSubsetOf(DetectsOnLayers, ObstructedByLayers) && (IgnoreList == null || IgnoreList.Count == 0);
             clearDetectedObjects();
+
             if (!canDetectMultiple && (IgnoreList == null || IgnoreList.Count == 0)) {
                 testRaySingle();
             } else {
@@ -176,6 +180,7 @@ namespace SensorToolkit {
         void detectionEvents() {
             // Any GameObjects still in previousDetectedObjects are no longer detected
             var lostDetectionEnumerator = previousDetectedObjects.GetEnumerator();
+
             while (lostDetectionEnumerator.MoveNext()) {
                 OnLostDetection.Invoke(lostDetectionEnumerator.Current, this);
             }
@@ -188,6 +193,7 @@ namespace SensorToolkit {
 
         void testRaySingle() {
             RaycastHit2D hit;
+
             if (Radius > 0f) {
                 hit = Physics2D.CircleCast(transform.position, Radius, direction, Length, ObstructedByLayers);
             } else {
@@ -328,6 +334,7 @@ namespace SensorToolkit {
             if (!isActiveAndEnabled) return;
 
             Vector3 endPosition;
+
             if (IsObstructed) {
                 Gizmos.color = GizmoBlockedColor;
                 endPosition = transform.position + (Vector3)direction * obstructionRayHit.distance;
@@ -353,6 +360,7 @@ namespace SensorToolkit {
             }
 
             Gizmos.color = GizmoColor;
+
             foreach (RaycastHit2D hit in DetectedObjectRayHits) {
                 Gizmos.DrawIcon(hit.point, "SensorToolkit/eye.png", true);
             }

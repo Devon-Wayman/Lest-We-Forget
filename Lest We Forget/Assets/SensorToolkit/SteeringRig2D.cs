@@ -24,6 +24,7 @@ namespace SensorToolkit {
      * move there while avoiding obstacles.
      */
     public class SteeringRig2D : MonoBehaviour {
+
         [Tooltip("The rig won't try to steer around objects in this list.")]
         public List<GameObject> IgnoreList;
 
@@ -56,14 +57,14 @@ namespace SensorToolkit {
         [Tooltip("The rig will face towards this transform, even strafing while moving towards destination.")]
         public Transform FaceTowardsTransform;
 
-        RaySensor2D[] sensors;
-        Vector2 destination;
-        bool trackingToDestinationPosition;
-        Vector2 faceDirection;
-        bool directionToFaceAssigned;
-        Vector2 previousAttractionVector;
-        Vector2 previousRepulsionVector;
-        Vector2 previousAvoidanceVector;
+        private RaySensor2D[] sensors;
+        private Vector2 destination;
+        private bool trackingToDestinationPosition;
+        private Vector2 faceDirection;
+        private bool directionToFaceAssigned;
+        private Vector2 previousAttractionVector;
+        private Vector2 previousRepulsionVector;
+        private Vector2 previousAvoidanceVector;
 
         // Set a destination vector that the rig should seek towards, can only be set while DestinationTrasnform
         // is null. Only works if a rigid body is assigned to the rig.
@@ -216,6 +217,7 @@ namespace SensorToolkit {
             previousAttractionVector = attractionForce(targetDirection);
             previousRepulsionVector = repulsionForce();
             var f = previousAttractionVector + previousRepulsionVector;
+
             if (f.sqrMagnitude > 0.01f) {
                 previousAvoidanceVector = f.normalized;
                 return previousAvoidanceVector;
@@ -227,6 +229,7 @@ namespace SensorToolkit {
 
         Vector3 attractionForce(Vector3 targetDirection) {
             var dest = targetDirection;
+
             if (dest.sqrMagnitude > 1f) {
                 return dest.normalized;
             } else {
@@ -236,6 +239,7 @@ namespace SensorToolkit {
 
         Vector3 repulsionForce() {
             var rf = Vector2.zero;
+
             for (int i = 0; i < sensors.Length; i++) {
                 var s = sensors[i];
                 s.IgnoreList = IgnoreList;
@@ -244,10 +248,11 @@ namespace SensorToolkit {
                 var obsRatio = Mathf.Pow(1f - (s.ObstructionRayHit.distance / s.Length), 1f / AvoidanceSensitivity); // 0 when unobstructed, 1 when touching
                 rf += obsRatio * s.ObstructionRayHit.normal;
             }
+
             var rfMag = rf.magnitude;
-            if (rfMag > MaxAvoidanceLength) {
-                return rf * MaxAvoidanceLength;
-            }
+
+            if (rfMag > MaxAvoidanceLength) return rf * MaxAvoidanceLength;
+
             return rf * rfMag;
         }
 

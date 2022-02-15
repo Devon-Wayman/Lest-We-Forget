@@ -34,7 +34,6 @@ Shader "Hidden/Beautify/LUTThumbnail"
             float4 _LUTPreview_ST;;
 			sampler2D _GUIClipTexture;
 			uniform float4x4 unity_GUIClipTextureMatrix;
-
             sampler2D _LUTTex;
             float4 _LUTTex_TexelSize;
 
@@ -51,7 +50,6 @@ Shader "Hidden/Beautify/LUTThumbnail"
             half4 frag (v2f i) : SV_Target
             {
 			    clip( tex2D(_GUIClipTexture, i.clipUV).a - 0.1);
-
                 half3 rgb = tex2D(_LUTPreview, i.uv);
 
                 #if !UNITY_COLORSPACE_GAMMA

@@ -9,6 +9,7 @@ namespace SensorToolkit {
     [RequireComponent(typeof(MeshCollider))]
     [ExecuteInEditMode]
     public class FOVCollider : MonoBehaviour {
+
         [Tooltip("The length of the field of view cone in world units.")]
         public float Length = 5f;
 
@@ -27,10 +28,10 @@ namespace SensorToolkit {
         // Returns the generated collider mesh so that it can be rendered.
         public Mesh FOVMesh { get { return mesh; } }
 
-        Mesh mesh;
-        MeshCollider mc;
-        Vector3[] pts;
-        int[] triangles;
+        private Mesh mesh;
+        private MeshCollider mc;
+        private Vector3[] pts;
+        private int[] triangles;
 
         void Awake() {
             mc = GetComponent<MeshCollider>();
@@ -40,6 +41,7 @@ namespace SensorToolkit {
         void OnValidate() {
             Length = Mathf.Max(0f, Length);
             BaseSize = Mathf.Max(0f, BaseSize);
+
             if (mc != null) {
                 CreateCollider();
             }
@@ -47,10 +49,13 @@ namespace SensorToolkit {
 
         public void CreateCollider() {
             pts = new Vector3[4 + (2 + Resolution) * (2 + Resolution)];
+
             // There are 2 triangles on the base
             var baseTriangleIndices = 2 * 3;
+
             // The arc is (Resolution+2) vertices to each side, making (Resolution+1)*(Resolution+1) boxes of 2 tris each
             var arcTriangleIndices = (Resolution + 1) * (Resolution + 1) * 2 * 3;
+
             // There are 4 sides to the cone, and each side has Resolution+2 triangles
             var sideTriangleIndices = (Resolution + 2) * 3;
             triangles = new int[baseTriangleIndices + arcTriangleIndices + sideTriangleIndices * 4];
@@ -86,9 +91,9 @@ namespace SensorToolkit {
             for (int x = 0; x < 2 + Resolution; x++) {
                 var iTop = 4 + x;
                 var iBottom = 4 + (1 + Resolution) * (2 + Resolution) + x;
-
                 var tiTop = baseTriangleIndices + arcTriangleIndices + x * 3;
                 var tiBottom = tiTop + sideTriangleIndices;
+
                 if (x == 0) {
                     triangles[tiTop] = 2;
                     triangles[tiTop + 1] = 3;
@@ -110,6 +115,7 @@ namespace SensorToolkit {
 
             // Left and right side triangles
             var yIncr = 2 + Resolution;
+
             for (int y = 0; y < 2 + Resolution; y++) {
                 var iLeft = 4 + y * (2 + Resolution);
                 var iRight = iLeft + (1 + Resolution);

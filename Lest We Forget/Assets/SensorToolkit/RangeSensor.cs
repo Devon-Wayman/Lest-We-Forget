@@ -10,6 +10,7 @@ namespace SensorToolkit {
      */
     [ExecuteInEditMode]
     public class RangeSensor : BaseVolumeSensor {
+
         // Should the sensor be pulsed automatically at fixed intervals or should it be pulsed manually.
         public enum UpdateMode { FixedInterval, Manual }
 
@@ -40,12 +41,11 @@ namespace SensorToolkit {
         // Pulses the sensor to update its list of detected objects
         public override void Pulse() {
             if (isActiveAndEnabled) testSensor();
-
         }
 
-        HashSet<GameObject> previousDetectedObjects = new HashSet<GameObject>();
-        Collider[] collidersBuffer;
-        float timer = 0f;
+        private HashSet<GameObject> previousDetectedObjects = new HashSet<GameObject>();
+        private Collider[] collidersBuffer;
+        private float timer = 0f;
 
         protected override void Awake() {
             base.Awake();
@@ -59,9 +59,7 @@ namespace SensorToolkit {
         }
 
         void Update() {
-            if (!Application.isPlaying) {
-                return;
-            }
+            if (!Application.isPlaying) return;
 
             if (SensorUpdateMode == UpdateMode.FixedInterval) {
                 timer += Time.deltaTime;
@@ -74,11 +72,14 @@ namespace SensorToolkit {
             }
         }
 
-        List<GameObject> newDetections = new List<GameObject>();
+        private List<GameObject> newDetections = new List<GameObject>();
+
         void testSensor() {
+
             prepareCollidersBuffer();
 
             var numberDetected = Physics.OverlapSphereNonAlloc(transform.position, SensorRange, collidersBuffer, DetectsOnLayers);
+
             if (numberDetected == CurrentBufferSize) {
                 if (DynamicallyIncreaseBufferSize) {
                     CurrentBufferSize *= 2;
@@ -91,8 +92,10 @@ namespace SensorToolkit {
 
             clearColliders();
             newDetections.Clear();
+
             for (int i = 0; i < numberDetected; i++) {
                 var newDetection = addCollider(collidersBuffer[i]);
+
                 if (newDetection != null) {
                     if (previousDetectedObjects.Contains(newDetection)) {
                         previousDetectedObjects.Remove(newDetection);
@@ -108,6 +111,7 @@ namespace SensorToolkit {
 
             // Any entries still in previousDetectedObjects are no longer detected
             var previousDetectedEnumerator = previousDetectedObjects.GetEnumerator();
+
             while (previousDetectedEnumerator.MoveNext()) {
                 var lostDetection = previousDetectedEnumerator.Current;
                 OnLostDetection.Invoke(lostDetection, this);
@@ -115,6 +119,7 @@ namespace SensorToolkit {
 
             previousDetectedObjects.Clear();
             var detectedEnumerator = DetectedObjects.GetEnumerator();
+
             while (detectedEnumerator.MoveNext()) {
                 previousDetectedObjects.Add(detectedEnumerator.Current);
             }
@@ -131,6 +136,7 @@ namespace SensorToolkit {
                 InitialBufferSize = Math.Max(1, InitialBufferSize);
                 CurrentBufferSize = InitialBufferSize;
             }
+
             if (collidersBuffer == null || collidersBuffer.Length != CurrentBufferSize) {
                 collidersBuffer = new Collider[CurrentBufferSize];
             }

@@ -24,6 +24,7 @@ namespace SensorToolkit {
      * move there while avoiding obstacles.
      */
     public class SteeringRig : MonoBehaviour {
+
         [Tooltip("The rig won't try to steer around objects in this list.")]
         public List<GameObject> IgnoreList;
 
@@ -39,6 +40,7 @@ namespace SensorToolkit {
 
         [Tooltip("If assigned the steering rig will control the movement of this rigid body.")]
         public Rigidbody RB;
+
         [Tooltip("The maximum torque that will be applied to the rigid body.")]
         public float TurnForce;
         [Tooltip("The maximum force that will be applied to the rigid body in a forwards direction.")]
@@ -53,19 +55,20 @@ namespace SensorToolkit {
         public float StrafeSpeed;
         [Tooltip("The distance threshold for the rig to arrive at a destination position.")]
         public float StoppingDistance = 0.5f;
+
         [Tooltip("The rig will attempt to move towards this transform.")]
         public Transform DestinationTransform;
         [Tooltip("The rig will face towards this transform, even strafing while moving towards destination.")]
         public Transform FaceTowardsTransform;
 
-        RaySensor[] sensors;
-        Vector3 destination;
-        bool trackingToDestinationPosition;
-        Vector3 faceDirection;
-        bool directionToFaceAssigned;
-        Vector3 previousAttractionVector;
-        Vector3 previousRepulsionVector;
-        Vector3 previousAvoidanceVector;
+        private RaySensor[] sensors;
+        private Vector3 destination;
+        private bool trackingToDestinationPosition;
+        private Vector3 faceDirection;
+        private bool directionToFaceAssigned;
+        private Vector3 previousAttractionVector;
+        private Vector3 previousRepulsionVector;
+        private Vector3 previousAvoidanceVector;
 
         // Set a destination vector that the rig should seek towards, can only be set while DestinationTrasnform
         // is null. Only works if a rigid body is assigned to the rig.
@@ -133,6 +136,7 @@ namespace SensorToolkit {
         // nearby obstacles are avoided.
         public Vector3 GetSteeredDirection(Vector3 targetDirection) {
             targetDirection = Vector3.Scale(targetDirection, axisConstraint).normalized;
+
             if (RotateTowardsTarget) {
                 transform.rotation = Quaternion.LookRotation(targetDirection, Vector3.up);
             }

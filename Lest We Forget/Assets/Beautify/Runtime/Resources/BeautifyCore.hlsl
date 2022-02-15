@@ -27,7 +27,6 @@
 	TEXTURE2D(_FrostNormals);
 	float3 _FrostIntensity;
 	float4 _FrostTintColor;
-
     TEXTURE2D_X(_DoFTex);
     float4 _DoFTex_TexelSize;
 
@@ -47,26 +46,23 @@
     float4 ApplyBeautify(float2 uv) : SV_Target
     {
         float3 inc        = float3(_SourceTex_TexelSize.xy, 0);
-
         float2 scaledUV   = uv * _InputScale;
         float2 uvS        = scaledUV - inc.zy;
         float2 uvN        = scaledUV + inc.zy;
         float2 uvW        = scaledUV - inc.xz;
         float2 uvE        = scaledUV + inc.xz;
-
 		float  depthS     = BEAUTIFY_GET_SCENE_DEPTH_01(uvS);
 		float  depthW     = BEAUTIFY_GET_SCENE_DEPTH_01(uvW);
 		float  depthE     = BEAUTIFY_GET_SCENE_DEPTH_01(uvE);		
 		float  depthN     = BEAUTIFY_GET_SCENE_DEPTH_01(uvN);
-
 		float  maxDepth   = max(depthN, depthS);
 		       maxDepth   = max(maxDepth, depthW);
 		       maxDepth   = max(maxDepth, depthE);
 		float  minDepth   = min(depthN, depthS);
 		       minDepth   = min(minDepth, depthW);
 		       minDepth   = min(minDepth, depthE);
-		float  dDepth     = maxDepth - minDepth + 0.00001;
 		
+        float  dDepth     = maxDepth - minDepth + 0.00001;
 		float  lumaDepth  = saturate(_Sharpen.y / dDepth);
 
         float3 rgbM       = SAMPLE_TEXTURE2D_X(_SourceTex, sampler_LinearClamp, scaledUV).rgb;
@@ -75,8 +71,7 @@
 		float3 rgbS       = SAMPLE_TEXTURE2D_X(_SourceTex, sampler_LinearClamp, uvS).rgb;
 	    float3 rgbW       = SAMPLE_TEXTURE2D_X(_SourceTex, sampler_LinearClamp, uvW).rgb;
 	    float3 rgbE       = SAMPLE_TEXTURE2D_X(_SourceTex, sampler_LinearClamp, uvE).rgb;
-	    float3 rgbN       = SAMPLE_TEXTURE2D_X(_SourceTex, sampler_LinearClamp, uvN).rgb;
-	    
+        float3 rgbN       = SAMPLE_TEXTURE2D_X(_SourceTex, sampler_LinearClamp, uvN).rgb;
         float  lumaM      = getLuma(rgbM);
 
 		float3 rgb0       = 1.0.xxx - saturate(rgbM);
@@ -126,6 +121,9 @@
 
         // LUT
         #if BEAUTIFY_LUT
+            #if !UNITY_COLORSPACE_GAMMA
+                rgbM          = LinearToSRGB(rgbM);
+            #endif
     	    float3 lutST  = float3(_LUTTex_TexelSize.x, _LUTTex_TexelSize.y, _LUTTex_TexelSize.w - 1);
             float3 lookUp = saturate(rgbM) * lutST.zzz;
             lookUp.xy     = lutST.xy * (lookUp.xy + 0.5);
@@ -134,6 +132,9 @@
             float2 lookUpNextSlice = float2(lookUp.x + lutST.y, lookUp.y);
             float3 lut    = lerp(SAMPLE_TEXTURE2D(_LUTTex, sampler_LinearClamp, lookUp.xy).rgb, SAMPLE_TEXTURE2D(_LUTTex, sampler_LinearClamp, lookUpNextSlice).rgb, lookUp.z - slice);
             rgbM          = lerp(rgbM, lut, LUT_INTENSITY);
+            #if !UNITY_COLORSPACE_GAMMA
+                rgbM          = SRGBToLinear(rgbM);
+            #endif
             lumaM         = getLuma(rgbM);
         #endif
 

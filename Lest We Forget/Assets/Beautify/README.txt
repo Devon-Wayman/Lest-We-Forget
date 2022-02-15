@@ -39,6 +39,9 @@ Of course, all updates of Beautify HDRP will be eventually available on the Asse
 Version history
 ---------------
 
+v4.2.1
+- Improvements to LUT operator
+
 v4.2
 - Depth of field: added real camera settings
 

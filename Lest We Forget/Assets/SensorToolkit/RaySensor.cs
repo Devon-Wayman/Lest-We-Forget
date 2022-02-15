@@ -13,6 +13,7 @@ namespace SensorToolkit {
      */
     [ExecuteInEditMode]
     public class RaySensor : Sensor {
+
         // Specified whether the ray sensor will pulse automatically each frame or will be updated manually by having its Pulse() method called when needed.
         public enum UpdateMode { EachFrame, Manual }
 
@@ -115,9 +116,11 @@ namespace SensorToolkit {
         // the Raycasthit data associated with this object.
         public RaycastHit GetRayHit(GameObject detectedGameObject) {
             RaycastHit val;
+
             if (!detectedObjectHits.TryGetValue(detectedGameObject, out val)) {
                 Debug.LogWarning("Tried to get the RaycastHit for a GameObject that isn't detected by RaySensor.");
             }
+
             return val;
         }
 

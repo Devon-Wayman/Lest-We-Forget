@@ -13,6 +13,7 @@ namespace SensorToolkit {
      * don't then the collider is timed out and the detection is lost.
      */
     public class TriggerSensor2D : BaseAreaSensor {
+
         public enum UpdateMode { FixedInterval, Manual }
         [Tooltip("Should the sensor be pulsed automatically at fixed intervals or should it be pulsed manually. For the trigger sensor this is only relevant to refreshing the line of sight tests as the colliders are detected outside of the pulse method.")]
         public UpdateMode LineOfSightUpdateMode;
@@ -48,6 +49,7 @@ namespace SensorToolkit {
             if (!checkForTriggers()) {
                 Debug.LogWarning("Trigger Sensor cannot detect anything if there are no triggers on the same GameObject.", gameObject);
             }
+
             if (GetComponent<Rigidbody2D>() == null) {
                 Debug.LogWarning("In order to detect GameObjects properly the TriggerSensor must itself have a RigidBody. Recommend adding a kinematic RigidBody.");
             } else if (GetComponent<Rigidbody2D>().sleepMode != RigidbodySleepMode2D.NeverSleep) {
@@ -67,9 +69,11 @@ namespace SensorToolkit {
             // Mark all detected colliders as stale. Unity runs FixedUpdate before OnTriggerStay so any healthy colliders will overwrite back to 0 before Update called.
             // Any colliders still marked as 1 are stale: they've been deactivated or destroyed but didnt send an associated OnTriggerExit message.
             tempColliderList.Clear();
+
             foreach (var test in isColliderStale) {
                 tempColliderList.Add(test.Key);
             }
+
             foreach (var c in tempColliderList) {
                 isColliderStale[c] = 1; // 1 = stale
             }
@@ -77,6 +81,7 @@ namespace SensorToolkit {
 
         void OnTriggerStay2D(Collider2D other) {
             if (!isColliderStale.ContainsKey(other)) { addCollider(other); }
+
             isColliderStale[other] = 0; // Live detection, 0 = not stale
         }
 
@@ -98,6 +103,7 @@ namespace SensorToolkit {
                     tempColliderList.Add(c);
                 }
             }
+
             foreach (var c in tempColliderList) {
                 removeCollider(c);
                 isColliderStale.Remove(c);
@@ -117,20 +123,24 @@ namespace SensorToolkit {
         new void addCollider(Collider2D other) {
             var newDetected = base.addCollider(other);
             isColliderStale[other] = 0;
+
             if (newDetected != null) {
                 OnDetected.Invoke(newDetected, this);
                 previousDetectedObjects.Add(newDetected);
             }
+
             if (OnSensorUpdate != null) OnSensorUpdate();
         }
 
         new void removeCollider(Collider2D other) {
             isColliderStale.Remove(other);
             var detectionLost = base.removeCollider(other);
+
             if (detectionLost != null) {
                 OnLostDetection.Invoke(detectionLost, this);
                 previousDetectedObjects.Remove(detectionLost);
             }
+
             if (OnSensorUpdate != null) OnSensorUpdate();
         }
 
@@ -173,6 +183,7 @@ namespace SensorToolkit {
 
         bool checkForTriggers() {
             var hasRB = GetComponent<Rigidbody2D>() != null;
+
             if (hasRB) {
                 foreach (Collider2D c in GetComponentsInChildren<Collider2D>()) {
                     if (c.enabled && c.isTrigger) return true;
@@ -182,6 +193,7 @@ namespace SensorToolkit {
                     if (c.enabled && c.isTrigger) return true;
                 }
             }
+
             return false;
         }
     }
