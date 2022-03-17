@@ -27,9 +27,7 @@ namespace LWF.Audio {
         private void Awake() {
             var songsTemp = Resources.LoadAll<AudioClip>("Audio/RadioSongs");
 
-            foreach (AudioClip clip in songsTemp) {
-                songs.Add(clip);
-            }
+            foreach (AudioClip clip in songsTemp) songs.Add(clip);
 
             vinylHolders.Add(vinylDiscCopy.transform);
 

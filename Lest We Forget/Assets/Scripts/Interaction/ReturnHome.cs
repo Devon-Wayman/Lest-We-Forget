@@ -9,10 +9,15 @@ namespace LWF.Interaction {
 
         public InputActionReference homeClickedActionReference;
 
-        void Start() {
-            if (GameManager.currentSceneIndex == (int)SceneEnums.INTRO || GameManager.currentSceneIndex == (int)SceneEnums.MENU) return;
+        private void OnEnable() {
+            Debug.Log("Initializing ReturnHome system");
+            if (GameManager.CurrentSceneIndex == 1 || GameManager.CurrentSceneIndex == 2) return;
 
             homeClickedActionReference.action.performed += GoBackHome;
+        }
+
+        private void OnDisable() {
+            homeClickedActionReference.action.performed -= GoBackHome;
         }
 
         private void GoBackHome(InputAction.CallbackContext obj) {

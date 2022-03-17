@@ -16,29 +16,4 @@ public class CustomEditors : MonoBehaviour {
             Debug.Log("Cleared a SceneIDMap instance");
         }
     }
-
-    [MenuItem("LWF/Save System/Delete Save File")]
-    public static void DeleteSave() {
-        try {
-            File.Delete(Application.persistentDataPath + "/LWFSave.sav");
-            Debug.Log($"Save file found and removed from {Application.persistentDataPath}/LWFSave.sav");
-        } catch (Exception ex) {
-            Debug.LogWarning($"Unable to delete save file: {ex.Message}");
-        }
-    }
-
-    [MenuItem("LWF/Save System/Create Default Save")]
-    public static void CreateSaveDefaults() {
-        if (File.Exists(Application.persistentDataPath + "/LWFSave.sav")) {
-            Debug.LogWarning("Save file already exists at {Application.persistentDataPath}/LWFSave.sav. Please delete before requesting to swap out for default values");
-            return;
-        }
-
-        try {
-            SaveLoadManager.CreateDefaultFile();
-            Debug.Log($"Default save file created at {Application.persistentDataPath}/LWFSave.sav");
-        } catch (Exception ex) {
-            Debug.LogWarning($"Unable to create save file at {Application.persistentDataPath}/LWFSave.sav: {ex.Message}");
-        }
-    }
 }

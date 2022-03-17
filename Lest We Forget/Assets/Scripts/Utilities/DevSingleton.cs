@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class DevSingleton<T> : MonoBehaviour where T : Component {
+
     private static T instance;
 
     public static T Instance {
@@ -8,19 +9,14 @@ public class DevSingleton<T> : MonoBehaviour where T : Component {
             if (instance == null) {
                 var objs = FindObjectsOfType(typeof(T)) as T[];
 
-                Debug.Log($"Founds instances count: {objs.Length} of time {typeof(T).Name}");
+                Debug.Log($"{objs.Length} instances of {typeof(T).Name} found");
 
-                if (objs.Length > 0) {
-                    instance = objs[0];
-                }
-
-                if (objs.Length > 1) {
-                    Debug.LogError($"There is more than one {typeof(T).Name} in the scene");
-                }
+                if (objs.Length > 0) instance = objs[0];
 
                 if (instance == null) {
-                    GameObject obj = new GameObject();
-                    obj.hideFlags = HideFlags.HideAndDontSave;
+                    GameObject obj = new() {
+                        hideFlags = HideFlags.HideAndDontSave
+                    };
                     instance = obj.AddComponent<T>();
                 }
             }

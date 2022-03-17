@@ -16,7 +16,7 @@ namespace LWF.Audio {
         [SerializeField] bool canLoop = false;
         [SerializeField] AudioMixer sceneAudioMixer;
 
-        void Awake() {
+        private void Awake() {
             audioSource.loop = canLoop;
 
             switch (scene) {
@@ -35,12 +35,12 @@ namespace LWF.Audio {
             audioSource.outputAudioMixerGroup = sceneAudioMixer.FindMatchingGroups("Master")[0]; ;
         }
 
-        void PlayVictimListSong() {
+        private void PlayVictimListSong() {
             audioSource.clip = songs[0];
             audioSource.Play();
         }
 
-        void ChooseNextRadioSong() {
+        private void ChooseNextRadioSong() {
             if (!audioSource.isPlaying) {
                 //audioSource.clip = ChooseRadioSong();
                 audioSource.clip = songs.RandomListSelection();

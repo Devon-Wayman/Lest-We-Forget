@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace LWF.Managers {
@@ -17,6 +18,15 @@ namespace LWF.Managers {
             levelFadeCanvas.gameObject.SetActive(true);
 
             LeanTween.alphaCanvas(levelFadeCanvas, desiredAlpha, fadeTime).setOnComplete(() => {
+                callback?.Invoke();
+                levelFadeCanvas.gameObject.SetActive(false);
+            });
+        }
+
+        internal void ResetLevel(float desiredAlpha, Action callback) {
+            levelFadeCanvas.gameObject.SetActive(true);
+
+            LeanTween.alphaCanvas(levelFadeCanvas, desiredAlpha, 0.3f).setOnComplete(() => {
                 callback?.Invoke();
                 levelFadeCanvas.gameObject.SetActive(false);
             });

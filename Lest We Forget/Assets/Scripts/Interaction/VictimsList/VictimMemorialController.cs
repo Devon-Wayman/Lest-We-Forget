@@ -13,7 +13,7 @@ namespace LWF.Interaction {
         [SerializeField] private Image victimImage; // Display's selected prisoner sprite
         [SerializeField] private TMP_Text victimName;
 
-        private List<Sprite> victimsSprites = new List<Sprite>();
+        private List<Sprite> victimsSprites = new();
         private int spriteIndex = 0;
         private int imageDisplayDuration = 5;
         private int imageBreakDuration = 1;
@@ -43,12 +43,9 @@ namespace LWF.Interaction {
 
 
         private void Awake() {
-            #region Slideshow Setup
             photosCanvas.alpha = 0;
             LoadAllSprites();
-            #endregion
 
-            #region Names List Setup
             listCanvas.alpha = openersCanvas.alpha = textIndex = 0;
             listCanvas.gameObject.SetActive(false);
 
@@ -64,14 +61,11 @@ namespace LWF.Interaction {
                 }
             }
 
-            var arrayOfNames = namesFromList.ToArray();
             string stringOfNames = string.Join("\n", namesFromList);
             nameAndDateText.text = stringOfNames;
 
-            var arrayOfCountries = countryFromList.ToArray();
             string stringOfCountries = string.Join("\n", countryFromList);
             countryText.text = stringOfCountries;
-            #endregion
         }
 
         private void Start() {
@@ -93,7 +87,6 @@ namespace LWF.Interaction {
             });
         }
 
-        #region Slideshow
         private void LoadAllSprites() {
             foreach (Sprite sprite in Resources.LoadAll<Sprite>("Sprites/VictimsSS")) {
                 victimsSprites.Add(sprite);
@@ -101,8 +94,6 @@ namespace LWF.Interaction {
         }
 
         private void StartSlideshow() {
-            Debug.Log("Slideshow called");
-
             victimImage.sprite = victimsSprites.RandomListSelection();
             spriteIndex = victimsSprites.IndexOf(victimImage.sprite);
             victimName.text = VictimName(victimImage.sprite.name);
@@ -131,11 +122,11 @@ namespace LWF.Interaction {
                     return $"{temp[0]} {temp[1]} {temp[2]}\nMurdered at age {temp[3]}";
                 }
             }
-            // If only first and last name given
+            // If first and last name only
             else if (temp.Length == 2) {
-                return $"{temp[0]} {temp[1]}. Age and survival status: Unknown";
+                return $"{temp[0]} {temp[1]}. Age/survival status: Unknown";
             }
-            // If name and age given
+            // Name and age given
             else {
                 if (temp[2] == "survived") {
                     return $"{temp[0]} {temp[1]}\nSurvived";
@@ -144,6 +135,5 @@ namespace LWF.Interaction {
                 }
             }
         }
-        #endregion
     }
 }

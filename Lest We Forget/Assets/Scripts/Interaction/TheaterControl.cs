@@ -9,22 +9,10 @@ namespace LWF.Interaction {
 
         [SerializeField] private VideoPlayer videoPlayer;
         [SerializeField] private AudioSource videoAudio;
-        private WaitForSeconds waitTime = new WaitForSeconds(2);
+        private readonly WaitForSeconds waitTime = new(2);
 
         private void Awake() {
-            string requestedMovie;
-
-            videoPlayer.SetTargetAudioSource(0, videoAudio);
-
-            if (PlayerManager.Instance != null) {
-                requestedMovie = PlayerManager.Instance.playerSettings.requestedMovie;
-            } else {
-                Debug.LogWarning("Movie string from settings empty or PlayerManager is null. Playing random");
-                requestedMovie = "assorted";
-            }
-
-            Debug.Log($"Requested movie: {requestedMovie}");
-            videoPlayer.clip = Resources.Load<VideoClip>($"TheaterClips/{requestedMovie}");
+            videoPlayer.clip = Resources.Load<VideoClip>($"TheaterClips/{GameManager.RequestedFilm}");
         }
 
         private void Start() {
