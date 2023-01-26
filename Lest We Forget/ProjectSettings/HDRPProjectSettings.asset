@@ -24,6 +24,6 @@ MonoBehaviour:
     m_Values: 
   m_Version: 2
   m_ObsoleteWizardPopupAlreadyShownOnce: 0
-  m_ObsoleteWizardActiveTab: 1
+  m_ObsoleteWizardActiveTab: 0
   m_ObsoleteWizardNeedRestartAfterChangingToDX12: 0
   m_ObsoleteWizardNeedToRunFixAllAgainAfterDomainReload: 0

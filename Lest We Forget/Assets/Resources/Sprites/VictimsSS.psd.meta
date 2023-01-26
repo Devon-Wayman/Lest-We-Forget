@@ -171,7 +171,7 @@ TextureImporter:
       213: -1760206494821495162
     second: VictimsSS_42
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -201,7 +201,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -218,7 +218,7 @@ TextureImporter:
   spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
-  alphaUsage: 0
+  alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
@@ -231,14 +231,15 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 80
+    textureCompression: 2
+    compressionQuality: 90
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
@@ -270,15 +271,15 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: -1
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: 48
     textureCompression: 1
-    compressionQuality: 80
+    compressionQuality: 50
     crunchedCompression: 1
     allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
+    overridden: 1
+    androidETC2FallbackOverride: 1
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
@@ -304,51 +305,21 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 80
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
-    - serializedVersion: 2
-      name: unknown_9
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 3556
-        width: 616
-        height: 448
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8d0e47227fba7f20800000000000000
-      internalID: 3421257363947916686
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: unknown_8
-      rect:
-        serializedVersion: 2
-        x: 769
-        y: 3555
-        width: 593
-        height: 449
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c5c857bc8b1bb5f0800000000000000
-      internalID: -739967422586894908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     - serializedVersion: 2
       name: Rachel_Cozijn-Rijne_28
       rect:
@@ -455,69 +426,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: unknown_5
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 3100
-        width: 617
-        height: 409
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7ea609d14b5c9700800000000000000
-      internalID: 548413593004453502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: unknown_4
-      rect:
-        serializedVersion: 2
-        x: 769
-        y: 3098
-        width: 574
-        height: 411
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 688ce05335a1a43f0800000000000000
-      internalID: -915890629541705594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: unknown_3
-      rect:
-        serializedVersion: 2
-        x: 1435
-        y: 3061
-        width: 573
-        height: 448
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3fb57240caeb2ba0800000000000000
-      internalID: -6112533957755683010
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: "Czes\u0142awa_Kwoka_14"
       rect:
         serializedVersion: 2
@@ -534,48 +442,6 @@ TextureImporter:
       bones: []
       spriteID: 77b0d95b0fa9fd850800000000000000
       internalID: 6404007553773931383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: unknown_2
-      rect:
-        serializedVersion: 2
-        x: 2422
-        y: 3050
-        width: 368
-        height: 459
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ba36c40f554a3be0800000000000000
-      internalID: -1496807651742958926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: unknown
-      rect:
-        serializedVersion: 2
-        x: 2830
-        y: 3043
-        width: 500
-        height: 466
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c7c3cdf979fb6bfa0800000000000000
-      internalID: -5785226013367845764
       vertices: []
       indices: 
       edges: []
@@ -707,7 +573,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leon_Herbstman_Under 1 year
+      name: Leon_Herbstman_U1
       rect:
         serializedVersion: 2
         x: 2748
@@ -1001,7 +867,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Betje_van_Delft_Under 1
+      name: Betje_van_Delft_U1
       rect:
         serializedVersion: 2
         x: 1909
@@ -1268,10 +1134,10 @@ TextureImporter:
       Hana_Neuschulova_13: 2909280771259524253
       Rachel_Cozijn-Rijne_28: -4278625739204855567
       unknown_2: -1496807651742958926
+      Betje_van_Delft_U1: -1900162990453278542
       Mendel_Jaffe_21: 3514051188998886744
       Hana_Bradyova_13: -6607459762196182293
       Jozefa_Glazowska_survived: 317927763186906589
-      Leon_Herbstman_Under 1 year: 327211871626396424
       "Czes\u0142awa_Kwoka_14": 6404007553773931383
       unknown_7: -510818561632007308
       Gizela_Rutarova_27: -1895228628285339158
@@ -1293,11 +1159,11 @@ TextureImporter:
       Zofia_Lucarz_16: 4432487400325438277
       Eliska_Sternova_28: 6927015530475716067
       Louis_Salomon_5: 219693907922432161
-      Betje_van_Delft_Under 1: -1900162990453278542
       unknown_9: 3421257363947916686
       Margot_Steinhardt_5: -3795148273103792025
       Gertruda_Weissova_31: -5360908467421160637
       unknown_5: 548413593004453502
+      Leon_Herbstman_U1: 327211871626396424
       Ida_Kominikova_42: -6644568314904831137
       Rosetta_Ejzenberg_16: -7264991604956624975
       Mozes_de_Wolf_28: 6360575541042120315

@@ -64,7 +64,8 @@ LightmapSettings:
     m_CompAOExponentDirect: 0
     m_ExtractAmbientOcclusion: 0
     m_Padding: 2
-    m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+    m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000,
+      type: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 0
     m_FinalGather: 0
@@ -97,8 +98,10 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 50ca530651710874290d64c99027cc0c, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: ef8d34c6ad854ba4bb25949337144b7c, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 35fbcb10324beca4c98322db82dde56b,
+    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 20b238fec6a63dc458cd3b04aba9b1ad,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -246,7 +249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -3.85}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &232869410
@@ -305,7 +308,6 @@ GameObject:
   m_Component:
   - component: {fileID: 235544805}
   - component: {fileID: 235544808}
-  - component: {fileID: 235544809}
   - component: {fileID: 235544810}
   m_Layer: 0
   m_Name: Environment
@@ -322,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235544804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.76}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -347,20 +349,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: ee304056760c102469e0054b94549d9f, type: 2}
---- !u!114 &235544809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235544804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ad6e2fe28ead4d79a4467100467398c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  depthOfFieldTarget: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: 4bb957b72602fa342bba3431abb43060, type: 2}
 --- !u!114 &235544810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +365,8 @@ MonoBehaviour:
   photosCanvas: {fileID: 2115730016}
   victimImage: {fileID: 1754368449}
   victimName: {fileID: 1815504249}
+  victimsSprites: []
+  maxImagesToDisplay: 0
   openersCanvas: {fileID: 2072417138}
   openingText: {fileID: 2072417136}
   listCanvas: {fileID: 232869412}
@@ -442,7 +433,8 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a250a67f7c5fd61408ddab43696024b7, type: 2}
-  m_sharedMaterial: {fileID: -5626615102129019400, guid: a250a67f7c5fd61408ddab43696024b7, type: 2}
+  m_sharedMaterial: {fileID: -5626615102129019400, guid: a250a67f7c5fd61408ddab43696024b7,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -516,51 +508,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614726772}
   m_CullTransparentMesh: 1
---- !u!1 &679935749
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 679935751}
-  - component: {fileID: 679935750}
-  m_Layer: 0
-  m_Name: Beautify Scene Settings
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &679935750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679935749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ad6e2fe28ead4d79a4467100467398c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  depthOfFieldTarget: {fileID: 0}
---- !u!4 &679935751
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679935749}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &817576063
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +549,8 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a250a67f7c5fd61408ddab43696024b7, type: 2}
-  m_sharedMaterial: {fileID: -5626615102129019400, guid: a250a67f7c5fd61408ddab43696024b7, type: 2}
+  m_sharedMaterial: {fileID: -5626615102129019400, guid: a250a67f7c5fd61408ddab43696024b7,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -705,7 +653,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 992219453}
-  - component: {fileID: 992219452}
   m_Layer: 0
   m_Name: StaticLightingSky
   m_TagString: Untagged
@@ -713,22 +660,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &992219452
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992219451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Profile: {fileID: 0}
-  m_StaticLightingSkyUniqueID: 0
-  m_StaticLightingCloudsUniqueID: 0
-  m_StaticLightingVolumetricClouds: 0
 --- !u!4 &992219453
 Transform:
   m_ObjectHideFlags: 1
@@ -839,7 +770,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6607459762196182293, guid: 8e6244c4b880ad341a26de9a43504bc7, type: 3}
+  m_Sprite: {fileID: -6607459762196182293, guid: 8e6244c4b880ad341a26de9a43504bc7,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -902,11 +834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd83666f994cad47a7a4030dfe35d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songs: []
   audioSource: {fileID: 1805928654}
-  scene: 1
   canLoop: 1
-  sceneAudioMixer: {fileID: 24100000, guid: 0b371e8ab87d06b428354becf7bf4905, type: 2}
 --- !u!82 &1805928654
 AudioSource:
   m_ObjectHideFlags: 0
@@ -916,7 +845,8 @@ AudioSource:
   m_GameObject: {fileID: 1805928651}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300001, guid: 1dd706bb85d8aef4e83a6229dbd62c36, type: 2}
+  OutputAudioMixerGroup: {fileID: 24300001, guid: 1dd706bb85d8aef4e83a6229dbd62c36,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: db1e5d57efd1c2a488c5d657c8e241da, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1003,6 +933,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1813101905
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1813101907}
+  - component: {fileID: 1813101906}
+  m_Layer: 0
+  m_Name: StaticLightingSky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1813101906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813101905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Profile: {fileID: 11400000, guid: 4bb957b72602fa342bba3431abb43060, type: 2}
+  m_StaticLightingSkyUniqueID: 3
+  m_StaticLightingCloudsUniqueID: 0
+  m_StaticLightingVolumetricClouds: 0
+--- !u!4 &1813101907
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813101905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1815504247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,10 +1039,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: test name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a250a67f7c5fd61408ddab43696024b7, type: 2}
-  m_sharedMaterial: {fileID: -5626615102129019400, guid: a250a67f7c5fd61408ddab43696024b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6395dd7ced08171438f2605e58c62a18, type: 2}
+  m_sharedMaterial: {fileID: 2405410914791920026, guid: 6395dd7ced08171438f2605e58c62a18,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1088,13 +1067,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.7
+  m_fontSize: 1
   m_fontSizeBase: 0.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 0.4
-  m_fontSizeMax: 0.7
-  m_fontStyle: 0
+  m_fontSizeMin: 0.2
+  m_fontSizeMax: 1
+  m_fontStyle: 32
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1230,8 +1209,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Opening Remarks Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a250a67f7c5fd61408ddab43696024b7, type: 2}
-  m_sharedMaterial: {fileID: -5626615102129019400, guid: a250a67f7c5fd61408ddab43696024b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6395dd7ced08171438f2605e58c62a18, type: 2}
+  m_sharedMaterial: {fileID: 2405410914791920026, guid: 6395dd7ced08171438f2605e58c62a18,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1255,13 +1235,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.6
+  m_fontSize: 1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0.2
-  m_fontSizeMax: 0.6
-  m_fontStyle: 0
+  m_fontSizeMax: 1
+  m_fontStyle: 32
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781cc897cf8675041a751163b51f97dd, type: 3}
   m_Name: HDRenderPipelineGlobalSettings
   m_EditorClassIdentifier: 
-  m_DefaultVolumeProfile: {fileID: 11400000, guid: 3c19596f9df6ffc47ac503d211cdea23, type: 2}
-  m_LookDevVolumeProfile: {fileID: 11400000, guid: 755b256265f428745abb215ecda4938b, type: 2}
+  m_DefaultVolumeProfile: {fileID: 11400000, guid: 881f4cc70d03cec4298ea10600ee0fad,
+    type: 2}
+  m_LookDevVolumeProfile: {fileID: 11400000, guid: 518fbfde73cebb247b7ec34ccd283956,
+    type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
-      data1: 72198262773183309
-      data2: 13763000477081862168
+      data1: 72198260625768268
+      data2: 13763000477081894936
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -27,12 +29,12 @@ MonoBehaviour:
     sssQualityMode: 0
     sssQualityLevel: 0
     sssCustomSampleBudget: 20
-    msaaMode: 9
+    msaaMode: 1
     materialQuality: 0
   m_RenderingPathDefaultBakedOrCustomReflectionFrameSettings:
     bitDatas:
       data1: 135310754214733
-      data2: 4539628428684427288
+      data2: 4539628428684460056
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -46,7 +48,7 @@ MonoBehaviour:
     materialQuality: 0
   m_RenderingPathDefaultRealtimeReflectionFrameSettings:
     bitDatas:
-      data1: 139923391782733
+      data1: 139923391782732
       data2: 13763000465807638544
     lodBias: 1
     lodBiasMode: 0
@@ -59,13 +61,13 @@ MonoBehaviour:
     sssCustomSampleBudget: 20
     msaaMode: 1
     materialQuality: 0
-  m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7, type: 2}
+  m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7,
+    type: 2}
   m_RenderPipelineRayTracingResources: {fileID: 0}
   beforeTransparentCustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
   afterPostProcessBlursCustomPostProcesses: []
-  afterPostProcessCustomPostProcesses:
-  - BeautifyHDRP.Beautify, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  afterPostProcessCustomPostProcesses: []
   beforeTAACustomPostProcesses: []
   lightLayerName0: Light Layer default
   lightLayerName1: Light Layer 1
@@ -83,12 +85,12 @@ MonoBehaviour:
   decalLayerName5: Decal Layer 5
   decalLayerName6: Decal Layer 6
   decalLayerName7: Decal Layer 7
-  shaderVariantLogLevel: 0
+  shaderVariantLogLevel: 1
   lensAttenuationMode: 0
   diffusionProfileSettingsList:
-  - {fileID: 11400000, guid: 2ef24d46af17a0a4f8271623775de4ed, type: 2}
-  - {fileID: 11400000, guid: a338be2722571494d9a739319fe970c4, type: 2}
-  rendererListCulling: 0
+  - {fileID: 11400000, guid: 0f5e3dc351233684080037f46ae78b7f, type: 2}
+  - {fileID: 11400000, guid: 5482f336337bd514689492a35c2763e0, type: 2}
+  rendererListCulling: 1
   DLSSProjectId: 000000
   useDLSSCustomProjectId: 0
   supportProbeVolumes: 0
